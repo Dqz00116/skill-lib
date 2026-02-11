@@ -151,6 +151,7 @@ When a Skill needs updating:
 | knowledge-base-cache | Knowledge base cache management | 1.0 |
 | msvc-build | MSVC project compilation | 1.0 |
 | mvp-design | MVP design specification | 1.0 |
+| requirement-clarification | Clarify ambiguous instructions before execution | 1.1 |
 
 ---
 

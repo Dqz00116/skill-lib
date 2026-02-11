@@ -45,6 +45,7 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 | [knowledge-base-cache](./knowledge-base-cache) | 分层知识库（热/冷/温缓存）| 管理大规模知识、降低 API 成本 |
 | [msvc-build](./msvc-build) | MSVC 项目编译指南 | 编译 Visual Studio 项目、排查编译错误 |
 | [mvp-design](./mvp-design) | MVP 设计规范，代码即文档 | 快速设计原型、建立架构决策 |
+| [requirement-clarification](./requirement-clarification) | 指令澄清与安全确认，模糊度检测 | 执行前确认、需求收集、安全闸门 |
 | [unity-mcp](./unity-mcp) | Unity MCP 集成用于 AI 控制 | Unity 游戏开发、AI 自动化 |
 
 ---
@@ -61,6 +62,7 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 | 要管理大量知识文档 | [knowledge-base-cache](./knowledge-base-cache) |
 | 要编译 C++ 项目 | [msvc-build](./msvc-build) |
 | 要设计新系统架构 | [mvp-design](./mvp-design) |
+| 要澄清模糊指令、执行前确认 | [requirement-clarification](./requirement-clarification) |
 | 要 Unity AI 自动化 | [unity-mcp](./unity-mcp) |
 
 ---
