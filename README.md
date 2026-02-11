@@ -59,6 +59,7 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 | [knowledge-base-cache](./knowledge-base-cache) | 3-tier knowledge management | Large-scale knowledge, cost reduction | ⭐⭐⭐ Complex |
 | [msvc-build](./msvc-build) | MSVC C++ compilation guide | Build projects, debug errors | ⭐⭐ Medium |
 | [mvp-design](./mvp-design) | MVP design specification | Rapid prototyping, architecture | ⭐⭐ Medium |
+| [requirement-clarification](./requirement-clarification) | Clarify ambiguous instructions before execution | Safety, confirmation protocol | ⭐⭐ Medium |
 | [unity-mcp](./unity-mcp) | Unity MCP integration for AI control | Unity game dev, AI automation | ⭐⭐⭐ Complex |
 
 ---
@@ -75,6 +76,7 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 | Manage knowledge base | [knowledge-base-cache](./knowledge-base-cache) |
 | Compile C++ projects | [msvc-build](./msvc-build) |
 | Design system architecture | [mvp-design](./mvp-design) |
+| Clarify ambiguous instructions | [requirement-clarification](./requirement-clarification) |
 | Unity AI automation | [unity-mcp](./unity-mcp) |
 
 ---
