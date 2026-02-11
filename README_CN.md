@@ -2,7 +2,7 @@
 
 > AI Agent 技能仓库 - 收集整理可复用的 Agent Skill
 
-[![Skills](https://img.shields.io/badge/skills-9-blue)](./)
+[![Skills](https://img.shields.io/badge/skills-11-blue)](./)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 ---
@@ -46,6 +46,7 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 | [msvc-build](./msvc-build) | MSVC 项目编译指南 | 编译 Visual Studio 项目、排查编译错误 |
 | [mvp-design](./mvp-design) | MVP 设计规范，代码即文档 | 快速设计原型、建立架构决策 |
 | [requirement-clarification](./requirement-clarification) | 指令澄清与安全确认，模糊度检测 | 执行前确认、需求收集、安全闸门 |
+| [research-to-practice](./research-to-practice) | 学术论文转化为工作流优化 | 研究应用、创新改进 |
 | [unity-mcp](./unity-mcp) | Unity MCP 集成用于 AI 控制 | Unity 游戏开发、AI 自动化 |
 
 ---
@@ -63,6 +64,7 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 | 要编译 C++ 项目 | [msvc-build](./msvc-build) |
 | 要设计新系统架构 | [mvp-design](./mvp-design) |
 | 要澄清模糊指令、执行前确认 | [requirement-clarification](./requirement-clarification) |
+| 要将论文研究转化为工作流优化 | [research-to-practice](./research-to-practice) |
 | 要 Unity AI 自动化 | [unity-mcp](./unity-mcp) |
 
 ---

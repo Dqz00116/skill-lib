@@ -169,6 +169,8 @@ Agent 必须：
 | knowledge-base-cache | 知识库缓存管理 | 1.0 |
 | msvc-build | MSVC项目编译 | 1.0 |
 | mvp-design | MVP设计规范 | 1.0 |
+| requirement-clarification | 指令澄清与安全确认 | 1.1 |
+| research-to-practice | 论文研究转化为工作流优化 | 1.0 |
 
 ---
 
