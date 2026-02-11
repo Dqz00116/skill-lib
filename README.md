@@ -1,134 +1,140 @@
 # Skill-Lib
 
-> AI Agent 技能仓库 - 收集整理可复用的 Agent Skill
+> 🧩 A curated collection of reusable AI Agent Skills for standardized workflows, best practices, and domain expertise.
 
 [![Skills](https://img.shields.io/badge/skills-7-blue)](./)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
----
-
-## 什么是 Skill
-
-Skill 是 AI Agent 的**可复用能力模块**，包含标准化工作流程、最佳实践和领域知识。
-
-每个 Skill 都经过实际项目验证，可以直接应用到你的 Agent 中。
+**Skill-Lib** is a community-driven repository that empowers AI Agents with battle-tested, reusable capabilities. Each Skill encapsulates proven workflows, eliminating repetitive setup and enabling Agents to focus on delivering value.
 
 ---
 
-## 快速开始
+## ✨ Why Skill-Lib?
 
-### 使用 Skill
+- **🚀 Ready to Use** - Pre-built, validated workflows for common tasks
+- **📚 Well Documented** - Clear instructions with examples and best practices
+- **🔄 Reusable** - Install once, use across multiple projects
+- **🌍 Community** - Open source, contributions welcome
+
+---
+
+## 🚀 Quick Start
+
+### Install a Skill
 
 ```bash
-# 克隆仓库
+# Clone the repository
 git clone https://github.com/Dqz00116/skill-lib.git
 
-# 阅读 Skill 文档
-cat skill-lib/code-analysis/SKILL.md
+# Copy desired Skills to your workspace
+cp -r skill-lib/code-analysis ~/my-agent/skills/
+
+# Start using it!
+cat ~/my-agent/skills/code-analysis/SKILL.md
 ```
 
-### 集成到 Agent
+### For AI Agents
 
-Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
+Agents can automatically install and use Skills:
 
----
+```python
+# Example: Agent reading and applying a Skill
+skill_content = read_file("skills/code-analysis/SKILL.md")
+execute_workflow(skill_content)
+```
 
-## 现有 Skills
-
-| Skill | 描述 | 适用场景 |
-|-------|------|----------|
-| [code-analysis](./code-analysis) | 标准化代码分析流程，4步结构化输出 | 理解新代码模块、架构分析、设计模式识别 |
-| [code-generator](./code-generator) | 分阶段代码生成，透明成本估算 | 根据设计文档生成代码、添加新功能 |
-| [daily-log](./daily-log) | 结构化每日操作日志 | 记录工作、跟踪进度、知识沉淀 |
-| [git-workflow](./git-workflow) | 安全的 Git 提交流程 | 提交代码前的检查与确认 |
-| [knowledge-base-cache](./knowledge-base-cache) | 分层知识库（热/冷/温缓存）| 管理大规模知识、降低 API 成本 |
-| [msvc-build](./msvc-build) | MSVC C++ 项目编译指南 | 编译 Visual Studio 项目、排查编译错误 |
-| [mvp-design](./mvp-design) | MVP 设计规范，代码即文档 | 快速设计原型、建立架构决策 |
+See [INSTALL.md](./INSTALL.md) for detailed installation options.
 
 ---
 
-## 技能选择指南
+## 📦 Available Skills
 
-| 你的需求 | 推荐的 Skill |
-|----------|-------------|
-| 需要理解陌生的代码模块 | [code-analysis](./code-analysis) |
-| 要根据设计文档写代码 | [code-generator](./code-generator) |
-| 要记录今天的工作 | [daily-log](./daily-log) |
-| 要提交代码到 GitHub | [git-workflow](./git-workflow) |
-| 要管理大量知识文档 | [knowledge-base-cache](./knowledge-base-cache) |
-| 要编译 C++ 项目 | [msvc-build](./msvc-build) |
-| 要设计新系统架构 | [mvp-design](./mvp-design) |
-
----
-
-## 详细文档
-
-- [SUMMARY.md](./SUMMARY.md) - 完整技能对比表
-- [INSTALL.md](./INSTALL.md) - 安装 Skill 到本地工作空间
-- [RULES.md](./RULES.md) - 贡献 Skill 的规则
+| Skill | Description | Use Cases | Complexity |
+|-------|-------------|-----------|------------|
+| [code-analysis](./code-analysis) | 4-step structured code analysis | Understanding code, architecture review | ⭐⭐ Medium |
+| [code-generator](./code-generator) | Phase-based code generation | Implementation from design docs | ⭐⭐⭐ Complex |
+| [daily-log](./daily-log) | Structured daily operation logs | Work tracking, knowledge retention | ⭐ Simple |
+| [git-workflow](./git-workflow) | Safe Git commit workflow | Code submission, version control | ⭐ Simple |
+| [knowledge-base-cache](./knowledge-base-cache) | 3-tier knowledge management | Large-scale knowledge, cost reduction | ⭐⭐⭐ Complex |
+| [msvc-build](./msvc-build) | MSVC C++ compilation guide | Build projects, debug errors | ⭐⭐ Medium |
+| [mvp-design](./mvp-design) | MVP design specification | Rapid prototyping, architecture | ⭐⭐ Medium |
 
 ---
 
-## 使用规则
+## 🎯 Quick Selection Guide
 
-详细规则请阅读 [RULES.md](./RULES.md)
-
-### 核心原则
-
-1. **命名规范**: 小写+连字符，如 `code-analysis`
-2. **脱敏处理**: 移除具体路径和个人信息
-3. **标准化格式**: 遵循 SKILL.md 模板
-4. **验证可用**: 经过实际项目验证
+| If you need to... | Use this Skill |
+|-------------------|----------------|
+| Understand unfamiliar code | [code-analysis](./code-analysis) |
+| Generate code from design | [code-generator](./code-generator) |
+| Record daily work | [daily-log](./daily-log) |
+| Commit code safely | [git-workflow](./git-workflow) |
+| Manage knowledge base | [knowledge-base-cache](./knowledge-base-cache) |
+| Compile C++ projects | [msvc-build](./msvc-build) |
+| Design system architecture | [mvp-design](./mvp-design) |
 
 ---
 
-## 贡献 Skill
+## 📖 Documentation
 
-欢迎贡献你的 Skill！
+- **[SUMMARY.md](./SUMMARY.md)** - Complete skill comparison and selection guide
+- **[INSTALL.md](./INSTALL.md)** - Installation guide for local workspaces
+- **[RULES.md](./RULES.md)** - Contribution guidelines and standards
 
-### 提交流程
+---
 
-1. 按 [RULES.md](./RULES.md) 创建 SKILL.md
-2. 脱敏处理所有内容
-3. 提交到 `skill-name/SKILL.md`
-4. 创建 Pull Request
+## 🤝 Contributing
 
-### Skill 模板
+We welcome contributions! Please see [RULES.md](./RULES.md) for:
+- Naming conventions
+- Content guidelines
+- Submission process
+
+### Quick Contribution Template
 
 ```markdown
 ---
-name: skill-name
-description: One-line description
+name: your-skill-name
+description: One-line description of what it does
 version: 1.0
 ---
 
-# Skill Name
+# Your Skill Name
 
 ## When to Use
-描述适用场景
+Describe when to use this skill
 
 ## Prerequisites
-前置条件
+What is needed before using
 
 ## Workflow
-详细工作流程
+Step-by-step instructions
 
 ## Best Practices
-最佳实践
+Tips for effective use
 ```
 
 ---
 
-## English Version
+## 🌏 Languages
 
-See [README_EN.md](./README_EN.md) for English documentation.
-
----
-
-## 许可证
-
-MIT License - 详见 [LICENSE](./LICENSE)
+- **English** (Current)
+- [中文](./README_CN.md) - Chinese version
 
 ---
 
-*最后更新: 2026-02-11*
+## 📄 License
+
+MIT License - See [LICENSE](./LICENSE)
+
+---
+
+<p align="center">
+  <i>Built by Agents, for Agents 🤖</i>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Dqz00116/skill-lib">⭐ Star us on GitHub</a>
+</p>
+
+*Last updated: 2026-02-11*
