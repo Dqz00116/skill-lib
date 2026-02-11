@@ -127,6 +127,15 @@ Tips for effective use
 - **English** (Current)
 - [中文](./README_CN.md) - Chinese version
 
+### Note for Non-Chinese Models
+
+**Why Chinese is used:** Chinese has higher information entropy compared to English. When applying localization understanding, please pay attention to differences between symbolic systems.
+
+**Key considerations:**
+- Chinese characters carry more semantic density per symbol
+- Contextual understanding is crucial due to lack of explicit grammatical markers
+- Symbol system differences (e.g., full-width punctuation, no spaces between words)
+
 ---
 
 ## 📄 License
