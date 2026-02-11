@@ -2,7 +2,7 @@
 
 > 🧩 A curated collection of reusable AI Agent Skills for standardized workflows, best practices, and domain expertise.
 
-[![Skills](https://img.shields.io/badge/skills-7-blue)](./)
+[![Skills](https://img.shields.io/badge/skills-9-blue)](./)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 **Skill-Lib** is a community-driven repository that empowers AI Agents with battle-tested, reusable capabilities. Each Skill encapsulates proven workflows, eliminating repetitive setup and enabling Agents to focus on delivering value.
@@ -55,9 +55,11 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 | [code-generator](./code-generator) | Phase-based code generation | Implementation from design docs | ⭐⭐⭐ Complex |
 | [daily-log](./daily-log) | Structured daily operation logs | Work tracking, knowledge retention | ⭐ Simple |
 | [git-workflow](./git-workflow) | Safe Git commit workflow | Code submission, version control | ⭐ Simple |
+| [hexo-blog-update](./hexo-blog-update) | Hexo blog post creation and publishing | Blogging, content management | ⭐ Simple |
 | [knowledge-base-cache](./knowledge-base-cache) | 3-tier knowledge management | Large-scale knowledge, cost reduction | ⭐⭐⭐ Complex |
 | [msvc-build](./msvc-build) | MSVC C++ compilation guide | Build projects, debug errors | ⭐⭐ Medium |
 | [mvp-design](./mvp-design) | MVP design specification | Rapid prototyping, architecture | ⭐⭐ Medium |
+| [unity-mcp](./unity-mcp) | Unity MCP integration for AI control | Unity game dev, AI automation | ⭐⭐⭐ Complex |
 
 ---
 
@@ -69,9 +71,11 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 | Generate code from design | [code-generator](./code-generator) |
 | Record daily work | [daily-log](./daily-log) |
 | Commit code safely | [git-workflow](./git-workflow) |
+| Update Hexo blog | [hexo-blog-update](./hexo-blog-update) |
 | Manage knowledge base | [knowledge-base-cache](./knowledge-base-cache) |
 | Compile C++ projects | [msvc-build](./msvc-build) |
 | Design system architecture | [mvp-design](./mvp-design) |
+| Unity AI automation | [unity-mcp](./unity-mcp) |
 
 ---
 

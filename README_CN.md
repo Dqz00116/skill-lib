@@ -2,7 +2,7 @@
 
 > AI Agent 技能仓库 - 收集整理可复用的 Agent Skill
 
-[![Skills](https://img.shields.io/badge/skills-7-blue)](./)
+[![Skills](https://img.shields.io/badge/skills-9-blue)](./)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 ---
@@ -41,9 +41,11 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 | [code-generator](./code-generator) | 分阶段代码生成，透明成本估算 | 根据设计文档生成代码、添加新功能 |
 | [daily-log](./daily-log) | 结构化每日操作日志 | 记录工作、跟踪进度、知识沉淀 |
 | [git-workflow](./git-workflow) | 安全的 Git 提交流程 | 提交代码前的检查与确认 |
+| [hexo-blog-update](./hexo-blog-update) | Hexo 博客文章创建与发布 | 博客写作、内容管理 |
 | [knowledge-base-cache](./knowledge-base-cache) | 分层知识库（热/冷/温缓存）| 管理大规模知识、降低 API 成本 |
 | [msvc-build](./msvc-build) | MSVC 项目编译指南 | 编译 Visual Studio 项目、排查编译错误 |
 | [mvp-design](./mvp-design) | MVP 设计规范，代码即文档 | 快速设计原型、建立架构决策 |
+| [unity-mcp](./unity-mcp) | Unity MCP 集成用于 AI 控制 | Unity 游戏开发、AI 自动化 |
 
 ---
 
@@ -55,9 +57,11 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 | 要根据设计文档写代码 | [code-generator](./code-generator) |
 | 要记录今天的工作 | [daily-log](./daily-log) |
 | 要提交代码到 GitHub | [git-workflow](./git-workflow) |
+| 要更新 Hexo 博客 | [hexo-blog-update](./hexo-blog-update) |
 | 要管理大量知识文档 | [knowledge-base-cache](./knowledge-base-cache) |
 | 要编译 C++ 项目 | [msvc-build](./msvc-build) |
 | 要设计新系统架构 | [mvp-design](./mvp-design) |
+| 要 Unity AI 自动化 | [unity-mcp](./unity-mcp) |
 
 ---
 

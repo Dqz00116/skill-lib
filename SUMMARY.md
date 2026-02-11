@@ -12,9 +12,11 @@
 | [code-generator](#code-generator) | 分阶段代码生成 | ⭐⭐⭐ 复杂 | 1-4 小时 | 结构化实现 |
 | [daily-log](#daily-log) | 每日操作日志 | ⭐ 简单 | 5-10 分钟 | 知识沉淀 |
 | [git-workflow](#git-workflow) | 安全 Git 提交流程 | ⭐ 简单 | 5 分钟 | 避免误操作 |
+| [hexo-blog-update](#hexo-blog-update) | Hexo 博客发布流程 | ⭐ 简单 | 10-20 分钟 | 标准化博客写作 |
 | [knowledge-base-cache](#knowledge-base-cache) | 分层知识库管理 | ⭐⭐⭐ 复杂 | 30 分钟 | 降低 90% API 成本 |
 | [msvc-build](#msvc-build) | MSVC 项目编译 | ⭐⭐ 中等 | 10-30 分钟 | 快速编译调试 |
 | [mvp-design](#mvp-design) | MVP 设计规范 | ⭐⭐ 中等 | 30-60 分钟 | 快速设计原型 |
+| [unity-mcp](#unity-mcp) | Unity MCP AI 集成 | ⭐⭐⭐ 复杂 | 1-2 小时 | Unity 自动化开发 |
 
 ---
 
@@ -112,6 +114,35 @@
 
 ---
 
+### hexo-blog-update
+
+| 属性 | 内容 |
+|------|------|
+| **用途** | Hexo 博客文章创建、编辑和发布 |
+| **适用场景** | 技术博客写作、内容管理、网站更新 |
+| **输入** | 博客标题、Markdown 内容 |
+| **输出** | 发布到网站的博客文章 |
+| **复杂度** | ⭐ 简单 |
+| **前置条件** | Node.js >= 22, Hexo CLI |
+| **关键特性** | 4步流程、本地预览、一键部署 |
+
+**工作流程**:
+1. `hexo new post "标题"` - 创建文章
+2. 编辑 Markdown 文件（含 `<!--more-->`）
+3. `hexo server` - 本地预览
+4. `npm run release-blog` - 发布部署
+
+**何时使用**:
+- 发布技术博客
+- 更新个人网站内容
+- 管理 Hexo 博客
+
+**何时不用**:
+- 非 Hexo 博客系统
+- 静态网站生成器（如 Hugo）
+
+---
+
 ### knowledge-base-cache
 
 | 属性 | 内容 |
@@ -185,6 +216,38 @@
 
 ---
 
+### unity-mcp
+
+| 属性 | 内容 |
+|------|------|
+| **用途** | Unity 引擎 MCP 集成，实现 AI 控制 Unity |
+| **适用场景** | Unity 游戏开发、AI 自动化测试、场景生成 |
+| **输入** | Unity 项目、自然语言指令 |
+| **输出** | Unity 场景操作、代码生成、自动化任务 |
+| **复杂度** | ⭐⭐⭐ 复杂 |
+| **前置条件** | Unity 2022+, Python 环境 |
+| **关键特性** | AI 驱动 Unity、场景操作、自动化脚本 |
+
+**核心能力**:
+- AI 控制 Unity 编辑器
+- 自动化场景构建
+- 代码生成和修改
+- 游戏对象管理
+- 资源导入和配置
+
+**何时使用**:
+- Unity 自动化开发
+- AI 辅助游戏开发
+- 快速原型构建
+- 自动化测试
+
+**何时不用**:
+- 非 Unity 项目
+- 简单脚本任务
+- 生产环境敏感项目
+
+---
+
 ## 技能组合推荐
 
 ### 场景 1: 开发新功能
@@ -211,6 +274,13 @@
 1. **knowledge-base-cache**: 设置知识库
 2. **daily-log**: 定期记录和更新
 
+### 场景 4: 技术博客写作
+
+**流程**: hexo-blog-update → git-workflow
+
+1. **hexo-blog-update**: 创建和编辑博客文章
+2. **git-workflow**: 提交并发布博客更新
+
 ---
 
 ## 快速选择
@@ -221,9 +291,11 @@
 | 写新代码 | code-generator |
 | 记录工作 | daily-log |
 | 提交代码 | git-workflow |
+| 发布博客 | hexo-blog-update |
 | 管理知识 | knowledge-base-cache |
 | 编译项目 | msvc-build |
 | 设计系统 | mvp-design |
+| Unity AI 开发 | unity-mcp |
 
 ---
 
