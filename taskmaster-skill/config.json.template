@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "description": "TaskMaster CLI configuration file",
+  "plans": {
+    "<plan-name>": {
+      "path": "<absolute-path-to-plan-directory>",
+      "description": "<plan-description>"
+    }
+  },
+  "settings": {
+    "defaultPlan": "<default-plan-name>",
+    "autoCreatePlan": false,
+    "logRetentionDays": 30
+  }
+}

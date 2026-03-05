@@ -1,0 +1,21 @@
+{
+  "name": "agentfabric-task-cli",
+  "version": "1.0.0",
+  "description": "AgentFabric MVP 任务管理 CLI",
+  "type": "module",
+  "bin": {
+    "af-task": "./task.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.3",
+    "inquirer": "^9.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
