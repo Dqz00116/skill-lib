@@ -19,6 +19,7 @@
 | [requirement-clarification](#requirement-clarification) | 指令澄清与安全确认 | ⭐⭐ 中等 | 2-5 分钟 | 避免误操作 |
 | [research-to-practice](#research-to-practice) | 论文研究转化为实践 | ⭐⭐ 中等 | 30-60 分钟 | 研究驱动创新 |
 | [unity-mcp](#unity-mcp) | Unity MCP AI 集成 | ⭐⭐⭐ 复杂 | 1-2 小时 | Unity 自动化开发 |
+| [taskmaster-skill](#taskmaster-skill) | AgentFabric 任务管理系统 | ⭐⭐ 中等 | 5-15 分钟 | 计划跟踪、任务管理 |
 
 ---
 
@@ -322,6 +323,44 @@
 
 ---
 
+### taskmaster-skill
+
+| 属性 | 内容 |
+|------|------|
+| **用途** | AgentFabric 任务管理系统，跟踪计划和任务进度 |
+| **适用场景** | 计划跟踪、任务管理、进度监控 |
+| **输入** | 计划名称、任务命令 |
+| **输出** | 任务状态、进度报告、下一步建议 |
+| **复杂度** | ⭐⭐ 中等 |
+| **前置条件** | Node.js 22+ |
+| **关键特性** | CLI 工具、多计划管理、实时进度追踪 |
+
+**核心能力**:
+- 多计划并行管理
+- 任务依赖关系追踪
+- 进度可视化（百分比、颜色标识）
+- 智能下一步建议
+- 批量任务分析
+
+**工作流程**:
+1. `task plans` - 查看所有计划
+2. `task progress <plan>` - 检查进度
+3. `task list <plan>` - 列出任务
+4. `task next <plan>` - 获取下一步建议
+
+**何时使用**:
+- 管理复杂项目计划
+- 跟踪多阶段任务进度
+- 需要任务优先级排序
+- 记录和追踪开发计划
+
+**何时不用**:
+- 简单单步任务
+- 无需进度追踪的临时工作
+- 非结构化探索性工作
+
+---
+
 ## 技能组合推荐
 
 ### 场景 1: 开发新功能
@@ -355,6 +394,16 @@
 1. **hexo-blog-update**: 创建和编辑博客文章
 2. **git-workflow**: 提交并发布博客更新
 
+### 场景 5: 复杂项目管理
+
+**流程**: taskmaster-skill → mvp-design → code-generator → git-workflow → daily-log
+
+1. **taskmaster-skill**: 创建项目计划，跟踪任务进度
+2. **mvp-design**: 设计 MVP 架构
+3. **code-generator**: 根据设计生成代码
+4. **git-workflow**: 提交代码变更
+5. **daily-log**: 记录工作日志
+
 ---
 
 ## 快速选择
@@ -372,6 +421,7 @@
 | 澄清模糊指令 | requirement-clarification |
 | 论文转化为实践 | research-to-practice |
 | Unity AI 开发 | unity-mcp |
+| 管理任务和跟踪进度 | taskmaster-skill |
 
 ---
 
@@ -385,4 +435,4 @@
 
 ---
 
-*最后更新: 2026-02-11*
+*最后更新: 2026-03-05*
