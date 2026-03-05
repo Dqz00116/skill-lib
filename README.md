@@ -2,7 +2,7 @@
 
 > 🧩 A curated collection of reusable AI Agent Skills for standardized workflows, best practices, and domain expertise.
 
-[![Skills](https://img.shields.io/badge/skills-11-blue)](./)
+[![Skills](https://img.shields.io/badge/skills-12-blue)](./)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 **Skill-Lib** is a community-driven repository that empowers AI Agents with battle-tested, reusable capabilities. Each Skill encapsulates proven workflows, eliminating repetitive setup and enabling Agents to focus on delivering value.
@@ -62,6 +62,7 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 | [requirement-clarification](./requirement-clarification) | Clarify ambiguous instructions before execution | Safety, confirmation protocol | ⭐⭐ Medium |
 | [research-to-practice](./research-to-practice) | Transform research papers into workflow optimizations | Research application, innovation | ⭐⭐ Medium |
 | [unity-mcp](./unity-mcp) | Unity MCP integration for AI control | Unity game dev, AI automation | ⭐⭐⭐ Complex |
+| [taskmaster-skill](./taskmaster-skill) | Task management system for AgentFabric | Plan tracking, task management | ⭐⭐ Medium |
 
 ---
 
@@ -80,6 +81,7 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 | Clarify ambiguous instructions | [requirement-clarification](./requirement-clarification) |
 | Apply research papers to workflows | [research-to-practice](./research-to-practice) |
 | Unity AI automation | [unity-mcp](./unity-mcp) |
+| Manage tasks and track progress | [taskmaster-skill](./taskmaster-skill) |
 
 ---
 
@@ -154,4 +156,4 @@ MIT License - See [LICENSE](./LICENSE)
   <a href="https://github.com/Dqz00116/skill-lib">⭐ Star us on GitHub</a>
 </p>
 
-*Last updated: 2026-02-11*
+*Last updated: 2026-03-05*
