@@ -2,7 +2,7 @@
 
 > 🧩 A curated collection of reusable AI Agent Skills for standardized workflows, best practices, and domain expertise.
 
-[![Skills](https://img.shields.io/badge/skills-12-blue)](./)
+[![Skills](https://img.shields.io/badge/skills-14-blue)](./)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
 **Skill-Lib** is a community-driven repository that empowers AI Agents with battle-tested, reusable capabilities. Each Skill encapsulates proven workflows, eliminating repetitive setup and enabling Agents to focus on delivering value.
@@ -47,41 +47,9 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 
 ---
 
-## 📦 Available Skills
+## 📦 Available Skills & Selection Guide
 
-| Skill | Description | Use Cases | Complexity |
-|-------|-------------|-----------|------------|
-| [code-analysis](./code-analysis) | 4-step structured code analysis | Understanding code, architecture review | ⭐⭐ Medium |
-| [code-generator](./code-generator) | Phase-based code generation | Implementation from design docs | ⭐⭐⭐ Complex |
-| [daily-log](./daily-log) | Structured daily operation logs | Work tracking, knowledge retention | ⭐ Simple |
-| [git-workflow](./git-workflow) | Safe Git commit workflow | Code submission, version control | ⭐ Simple |
-| [hexo-blog-update](./hexo-blog-update) | Hexo blog post creation and publishing | Blogging, content management | ⭐ Simple |
-| [knowledge-base-cache](./knowledge-base-cache) | 3-tier knowledge management | Large-scale knowledge, cost reduction | ⭐⭐⭐ Complex |
-| [msvc-build](./msvc-build) | MSVC C++ compilation guide | Build projects, debug errors | ⭐⭐ Medium |
-| [mvp-design](./mvp-design) | MVP design specification | Rapid prototyping, architecture | ⭐⭐ Medium |
-| [requirement-clarification](./requirement-clarification) | Clarify ambiguous instructions before execution | Safety, confirmation protocol | ⭐⭐ Medium |
-| [research-to-practice](./research-to-practice) | Transform research papers into workflow optimizations | Research application, innovation | ⭐⭐ Medium |
-| [unity-mcp](./unity-mcp) | Unity MCP integration for AI control | Unity game dev, AI automation | ⭐⭐⭐ Complex |
-| [taskmaster-skill](./taskmaster-skill) | Task management system for AgentFabric | Plan tracking, task management | ⭐⭐ Medium |
-
----
-
-## 🎯 Quick Selection Guide
-
-| If you need to... | Use this Skill |
-|-------------------|----------------|
-| Understand unfamiliar code | [code-analysis](./code-analysis) |
-| Generate code from design | [code-generator](./code-generator) |
-| Record daily work | [daily-log](./daily-log) |
-| Commit code safely | [git-workflow](./git-workflow) |
-| Update Hexo blog | [hexo-blog-update](./hexo-blog-update) |
-| Manage knowledge base | [knowledge-base-cache](./knowledge-base-cache) |
-| Compile C++ projects | [msvc-build](./msvc-build) |
-| Design system architecture | [mvp-design](./mvp-design) |
-| Clarify ambiguous instructions | [requirement-clarification](./requirement-clarification) |
-| Apply research papers to workflows | [research-to-practice](./research-to-practice) |
-| Unity AI automation | [unity-mcp](./unity-mcp) |
-| Manage tasks and track progress | [taskmaster-skill](./taskmaster-skill) |
+👉 **View complete skill comparison and selection guide: [SUMMARY.md](./SUMMARY.md)**
 
 ---
 
@@ -156,4 +124,4 @@ MIT License - See [LICENSE](./LICENSE)
   <a href="https://github.com/Dqz00116/skill-lib">⭐ Star us on GitHub</a>
 </p>
 
-*Last updated: 2026-03-05*
+*Last updated: 2026-03-21*
