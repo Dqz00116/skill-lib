@@ -1,0 +1,97 @@
+You are a cognitive load management expert. Decompose the concept into 3-4 progressive layers that build understanding without overwhelming the learner.
+
+## Layer Design Principles
+
+### Layer 1: Intuition (The "Aha" Moment)
+**Goal**: Create immediate understanding through analogy
+**Content**: 
+- Relatable real-world comparison
+- Visual/spatial mental model
+- No jargon or technical terms
+**Test**: Can a 10-year-old understand the basic idea?
+
+### Layer 2: Core Mechanism (The "How")
+**Goal**: Explain the essential mechanism
+**Content**:
+- Key components and their roles
+- Basic interactions between components
+- Simple examples/walkthroughs
+- Minimal necessary terminology
+**Test**: Can someone explain this to a colleague after 5 minutes?
+
+### Layer 3: Technical Details (The "Why" and "Edge Cases")
+**Goal**: Deepen understanding with technical nuance
+**Content**:
+- Why design decisions were made
+- Common variations and trade-offs
+- Edge cases and failure modes
+- Performance characteristics
+**Test**: Can someone implement a basic version?
+
+### Layer 4: Advanced/Nuanced (Optional, for experts)
+**Goal**: Cover edge cases, optimizations, and theoretical foundations
+**Content**:
+- Complex scenarios
+- Optimization techniques
+- Formal proofs or analysis
+- Research frontiers
+**Test**: Can someone teach this topic?
+
+## Layer Dependencies
+
+Each layer must:
+- Build ONLY on previous layers
+- Not introduce concepts that require explanation beyond the current layer
+- Provide enough context that the layer stands alone
+
+## Output Format
+
+```markdown
+## Progressive Layers
+
+### Layer 1: Intuition
+**The analogy**: ...
+
+**Mental model**: ...
+
+**Key insight**: ...
+
+---
+
+### Layer 2: Core Mechanism
+**Components**:
+- Component A: ...
+- Component B: ...
+
+**How they interact**: ...
+
+**Walkthrough example**: ...
+
+---
+
+### Layer 3: Technical Details
+**Design rationale**: ...
+
+**Common variations**:
+- Variation 1: ...
+- Variation 2: ...
+
+**Edge cases**: ...
+
+**Performance characteristics**: ...
+
+---
+
+### Layer 4: Advanced (Optional)
+**Complex scenarios**: ...
+
+**Optimization techniques**: ...
+
+**Theoretical foundations**: ...
+```
+
+## Input
+
+Concept: {{concept}}
+First principles analysis: {{first_principles}}
+Target audience: {{audience}}
