@@ -1,488 +1,66 @@
-# Skill 完整对比表
+# Skill Summary
 
-> 快速选择合适的 Skill
-
----
-
-## 概览
-
-| Skill | 一句话描述 | 复杂度 | 典型耗时 | 主要收益 |
-|-------|-----------|--------|----------|----------|
-| [code-analysis](#code-analysis) | 标准化代码分析流程 | ⭐⭐ 中等 | 15-90 分钟 | 系统化理解代码 |
-| [code-generator](#code-generator) | 分阶段代码生成 | ⭐⭐⭐ 复杂 | 1-4 小时 | 结构化实现 |
-| [daily-log](#daily-log) | 每日操作日志 | ⭐ 简单 | 5-10 分钟 | 知识沉淀 |
-| [git-workflow](#git-workflow) | 安全 Git 提交流程 | ⭐ 简单 | 5 分钟 | 避免误操作 |
-| [hexo-blog-update](#hexo-blog-update) | Hexo 博客发布流程 | ⭐ 简单 | 10-20 分钟 | 标准化博客写作 |
-| [knowledge-base-cache](#knowledge-base-cache) | 分层知识库管理 | ⭐⭐⭐ 复杂 | 30 分钟 | 降低 90% API 成本 |
-| [msvc-build](#msvc-build) | MSVC 项目编译 | ⭐⭐ 中等 | 10-30 分钟 | 快速编译调试 |
-| [mvp-design](#mvp-design) | MVP 设计规范 | ⭐⭐ 中等 | 30-60 分钟 | 快速设计原型 |
-| [requirement-clarification](#requirement-clarification) | 指令澄清与安全确认 | ⭐⭐ 中等 | 2-5 分钟 | 避免误操作 |
-| [research-to-practice](#research-to-practice) | 论文研究转化为实践 | ⭐⭐ 中等 | 30-60 分钟 | 研究驱动创新 |
-| [unity-mcp](#unity-mcp) | Unity MCP AI 集成 | ⭐⭐⭐ 复杂 | 1-2 小时 | Unity 自动化开发 |
-| [taskmaster-skill](#taskmaster-skill) | AgentFabric 任务管理系统 | ⭐⭐ 中等 | 5-15 分钟 | 计划跟踪、任务管理 |
-| [paper-first-principles](#paper-first-principles) | 论文第一性原理解读 | ⭐⭐ 中等 | 30-60 分钟 | 深度理解学术论文 |
-| [layered-first-principles-teaching](#layered-first-principles-teaching) | 渐进式第一性原理教学 | ⭐⭐ 中等 | 20-40 分钟 | 结构化知识传递 |
+> Auto-generated index of all available skills. Run `python scripts/generate-summary.py --write` to regenerate after adding new skills.
 
 ---
 
-## 详细对比
+## Skill Overview
 
-### code-analysis
+| Skill | Description | Version |
+|-------|-------------|---------|
+| [code-analysis](./code-analysis) | Use when analyzing unfamiliar code modules, understanding system archi... | 1.2 |
+| [code-generator](./code-generator) | Use when implementing new modules from design documents, adding featur... | 1.0 |
+| [daily-log](./daily-log) | Use when recording work sessions, tracking decisions and outcomes, or ... | 1.1 |
+| [devflow](./devflow) | Use when working in a DevFlow project with .devflow/ directory and gat... | 2.0 |
+| [git-workflow](./git-workflow) | Use when committing code, pushing changes, or managing Git operations ... | 1.0 |
+| [hexo-blog-update](./hexo-blog-update) | Use when creating, editing, or publishing Hexo blog posts | 1.0 |
+| [knowledge-base-cache](./knowledge-base-cache) | Use when managing large knowledge bases, reducing API costs, or implem... | 1.0 |
+| [layered-first-principles-teaching](./layered-first-principles-teaching) | Use when explaining complex concepts to others, designing training mat... | 1.0 |
+| [msvc-build](./msvc-build) | Use when compiling MSVC C++ projects, debugging build errors, or perfo... | 1.0 |
+| [mvp-design](./mvp-design) | Use when designing new modules from scratch, creating minimal viable p... | 1.0 |
+| [paper-first-principles](./paper-first-principles) | Use when converting academic papers into engineer-friendly documentati... | 1.0 |
+| [requirement-clarification](./requirement-clarification) | Use when receiving ambiguous instructions, preparing for state-changin... | 1.1 |
+| [research-to-practice](./research-to-practice) | Use when applying academic research to practical workflows, optimizing... | 1.0 |
+| [taskmaster-skill](./taskmaster-skill) | Use when managing complex project plans, tracking multi-phase task pro... |  |
+| [unity-mcp](./unity-mcp) | Use when controlling Unity editor via AI, automating scene operations,... |  |
 
-| 属性 | 内容 |
-|------|------|
-| **用途** | 系统性地理解和分析代码模块 |
-| **适用场景** | 新代码模块、架构分析、设计模式识别 |
-| **输入** | 代码文件路径、分析目标 |
-| **输出** | 结构化分析文档（4步法：目标→产出物→内容→Token评估） |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | 能够读取代码文件 |
-| **关键特性** | 定义位置确认规则、Token成本预估 |
-
-**何时使用**:
-- 需要理解陌生的代码模块
-- 分析系统架构
-- 准备代码重构
-
-**何时不用**:
-- 简单的代码查看
-- 已有充分文档的代码
-
----
-
-### code-generator
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 根据设计文档生成代码实现 |
-| **适用场景** | 新功能开发、代码重构、模块替换 |
-| **输入** | 设计文档（MVP Design） |
-| **输出** | 代码文件（.h/.cpp） |
-| **复杂度** | ⭐⭐⭐ 复杂 |
-| **前置条件** | 设计文档、目标代码路径 |
-| **关键特性** | 阶段化执行、修改预览、成本透明 |
-
-**何时使用**:
-- 根据设计文档写代码
-- 实现新模块
-- 添加功能到现有系统
-
-**何时不用**:
-- 没有设计文档时
-- 简单的单行修改
+**Total: 15 skills**
 
 ---
 
-### daily-log
+## Quick Selection
 
-| 属性 | 内容 |
-|------|------|
-| **用途** | 记录每日工作、决策和经验教训 |
-| **适用场景** | 工作记录、知识沉淀、进度跟踪 |
-| **输入** | 会话历史 |
-| **输出** | 结构化日志文件（memory/YYYY-MM-DD.md） |
-| **复杂度** | ⭐ 简单 |
-| **前置条件** | 无 |
-| **关键特性** | 7节结构、统计追踪、经验教训 |
-
-**何时使用**:
-- 每天工作结束时
-- 重要任务完成后
-- 需要记录决策时
-
-**何时不用**:
-- 极短会话（<5分钟）
-- 纯查询类交互
+| If you need to... | Use this Skill |
+|-------------------|----------------|
+| Analyze unfamiliar code | [code-analysis](./code-analysis) |
+| Generate code from design docs | [code-generator](./code-generator) |
+| Record work sessions | [daily-log](./daily-log) |
+| Safely commit/push code | [git-workflow](./git-workflow) |
+| Publish Hexo blog posts | [hexo-blog-update](./hexo-blog-update) |
+| Manage knowledge with caching | [knowledge-base-cache](./knowledge-base-cache) |
+| Compile MSVC C++ projects | [msvc-build](./msvc-build) |
+| Design MVP prototypes | [mvp-design](./mvp-design) |
+| Clarify ambiguous requirements | [requirement-clarification](./requirement-clarification) |
+| Apply research to practice | [research-to-practice](./research-to-practice) |
+| Automate Unity development | [unity-mcp](./unity-mcp) |
+| Track project tasks | [taskmaster-skill](./taskmaster-skill) |
+| Understand academic papers | [paper-first-principles](./paper-first-principles) |
+| Explain complex concepts | [layered-first-principles-teaching](./layered-first-principles-teaching) |
 
 ---
 
-### git-workflow
+## Recommended Skill Combinations
 
-| 属性 | 内容 |
-|------|------|
-| **用途** | 安全地执行 Git 提交和推送 |
-| **适用场景** | 代码提交前检查、确认流程 |
-| **输入** | Git 仓库 |
-| **输出** | 提交并推送到远程 |
-| **复杂度** | ⭐ 简单 |
-| **前置条件** | Git 仓库已初始化 |
-| **关键特性** | 状态检查、用户确认、安全检查 |
-
-**何时使用**:
-- 提交代码到 GitHub
-- 推送更改前确认
-- 检查仓库状态
-
-**何时不用**:
-- 自动化 CI/CD 流程
-- 无 Git 仓库的项目
+| Scenario | Skill Chain |
+|----------|-------------|
+| New feature development | `mvp-design` -> `code-generator` -> `msvc-build` -> `git-workflow` |
+| Maintain existing system | `code-analysis` -> `msvc-build` -> `daily-log` |
+| Knowledge management | `knowledge-base-cache` -> `daily-log` |
+| Technical blogging | `hexo-blog-update` -> `git-workflow` |
+| Complex project management | `taskmaster-skill` -> `mvp-design` -> `code-generator` -> `git-workflow` -> `daily-log` |
+| Research application | `paper-first-principles` -> `research-to-practice` |
+| Teaching / explaining | `layered-first-principles-teaching` |
 
 ---
 
-### hexo-blog-update
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | Hexo 博客文章创建、编辑和发布 |
-| **适用场景** | 技术博客写作、内容管理、网站更新 |
-| **输入** | 博客标题、Markdown 内容 |
-| **输出** | 发布到网站的博客文章 |
-| **复杂度** | ⭐ 简单 |
-| **前置条件** | Node.js >= 22, Hexo CLI |
-| **关键特性** | 4步流程、本地预览、一键部署 |
-
-**工作流程**:
-1. `hexo new post "标题"` - 创建文章
-2. 编辑 Markdown 文件（含 `<!--more-->`）
-3. `hexo server` - 本地预览
-4. `npm run release-blog` - 发布部署
-
-**何时使用**:
-- 发布技术博客
-- 更新个人网站内容
-- 管理 Hexo 博客
-
-**何时不用**:
-- 非 Hexo 博客系统
-- 静态网站生成器（如 Hugo）
-
----
-
-### knowledge-base-cache
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 管理分层知识库，降低 API 成本 |
-| **适用场景** | 大规模知识管理、频繁查询 |
-| **输入** | Markdown 文档 |
-| **输出** | 缓存的知识上下文 |
-| **复杂度** | ⭐⭐⭐ 复杂 |
-| **前置条件** | Python 环境、API Key（可选） |
-| **关键特性** | 热/冷/温三层、Working Memory、Token 预算 |
-
-**何时使用**:
-- 管理大量知识文档
-- 需要降低 API 成本
-- 频繁查询相同内容
-
-**何时不用**:
-- 知识量很小（<1000 tokens）
-- 一次性查询
-
-**成本收益**:
-- 热缓存：降低 90% API 成本
-- 冷存储：零 API 成本
-
----
-
-### msvc-build
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 编译 MSVC C++ 项目 |
-| **适用场景** | 编译 Visual Studio 项目、排查编译错误 |
-| **输入** | .sln 或 .vcxproj 文件 |
-| **输出** | 编译后的可执行文件/库 |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | Visual Studio 2019/2022 |
-| **关键特性** | 自动检测 MSBuild、错误分析、并行编译 |
-
-**何时使用**:
-- 编译 C++ 项目
-- 排查编译错误
-- 验证代码修改
-
-**何时不用**:
-- 非 MSVC 项目
-- 仅查看代码（不编译）
-
----
-
-### mvp-design
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 设计最小可行原型（MVP） |
-| **适用场景** | 新系统设计、快速原型、架构决策 |
-| **输入** | 需求描述、现有架构信息 |
-| **输出** | 设计文档（无代码，只有架构） |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | 了解现有架构模式 |
-| **关键特性** | 代码即文档、5-6文件限制、设计决策记录 |
-
-**何时使用**:
-- 设计新系统
-- 快速原型设计
-- 建立架构决策
-
-**何时不用**:
-- 已有完整设计
-- 简单功能添加
-
----
-
-### requirement-clarification
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 检测模糊指令并引导用户澄清需求 |
-| **适用场景** | 执行前确认、安全闸门、需求收集 |
-| **输入** | 用户指令 |
-| **输出** | 确认后的执行计划 |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | 理解状态变更操作 |
-| **关键特性** | 模糊度评分、强制暂停、确认词汇检测 |
-
-**核心能力**:
-- 模糊度自动检测 (0-100 分)
-- 习惯性违规黑名单 (Git操作自动触发)
-- 严格确认词汇 (准备 vs 批准)
-- 批量确认模式集成
-- 边界情况处理
-
-**何时使用**:
-- 用户指令不完整
-- 指代不明确 ("那个", "这个")
-- 非肯定句 (疑问/条件句)
-- 高风险操作前
-- 需要制定执行计划
-
-**何时不用**:
-- 只读查询 (查看状态、读取文件)
-- 已明确批准的执行
-
----
-
-### research-to-practice
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 将学术研究转化为实际工作流优化 |
-| **适用场景** | 论文阅读、研究应用、创新改进 |
-| **输入** | 论文 URL/标题、当前工作流信息 |
-| **输出** | 优化建议 + 实施计划 |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | 理解当前工作流程 |
-| **关键特性** | 6步转化流程、映射框架、优先级矩阵 |
-
-**核心能力**:
-- 论文获取与核心贡献提取
-- 深度阅读与技术细节分析
-- 当前工作流映射分析
-- 优化提案生成与排序
-- 可执行的实施计划制定
-
-**工作流程**:
-1. 论文获取与初步评估
-2. 深度阅读与洞察提取
-3. 当前工作流分析
-4. 优化提案生成
-5. 实施计划制定
-6. 验证与文档化
-
-**何时使用**:
-- 发现相关学术论文
-- 需要优化现有工作流
-- 寻找研究驱动创新
-- 当前方法存在局限性
-
-**何时不用**:
-- 论文不可访问或无关
-- 方法过于理论无法落地
-- 缺乏实施资源
-
----
-
-### unity-mcp
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | Unity 引擎 MCP 集成，实现 AI 控制 Unity |
-| **适用场景** | Unity 游戏开发、AI 自动化测试、场景生成 |
-| **输入** | Unity 项目、自然语言指令 |
-| **输出** | Unity 场景操作、代码生成、自动化任务 |
-| **复杂度** | ⭐⭐⭐ 复杂 |
-| **前置条件** | Unity 2022+, Python 环境 |
-| **关键特性** | AI 驱动 Unity、场景操作、自动化脚本 |
-
-**核心能力**:
-- AI 控制 Unity 编辑器
-- 自动化场景构建
-- 代码生成和修改
-- 游戏对象管理
-- 资源导入和配置
-
-**何时使用**:
-- Unity 自动化开发
-- AI 辅助游戏开发
-- 快速原型构建
-- 自动化测试
-
-**何时不用**:
-- 非 Unity 项目
-- 简单脚本任务
-- 生产环境敏感项目
-
----
-
-### taskmaster-skill
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | AgentFabric 任务管理系统，跟踪计划和任务进度 |
-| **适用场景** | 计划跟踪、任务管理、进度监控 |
-| **输入** | 计划名称、任务命令 |
-| **输出** | 任务状态、进度报告、下一步建议 |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | Node.js 22+ |
-| **关键特性** | CLI 工具、多计划管理、实时进度追踪 |
-
-**核心能力**:
-- 多计划并行管理
-- 任务依赖关系追踪
-- 进度可视化（百分比、颜色标识）
-- 智能下一步建议
-- 批量任务分析
-
-**工作流程**:
-1. `task plans` - 查看所有计划
-2. `task progress <plan>` - 检查进度
-3. `task list <plan>` - 列出任务
-4. `task next <plan>` - 获取下一步建议
-
-**何时使用**:
-- 管理复杂项目计划
-- 跟踪多阶段任务进度
-- 需要任务优先级排序
-- 记录和追踪开发计划
-
-**何时不用**:
-- 简单单步任务
-- 无需进度追踪的临时工作
-- 非结构化探索性工作
-
----
-
-## 技能组合推荐
-
-### 场景 1: 开发新功能
-
-**流程**: mvp-design → code-generator → msvc-build → git-workflow
-
-1. **mvp-design**: 设计 MVP 架构
-2. **code-generator**: 根据设计生成代码
-3. **msvc-build**: 编译验证
-4. **git-workflow**: 提交代码
-
-### 场景 2: 维护现有系统
-
-**流程**: code-analysis → msvc-build → daily-log
-
-1. **code-analysis**: 理解现有代码
-2. **msvc-build**: 编译验证修改
-3. **daily-log**: 记录工作
-
-### 场景 3: 建立知识管理
-
-**流程**: knowledge-base-cache → daily-log
-
-1. **knowledge-base-cache**: 设置知识库
-2. **daily-log**: 定期记录和更新
-
-### 场景 4: 技术博客写作
-
-**流程**: hexo-blog-update → git-workflow
-
-1. **hexo-blog-update**: 创建和编辑博客文章
-2. **git-workflow**: 提交并发布博客更新
-
-### 场景 5: 复杂项目管理
-
-**流程**: taskmaster-skill → mvp-design → code-generator → git-workflow → daily-log
-
-1. **taskmaster-skill**: 创建项目计划，跟踪任务进度
-2. **mvp-design**: 设计 MVP 架构
-3. **code-generator**: 根据设计生成代码
-4. **git-workflow**: 提交代码变更
-5. **daily-log**: 记录工作日志
-
----
-
-### paper-first-principles
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 将学术论文转化为工程师友好的渐进式解读 |
-| **适用场景** | 深度理解论文、提取工程启发、团队知识分享 |
-| **输入** | 论文 URL 或 PDF |
-| **输出** | 结构化解读文档（8个标准章节） |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | 论文可访问 |
-| **关键特性** | 第一性原理分析、渐进式讲解、工程映射 |
-
-**何时使用**:
-- 需要深度理解学术论文
-- 从论文中提取设计模式
-- 准备技术分享或文档
-
-**何时不用**:
-- 只需要简单摘要
-- 非技术性论文
-
----
-
-### layered-first-principles-teaching
-
-| 属性 | 内容 |
-|------|------|
-| **用途** | 将复杂概念转化为渐进式、第一性原理的讲解 |
-| **适用场景** | 技术写作、教学准备、演讲设计、知识分享 |
-| **输入** | 任意复杂概念或主题 |
-| **输出** | 分层教学文档（含类比和可视化） |
-| **复杂度** | ⭐⭐ 中等 |
-| **前置条件** | 理解目标概念 |
-| **关键特性** | 4层渐进结构、类比生成、ASCII可视化 |
-
-**何时使用**:
-- 需要向他人解释复杂概念
-- 设计培训课程或教程
-- 准备技术演讲
-
-**何时不用**:
-- 简单概念（无需分层）
-- 非教学场景
-
----
-
-## 快速选择
-
-| 如果你需要... | 选择这个 Skill |
-|--------------|---------------|
-| 理解陌生代码 | code-analysis |
-| 写新代码 | code-generator |
-| 记录工作 | daily-log |
-| 提交代码 | git-workflow |
-| 发布博客 | hexo-blog-update |
-| 管理知识 | knowledge-base-cache |
-| 编译项目 | msvc-build |
-| 设计系统 | mvp-design |
-| 澄清模糊指令 | requirement-clarification |
-| 论文转化为实践 | research-to-practice |
-| Unity AI 开发 | unity-mcp |
-| 管理任务和跟踪进度 | taskmaster-skill |
-| 深度理解学术论文 | paper-first-principles |
-| 渐进式讲解复杂概念 | layered-first-principles-teaching |
-
----
-
-## 复杂度说明
-
-| 星级 | 复杂度 | 说明 |
-|------|--------|------|
-| ⭐ | 简单 | 单步操作，快速完成 |
-| ⭐⭐ | 中等 | 多步骤，需要一定理解 |
-| ⭐⭐⭐ | 复杂 | 多阶段，需要配置和集成 |
-
----
-
-*最后更新: 2026-03-21*
+*Last updated: Auto-generated*
