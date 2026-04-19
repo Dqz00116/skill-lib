@@ -8,16 +8,16 @@
 
 | Error Pattern | Error Code | Cause | Resolution | Auto-fixable |
 |---------------|------------|-------|------------|--------------|
-| "任务不存在" / "task does not exist" | ERR_TASK_NOT_FOUND | Invalid taskId | Run `list` to get valid IDs | Yes |
-| "尚未通过核验" / "not verified" | ERR_NOT_VERIFIED | Missing verify step | Run `verify` first | Yes |
-| "只有已完成的任务才能归档" | ERR_NOT_COMPLETED | Status not "completed" | Run `done` first | Yes |
-| "依赖未就绪" / "dependencies not ready" | ERR_DEPS_NOT_READY | Dependencies incomplete | Show deps, ask for force | No (needs user) |
-| "未找到" / "not found" (artifacts) | ERR_ARTIFACT_MISSING | Missing output files | List missing, wait for fix | No (needs user) |
-| "已归档" / "already archived" | ERR_ALREADY_ARCHIVED | Duplicate archive op | Inform user | Yes |
-| "命令未找到" / "command not found" | ERR_CLI_NOT_FOUND | CLI not in PATH | Check installation | Yes |
-| "data.json 不存在" | ERR_DATA_NOT_FOUND | Missing data file | Check plan path | Yes |
-| "config.json 不存在" / "Plan not found" | ERR_CONFIG_NOT_FOUND | Missing or invalid config | Copy template and configure | No (needs user) |
-| "未配置计划" / "No plans configured" | ERR_NO_PLANS | Empty plans in config | Add plan configuration | No (needs user) |
+| "task does not exist" | ERR_TASK_NOT_FOUND | Invalid taskId | Run `list` to get valid IDs | Yes |
+| "not verified" | ERR_NOT_VERIFIED | Missing verify step | Run `verify` first | Yes |
+| "Only completed tasks can be archived" | ERR_NOT_COMPLETED | Status not "completed" | Run `done` first | Yes |
+| "dependencies not ready" | ERR_DEPS_NOT_READY | Dependencies incomplete | Show deps, ask for force | No (needs user) |
+| "not found" (artifacts) | ERR_ARTIFACT_MISSING | Missing output files | List missing, wait for fix | No (needs user) |
+| "already archived" | ERR_ALREADY_ARCHIVED | Duplicate archive op | Inform user | Yes |
+| "command not found" | ERR_CLI_NOT_FOUND | CLI not in PATH | Check installation | Yes |
+| "data.json does not exist" | ERR_DATA_NOT_FOUND | Missing data file | Check plan path | Yes |
+| "config.json does not exist" / "Plan not found" | ERR_CONFIG_NOT_FOUND | Missing or invalid config | Copy template and configure | No (needs user) |
+| "No plans configured" | ERR_NO_PLANS | Empty plans in config | Add plan configuration | No (needs user) |
 
 ---
 
@@ -26,7 +26,7 @@
 ### ERR_TASK_NOT_FOUND
 
 ```yaml
-detection: Output contains "任务不存在" OR "task does not exist"
+detection: Output contains "task does not exist"
 cause: Provided taskId does not exist in plan
 
 resolution_steps:
@@ -38,7 +38,7 @@ resolution_steps:
     extract: List of task IDs
   3:
     action: Present to user
-    format: "可用任务: TASK-001, TASK-002, ..."
+    format: "Available tasks: TASK-001, TASK-002, ..."
   4:
     action: Ask user to select correct ID
     
@@ -48,7 +48,7 @@ auto_resolution: false  # Requires user input
 ### ERR_NOT_VERIFIED
 
 ```yaml
-detection: Output contains "尚未通过核验" OR "not verified"
+detection: Output contains "not verified"
 cause: Attempting to archive without verification
 
 check_state:
@@ -74,7 +74,7 @@ auto_resolution: partial  # Can run verify automatically
 ### ERR_NOT_COMPLETED
 
 ```yaml
-detection: Output contains "只有已完成的任务才能归档"
+detection: Output contains "Only completed tasks can be archived"
 cause: Task status is not "completed"
 
 check_state:
@@ -99,7 +99,7 @@ required_sequence:
 ### ERR_DEPS_NOT_READY
 
 ```yaml
-detection: Output contains "依赖未就绪" OR "dependencies not ready"
+detection: Output contains "dependencies not ready"
 cause: Task dependencies not all completed
 
 check_state:
@@ -113,12 +113,12 @@ resolution_steps:
   2:
     action: Present to user
     format: |
-      以下依赖未完成:
-      - TASK-XXX: 进行中
-      - TASK-YYY: 待开始
+      The following dependencies are not completed:
+      - TASK-XXX: in_progress
+      - TASK-YYY: pending
   3:
     action: Ask user
-    question: "依赖未完成，是否强制开始？(需要 --force)"
+    question: "Dependencies not completed. Force start? (requires --force)"
   4:
     if user_confirms:
       action: Run task start {plan} {taskId} --force
@@ -131,7 +131,7 @@ auto_resolution: false  # Requires user decision
 ### ERR_ARTIFACT_MISSING
 
 ```yaml
-detection: Output contains "未找到" OR "missing" (in verify output)
+detection: Output contains "missing" (in verify output)
 cause: Declared artifacts not found on filesystem
 
 check_state:
@@ -145,7 +145,7 @@ resolution_steps:
   2:
     action: Present to user
     format: |
-      缺失产物文件:
+      Missing artifact files:
       - {artifact_path_1}
       - {artifact_path_2}
   3:
@@ -211,7 +211,7 @@ auto_resolution: partial
 ```yaml
 detection: 
   - Output contains "config.json" AND "not found"
-  - Output contains "Plan not found" OR "未找到计划"
+  - Output contains "Plan not found"
 cause: Missing or invalid configuration file
 
 resolution_steps:
@@ -235,16 +235,16 @@ resolution_steps:
 
 user_action_required: true
 message_to_user: |
-  首次使用需要配置 config.json：
+  First-time setup requires configuring config.json:
   1. cp config.json.template config.json
-  2. 编辑 config.json，设置正确的计划路径
-  3. 路径必须是绝对路径（如 E:\\projects\\mvp_v1）
+  2. Edit config.json and set the correct plan path
+  3. Path must be absolute (e.g., E:\projects\mvp_v1)
 ```
 
 ### ERR_NO_PLANS
 
 ```yaml
-detection: Output contains "No plans configured" OR "未配置计划"
+detection: Output contains "No plans configured"
 cause: Config file exists but plans section is empty
 
 resolution_steps:
@@ -259,7 +259,7 @@ resolution_steps:
     command: node cli/task.js config list
 
 example:
-  command: node cli/task.js config add mvp_v1 E:\\Agent\\agent-fabric\\docs\\plans\\mvp_v1 --description "MVP v1"
+  command: node cli/task.js config add mvp_v1 E:\Agent\agent-fabric\docs\plans\mvp_v1 --description "MVP v1"
 ```
 
 ---
@@ -318,7 +318,7 @@ task logs -n 50
 ### Issue: Cannot start task
 ```yaml
 symptoms: 
-  - "依赖未就绪" error
+  - "dependencies not ready" error
   - deps shows incomplete dependencies
 
 diagnosis:
@@ -327,17 +327,17 @@ diagnosis:
   3. Determine if blocking dependencies are critical
 
 solutions:
-  - option_1: "等待依赖完成" (recommended)
+  - option_1: "Wait for dependencies to complete" (recommended)
     action: Inform user which tasks to complete first
-  - option_2: "强制开始"
+  - option_2: "Force start"
     action: Use --force flag (requires confirmation)
 ```
 
 ### Issue: Cannot archive task
 ```yaml
 symptoms:
-  - "尚未通过核验" error
-  - "只有已完成的任务才能归档" error
+  - "not verified" error
+  - "Only completed tasks can be archived" error
 
 diagnosis:
   1. Run task show {plan} {taskId}

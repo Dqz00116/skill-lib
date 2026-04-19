@@ -1,6 +1,27 @@
+---
+name: taskmaster-skill
+description: Use when managing complex project plans, tracking multi-phase task progress, or prioritizing development tasks
+---
+
 # TaskMaster Skill
 
 > Agent-optimized task management system for AgentFabric.
+
+## Overview
+
+A structured task management system for organizing, tracking, and executing multi-phase development plans through agent-optimized CLI workflows.
+
+## When to Use
+
+- Managing complex project plans with interdependent tasks
+- Tracking multi-phase task progress across milestones or sprints
+- Prioritizing development tasks based on dependencies and readiness
+- Coordinating sequential work that requires structured start, verify, and archive workflows
+
+**Do not use when:**
+- Simple single-step tasks without dependencies
+- Informal tracking where a basic todo list is sufficient
+- Projects not requiring configured plan directories or CLI tooling
 
 ---
 
@@ -128,14 +149,14 @@ node cli/task.js config set-default <name>
 ```
 User Request
     |
-    +-- "查看/查询/了解..." ──► Read COMMANDS.md "Query Commands" section
-    +-- "有哪些任务可以开始" ──► Read COMMANDS.md "ready" command
-    +-- "开始/做...任务" ──► Read WORKFLOWS.md "Start Task Workflow"
-    +-- "完成/做完了..." ──► Read WORKFLOWS.md "Complete Task Workflow"
-    +-- "添加/新建...任务" ──► Read COMMANDS.md "add" + EXAMPLES.md "Adding New Task"
-    +-- "归档..." ──► Verify done + verified ──► Read COMMANDS.md "archive"
-    +-- "检查/核验..." ──► Read COMMANDS.md "verify"
-    +-- "遇到问题/报错..." ──► TROUBLESHOOTING.md
+    +-- "查看/查询/了解 (View/Query/Understand)..." ──► Read COMMANDS.md "Query Commands" section
+    +-- "有哪些任务可以开始 (What tasks can I start)" ──► Read COMMANDS.md "ready" command
+    +-- "开始/做...任务 (Start/Do...task)" ──► Read WORKFLOWS.md "Start Task Workflow"
+    +-- "完成/做完了 (Complete/Done)..." ──► Read WORKFLOWS.md "Complete Task Workflow"
+    +-- "添加/新建 (Add/Create)...task" ──► Read COMMANDS.md "add" + EXAMPLES.md "Adding New Task"
+    +-- "归档 (Archive)..." ──► Verify done + verified ──► Read COMMANDS.md "archive"
+    +-- "检查/核验 (Check/Verify)..." ──► Read COMMANDS.md "verify"
+    +-- "遇到问题/报错 (Encounter problem/error)..." ──► TROUBLESHOOTING.md
 ```
 
 ---

@@ -1,11 +1,13 @@
 ---
 name: requirement-clarification
-description: Detect ambiguous user instructions and guide users through structured clarification. Produces execution plans requiring explicit approval before proceeding.
+description: Use when receiving ambiguous instructions, preparing for state-changing operations, or needing explicit user confirmation
 version: 1.1
 author: agent
 ---
 
 # Requirement Clarification
+
+## Overview
 
 Intercept and clarify ambiguous user instructions before execution.
 
@@ -46,7 +48,7 @@ Calculate ambiguity score (0-100):
 | Scope ambiguity | +10 |
 | Conditional clause | +15 |
 | High-risk operation | +25 |
-| Non-confirmation word (准备/考虑/研究/讨论) | +20 |
+| Non-confirmation word (准备 (Preparing)/考虑 (Considering)/研究 (Studying/Researching)/讨论 (Discussing)) | +20 |
 
 **Thresholds:**
 - 0-29: Proceed directly
@@ -112,30 +114,30 @@ Risks:
 Estimated Time: [X] minutes
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-✅ Confirmation: Reply "批准计划" to proceed
+✅ Confirmation: Reply "批准计划 (Approve plan)" to proceed
 ```
 
 ### Step 5: Wait for Approval
 
 **Valid confirmations:**
-- 批准 / Approve
-- 确认 / Confirm
-- 同意 / Agree
-- 执行 / Execute
-- 可以 / Yes/OK
-- 行 / OK
+- 批准 (Approve)
+- 确认 (Confirm)
+- 同意 (Agree)
+- 执行 (Execute)
+- 可以 (OK/Yes)
+- 行 (OK)
 
 **NOT confirmations (require clarification):**
-- 准备 / Prepare
-- 考虑 / Consider
-- 研究 / Study
-- 讨论 / Discuss
-- 看看 / Take a look
-- 想一下 / Think about it
+- 准备 (Preparing)
+- 考虑 (Considering)
+- 研究 (Studying/Researching)
+- 讨论 (Discussing)
+- 看看 (Take a look)
+- 想一下 (Think about it)
 
 ### Step 6: Execute (Within Plan Boundaries)
 
-Once "批准计划" received:
+Once "批准计划 (Approve plan)" received:
 - Execute autonomously
 - Follow plan exactly
 - Report progress for long operations
@@ -173,7 +175,7 @@ Deviations from Plan: [None / explanation]
 ✅ Use concrete examples to illustrate
 ✅ Acknowledge when clarification is needed
 ✅ Keep tone collaborative, not interrogative
-✅ Respect "you decide" but still require final approval
+✅ Respect "你决定 (You decide)" but still require final approval
 
 ### Don'ts
 ❌ Ask more than 3 questions in one turn
@@ -213,7 +215,7 @@ Choose?
 
 ### Issue 2: "You Decide" Delegation
 
-**Symptom:** User says "你决定" / "you decide".
+**Symptom:** User says "你决定 (You decide)".
 
 **Solution:**
 ```
@@ -223,13 +225,13 @@ Based on common scenarios, I suggest:
 
 [Plan details]
 
-Reply "批准计划" to proceed, or tell me specific changes.
+Reply "批准计划 (Approve plan)" to proceed, or tell me specific changes.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ### Issue 3: "Preparing" vs "Approving" Confusion
 
-**Symptom:** User uses "准备实施" (preparing to implement).
+**Symptom:** User uses "准备实施 (Preparing to implement)".
 
 **Solution:**
 ```
@@ -240,7 +242,7 @@ You used "准备" (preparing), which indicates planning phase.
 
 Please confirm:
 - A) Continue planning/discussion (no execution)
-- B) Approve execution (say "批准实施" or "确认执行")
+- B) Approve execution (say "批准实施 (Approve implementation)" or "确认执行 (Confirm execution)")
 
 Current status: Waiting for explicit approval
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -268,10 +270,10 @@ Confirm execution of this updated version?
 ⚠️ Instruction too ambiguous for reliable plan.
 
 Please rephrase in format:
-"对 [具体对象] 执行 [具体操作]，要求 [具体标准/条件]"
+Format: "对 [specific target] 执行 [specific action]，要求 [specific standard/condition]"
 
 Example:
-"对 memory/2026-02-11.md 添加今天的 git 操作记录，要求包含完整的命令输出"
+"对 memory/2026-02-11.md 添加今天的 git 操作记录 (Add today's Git operation records), 要求包含完整的命令输出 (require complete command output)"
 ```
 
 ---
@@ -281,13 +283,13 @@ Example:
 ```
 Input: User instruction
 │
-├─ Read-only query? (查看/读取/显示)
+├─ Read-only query? (查看/读取/显示 (View/Read/Display))
 │  └─ YES → Skip, proceed directly
 │
 ├─ High-risk operation? (git, file ops, config)
 │  └─ YES → Trigger (+25, mandatory pause)
 │
-├─ Non-confirmation words? (准备/考虑/研究/讨论)
+├─ Non-confirmation words? (准备 (Preparing)/考虑 (Considering)/研究 (Studying/Researching)/讨论 (Discussing))
 │  └─ YES → Trigger (+20)
 │
 ├─ Action without confirmation? ("Do it" / "Go ahead")
@@ -296,7 +298,7 @@ Input: User instruction
 ├─ Vague reference? ("this", "that", "it")
 │  └─ YES → Trigger
 │
-├─ Question format? (吗？/？)
+├─ Question format? (吗？ (? - question marker)/？)
 │  └─ YES → Trigger
 │
 ├─ Conditional? ("if", "when", "maybe")

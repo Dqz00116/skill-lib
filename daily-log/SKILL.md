@@ -1,10 +1,12 @@
 ---
 name: daily-log
-description: Generate structured daily operation logs following standardized format for memory persistence and progress tracking.
+description: Use when recording work sessions, tracking decisions and outcomes, or documenting lessons learned
 version: 1.1
 ---
 
 # Daily Log Skill
+
+## Overview
 
 Generate comprehensive daily operation logs to track work, decisions, and lessons learned.
 
@@ -34,101 +36,101 @@ See below ⬇️
 ## Attention-Driven Log Format (v1.1)
 
 ```markdown
-# YYYY-MM-DD 操作日志
+# YYYY-MM-DD Operation Log
 
-## 📅 会话概览
-- **日期**: YYYY-MM-DD
-- **工作时段**: HH:MM - HH:MM (X小时X分钟)
-- **核心成果**: [一句话总结当天最重要的产出]
-- **关键决策**: [X] 个
-- **经验教训**: [X] 个
-- **Token 消耗**: ~XX,XXX
+## 📅 Session Overview
+- **Date**: YYYY-MM-DD
+- **Work Period**: HH:MM - HH:MM (X hours X minutes)
+- **Core Outcomes**: [One-sentence summary of the day's most important output]
+- **Key Decisions**: [X]
+- **Lessons Learned**: [X]
+- **Token Consumption**: ~XX,XXX
 
 ---
 
-## ⏱️ 时间分布
+## ⏱️ Time Distribution
 
-| 时段 | 任务 | 时长 | 注意力权重 |
-|------|------|------|-----------|
-| HH:MM-HH:MM | [任务1] | X分钟 | 9/10 |
-| HH:MM-HH:MM | [任务2] | X分钟 | 7/10 |
+| Time Slot | Task | Duration | Attention Weight |
+|-----------|------|----------|-----------------|
+| HH:MM-HH:MM | [Task 1] | X min | 9/10 |
+| HH:MM-HH:MM | [Task 2] | X min | 7/10 |
 | ... | ... | ... | ... |
 
-**时间分析**:
-- 高注意力任务耗时: X% (主要集中在XX:XX-XX:XX)
-- 中断/切换次数: X 次
-- 效率峰值时段: XX:XX-XX:XX
+**Time Analysis**:
+- High-attention task time: X% (mainly XX:XX-XX:XX)
+- Interruptions/switches: X
+- Peak efficiency period: XX:XX-XX:XX
 
 ---
 
-## 🎯 高注意力任务 (权重 8-10)
+## 🎯 High-Attention Tasks (Weight 8-10)
 
-### [任务名称] (权重: X/10, 时段: HH:MM-HH:MM, 耗时: X分钟)
+### [Task Name] (Weight: X/10, Time Slot: HH:MM-HH:MM, Duration: X min)
 
-**一句话总结**: [核心成果或决策]
+**One-sentence Summary**: [Core outcome or decision]
 
-**关键细节**:
-- [具体数据/数字]
-- [文件路径/名称]
-- [决策原因]
-- [验证结果]
+**Key Details**:
+- [Specific data/numbers]
+- [File paths/names]
+- [Decision rationale]
+- [Verification results]
 
-**经验教训** (如适用):
-- [学到的要点]
-
----
-
-## 📋 中注意力任务 (权重 5-7)
-
-| 任务 | 权重 | 时段 | 关键成果 |
-|------|------|------|----------|
-| [任务名] | 7/10 | HH:MM-HH:MM | [一句话描述] |
-| [任务名] | 6/10 | HH:MM-HH:MM | [一句话描述] |
+**Lessons Learned** (if applicable):
+- [Key takeaways]
 
 ---
 
-## 📝 低注意力任务 (权重 0-4)
+## 📋 Medium-Attention Tasks (Weight 5-7)
 
-- [HH:MM-HH:MM] [任务名] - [状态]
-- [HH:MM-HH:MM] [任务名] - [状态]
-
----
-
-## 📊 今日统计
-
-| 项目 | 数值 |
-|------|------|
-| 高注意力任务 | X |
-| 中注意力任务 | X |
-| 低注意力任务 | X |
-| 代码文件创建 | X |
-| 代码文件修改 | X |
-| Skill 创建/更新 | X |
-| Token 消耗 | ~XX,XXX |
-| Git 提交 | X |
+| Task | Weight | Time Slot | Key Outcome |
+|------|--------|-----------|-------------|
+| [Task name] | 7/10 | HH:MM-HH:MM | [One-sentence description] |
+| [Task name] | 6/10 | HH:MM-HH:MM | [One-sentence description] |
 
 ---
 
-## 💡 今日最大教训
+## 📝 Low-Attention Tasks (Weight 0-4)
 
-**一句话总结**: [核心教训]
-
-**背景**: [发生了什么]
-**根本原因**: [为什么发生]
-**改进措施**: [如何改进]
+- [HH:MM-HH:MM] [Task name] - [Status]
+- [HH:MM-HH:MM] [Task name] - [Status]
 
 ---
 
-## 🔗 关键文件位置
+## 📊 Today's Statistics
 
-### 高价值产出
-- `path/to/key/file1` - [一句话描述]
-- `path/to/key/file2` - [一句话描述]
+| Item | Value |
+|------|-------|
+| High-attention tasks | X |
+| Medium-attention tasks | X |
+| Low-attention tasks | X |
+| Code files created | X |
+| Code files modified | X |
+| Skill created/updated | X |
+| Token consumption | ~XX,XXX |
+| Git commits | X |
 
 ---
 
-*日志生成时间: YYYY-MM-DD HH:MM*  
-*注意力评分: 高[X] 中[X] 低[X]*
+## 💡 Today's Biggest Lesson
+
+**One-sentence Summary**: [Core lesson]
+
+**Background**: [What happened]
+**Root Cause**: [Why it happened]
+**Improvement Measures**: [How to improve]
+
+---
+
+## 🔗 Key File Locations
+
+### High-Value Outputs
+- `path/to/key/file1` - [One-sentence description]
+- `path/to/key/file2` - [One-sentence description]
+
+---
+
+*Log generated at: YYYY-MM-DD HH:MM*  
+*Attention score: High[X] Medium[X] Low[X]*
 ```
 
 ---
@@ -139,11 +141,11 @@ See below ⬇️
 
 | Factor | Weight | Indicator | Examples |
 |--------|--------|-----------|----------|
-| **关键决策** | +3 | 改变了方向或方案 | 选择方案B、批准实施、确认规范 |
-| **教训/错误** | +3 | 发现问题并修复 | 违反规则、编译错误、逻辑bug |
-| **里程碑** | +2 | 重要节点完成 | MVP完成、发布上线、功能验收 |
-| **文件变更** | +1/个 | 创建/修改/删除文件 | 新建Skill、修改配置、重构代码 |
-| **普通操作** | 0 | 常规查询或查看 | 查看状态、读取文件、检查日志 |
+| **Key Decision** | +3 | Changed direction or approach | Choose plan B, approve implementation, confirm specification |
+| **Lesson/Mistake** | +3 | Discovered and fixed issues | Violate rules, compile error, logic bug |
+| **Milestone** | +2 | Important milestone completed | MVP completion, release, feature acceptance |
+| **File Changes** | +1/ea | Create/modify/delete files | Create new Skill, modify config, refactor code |
+| **Routine Operations** | 0 | Routine queries or checks | Check status, read files, check logs |
 
 ### Attention Level Guidelines
 
@@ -160,18 +162,18 @@ Score 0-4 (Low):
 
 ### Examples
 
-**Task: "设计 MissionSystem 架构方案"**
-- 关键决策: +3 (选择了TK_SERIAL方案)
-- 里程碑: +2 (设计完成)
+**Task: "Design MissionSystem Architecture"**
+- Key decision: +3 (Chose TK_SERIAL plan)
+- Milestone: +2 (Design completed)
 - **Score: 8/10** → High attention
 
-**Task: "修复编译错误"**
-- 教训: +3 (学会了BinaryReader→TK转换)
-- 文件变更: +8个文件修改 = +1 (max)
+**Task: "Fix Compile Error"**
+- Lesson: +3 (Learned BinaryReader→TK conversion)
+- File changes: +8 files modified = +1 (max)
 - **Score: 9/10** → High attention
 
-**Task: "查看 git status"**
-- 普通操作: 0
+**Task: "Check git status"**
+- Routine operation: 0
 - **Score: 2/10** → Low attention
 
 ---

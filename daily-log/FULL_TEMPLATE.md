@@ -1,91 +1,91 @@
-# YYYY-MM-DD 操作日志
+# YYYY-MM-DD Operation Log
 
-## 📅 会话概览
+## 📅 Session Overview
 
-- **启动时间**: HH:MM GMT+8
-- **主要任务**: [一句话概括]
-- **关键成果**: [核心产出]
-
----
-
-## 📝 详细记录
-
-### [N]. [任务名称] (时间段)
-
-**操作内容:**
-- [具体做了什么]
-- [使用了哪些文件/工具]
-- [产出了什么]
-
-**状态:** [✅ 完成 / ⚠️ 有问题 / ❌ 失败]
-
-**Token 消耗:** ~X,XXX
+- **Start Time**: HH:MM GMT+8
+- **Main Tasks**: [One-sentence summary]
+- **Key Outcomes**: [Core output]
 
 ---
 
-[重复上述格式记录每个主要任务]
+## 📝 Detailed Records
+
+### [N]. [Task Name] (Time Period)
+
+**Operations:**
+- [What was done]
+- [Files/tools used]
+- [What was produced]
+
+**Status:** [✅ Completed / ⚠️ Issues / ❌ Failed]
+
+**Token Consumption:** ~X,XXX
 
 ---
 
-## 📊 今日统计
-
-| 项目 | 数值 |
-|------|------|
-| 技术文档产出 | X 份 |
-| 代码文件创建 | X 个 |
-| 代码文件修改 | X 个 |
-| Skill 创建 | X 个 |
-| Token 消耗 | ~XX,XXX |
-| Git 提交 | X 次 |
-| 错误修正 | X 处 |
+[Repeat the above format for each major task]
 
 ---
 
-## 🎯 遗留任务
+## 📊 Today's Statistics
 
-### [优先级]: [任务名称]
-- **状态**: [等待/进行中/阻塞]
-- **预计**: [时间和 Token]
-- **交付**: [具体产出]
-
----
-
-## 💡 经验教训
-
-### 今日最大 [进步/教训]: [标题]
-
-**背景**: [发生了什么]
-
-**事件**: [具体描述]
-
-**根本原因**: [为什么发生]
-
-**改进措施**: [如何改进]
-
-**验证**: [改进后的效果]
+| Item | Value |
+|------|-------|
+| Technical docs produced | X |
+| Code files created | X |
+| Code files modified | X |
+| Skill created | X |
+| Token consumption | ~XX,XXX |
+| Git commits | X |
+| Fixes made | X |
 
 ---
 
-## 🔗 相关文件位置
+## 🎯 Remaining Tasks
 
-### 技术文档
+### [Priority]: [Task Name]
+- **Status**: [Waiting/In Progress/Blocked]
+- **Estimated**: [Time and Token]
+- **Deliverable**: [Specific output]
+
+---
+
+## 💡 Lessons Learned
+
+### Today's Biggest [Progress/Lesson]: [Title]
+
+**Background**: [What happened]
+
+**Event**: [Specific description]
+
+**Root Cause**: [Why it happened]
+
+**Improvement Measures**: [How to improve]
+
+**Verification**: [Effect after improvement]
+
+---
+
+## 🔗 Related File Locations
+
+### Technical Documents
 - `path/to/doc1.md`
 - `path/to/doc2.md`
 
 ### Skills
 - `skills/name/SKILL.md`
 
-### 记忆文件
-- `memory/YYYY-MM-DD.md` (本文件)
+### Memory Files
+- `memory/YYYY-MM-DD.md` (this file)
 
 ---
 
-## 🎓 [今日确立的原则/模式]
+## 🎓 [Principles/Patterns Established Today]
 
-[如果有新的设计原则、命名规范、工作流程等，在此记录]
+[If there are new design principles, naming conventions, workflows, etc., record them here]
 
 ---
 
-*日志生成时间: YYYY-MM-DD HH:MM GMT+8*  
-*状态: [当前状态]*  
-*待执行: [待办事项]*
+*Log generated at: YYYY-MM-DD HH:MM GMT+8*  
+*Status: [Current status]*  
+*Pending: [To-do items]*

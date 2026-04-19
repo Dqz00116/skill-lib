@@ -75,9 +75,9 @@ backup: Not automatic, manual recommended
 | Field | Type | Description | Example |
 |-------|------|-------------|---------|
 | id | string | Phase identifier | "phase_1" |
-| name | string | Display name | "基础架构" |
+| name | string | Display name | "Infrastructure" |
 | week | string | Timeframe | "Week 1" |
-| deliverable | string | Phase output | "项目骨架、数据库" |
+| deliverable | string | Phase output | "Project skeleton, database" |
 | task_count | number | Number of tasks | 6 |
 | hours | number | Estimated hours | 26 |
 
@@ -148,10 +148,10 @@ example:
 
 ```yaml
 allowed_values:
-  - pending       # 待开始
-  - in_progress   # 进行中
-  - completed     # 已完成
-  - blocked       # 已阻塞
+  - pending       # Not started
+  - in_progress   # In progress
+  - completed     # Completed
+  - blocked       # Blocked
 
 transitions:
   pending:
@@ -195,9 +195,9 @@ empty: []  # No dependencies
 type: array of strings
 item: Criterion description
 example:
-  - "npm run dev 可启动开发服务器"
-  - "npm run build 无错误"
-  - "单元测试覆盖率 >= 80%"
+  - "npm run dev can start the dev server"
+  - "npm run build with no errors"
+  - "Unit test coverage >= 80%"
 
 empty: []  # No criteria defined
 ```
@@ -273,7 +273,7 @@ empty: []  # No artifacts defined
 {
   "mvp_v1": {
     "path": "E:\\Agent\\agent-fabric\\docs\\plans\\mvp_v1",
-    "description": "AgentFabric MVP v1 实施计划"
+    "description": "AgentFabric MVP v1 Implementation Plan"
   }
 }
 ```

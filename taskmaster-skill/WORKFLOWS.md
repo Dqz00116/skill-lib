@@ -8,14 +8,14 @@
 
 | User Intent | Workflow | Entry Point |
 |-------------|----------|-------------|
-| "首次使用/配置" | Setup | [First-Time Setup Workflow](#first-time-setup-workflow) |
-| "查看进度/了解情况" | Query | [Query Workflow](#query-workflow) |
-| "开始一天工作" | Daily | [Daily Workflow](#daily-workflow) |
-| "开始任务" | Start Task | [Start Task Workflow](#start-task-workflow) |
-| "完成任务" | Complete Task | [Complete Task Workflow](#complete-task-workflow) |
-| "周总结" | Weekly | [Weekly Summary Workflow](#weekly-summary-workflow) |
-| "添加任务" | Add Task | [Add Task Workflow](#add-task-workflow) |
-| "排查问题" | Troubleshoot | [Audit Workflow](#audit-workflow) |
+| "First-time use / Configuration" | Setup | [First-Time Setup Workflow](#first-time-setup-workflow) |
+| "View progress / Get status" | Query | [Query Workflow](#query-workflow) |
+| "Start day's work" | Daily | [Daily Workflow](#daily-workflow) |
+| "Start task" | Start Task | [Start Task Workflow](#start-task-workflow) |
+| "Complete task" | Complete Task | [Complete Task Workflow](#complete-task-workflow) |
+| "Weekly summary" | Weekly | [Weekly Summary Workflow](#weekly-summary-workflow) |
+| "Add task" | Add Task | [Add Task Workflow](#add-task-workflow) |
+| "Troubleshoot" | Troubleshoot | [Audit Workflow](#audit-workflow) |
 
 ---
 
@@ -36,17 +36,17 @@ Step 2: Create config from template
   Command: cp config.json.template config.json
   
   Inform user: 
-    "首次使用需要配置 config.json"
-    "已从模板创建 config.json"
+    "First-time use requires configuring config.json"
+    "Created config.json from template"
 
 Step 3: Collect plan information from user
-  Ask: "计划名称是什么？(如: mvp_v1)"
+  Ask: "What is the plan name? (e.g., mvp_v1)"
   Receive: {plan-name}
   
-  Ask: "计划目录的绝对路径是什么？(如: E:\\projects\\mvp_v1)"
+  Ask: "What is the absolute path to the plan directory? (e.g., E:\\projects\\mvp_v1)"
   Receive: {plan-path}
   
-  Ask: "计划描述是什么？"
+  Ask: "What is the plan description?"
   Receive: {plan-description}
 
 Step 4: Update config.json
@@ -72,7 +72,7 @@ Step 5: Verify configuration
   Check: Output shows the configured plan
   
   If successful:
-    → "配置完成，可以使用 TaskMaster"
+    → "Configuration complete, TaskMaster is ready to use"
   If error:
     → Check TROUBLESHOOTING.md ERR_CONFIG_NOT_FOUND
 ```
@@ -84,25 +84,25 @@ Step 5: Verify configuration
 ### Intent: User asks for information
 
 ```
-User: "查看进度" / "有哪些任务" / "TASK-001是什么"
+User: "View progress" / "What tasks are there" / "What is TASK-001"
   |
   v
 Determine query type:
   |
-  +-- "进度/整体情况" → Execute: task progress {plan}
+  +-- "progress/overall status" → Execute: task progress {plan}
   |                       Parse: percentage, counts, phase progress
   |
-  +-- "任务列表" → Execute: task list {plan} [filters]
+  +-- "task list" → Execute: task list {plan} [filters]
   |                  Parse: task IDs, titles, statuses
   |
-  +-- "可开始的任务" → Execute: task ready {plan} [--limit N]
+  +-- "ready tasks" → Execute: task ready {plan} [--limit N]
   |                      Parse: ready-to-start tasks list
   |
-  +-- "具体任务" → Extract taskId from user input
+  +-- "specific task" → Extract taskId from user input
   |                  Execute: task show {plan} {taskId}
   |                  Parse: all task fields
   |
-  +-- "依赖关系" → Execute: task deps {plan} {taskId}
+  +-- "dependencies" → Execute: task deps {plan} {taskId}
                      Parse: dependency list, ready status
 ```
 
@@ -166,9 +166,9 @@ Step 2: Check dependencies
   Command: task deps {plan} {taskId}
   
   Parse output:
-    IF contains "所有依赖已完成":
+    IF contains "All dependencies completed":
       ready = true
-    ELSE IF contains "依赖未就绪":
+    ELSE IF contains "Dependencies not ready":
       ready = false
       Extract: blocking dependency IDs
 
@@ -177,7 +177,7 @@ Step 3: Handle dependency status
     Proceed to Step 4
   ELSE:
     Present blocking dependencies
-    Ask: "依赖未完成，是否强制开始？(需要 --force)"
+    Ask: "Dependencies not completed. Force start? (requires --force)"
     IF user confirms:
       Add --force flag
     ELSE:
@@ -187,10 +187,10 @@ Step 4: Start task
   Command: task start {plan} {taskId} [--force]
   
   Verify success:
-    Output contains "状态已更新" OR "status updated"
+    Output contains "Status updated" OR "status updated"
 
 Step 5: Report
-  Confirm: "任务 {taskId} 已开始"
+  Confirm: "Task {taskId} started"
 ```
 
 ---
@@ -211,7 +211,7 @@ Step 2: Mark as done
   Command: task done {plan} {taskId}
   
   Verify:
-    Output contains "状态已更新" OR "status updated"
+    Output contains "Status updated" OR "status updated"
 
 Step 3: Execute verification (REQUIRED)
   Command: task verify {plan} {taskId}
@@ -229,22 +229,22 @@ Step 3: Execute verification (REQUIRED)
 
 Step 4: Handle verification result
   IF can_archive:
-    Ask: "核验通过，是否归档任务？"
+    Ask: "Verification passed. Archive task?"
     IF user confirms:
       Proceed to Step 5
     ELSE:
-      Report: "任务已完成并通过核验，可随时归档"
+      Report: "Task completed and verified, can be archived anytime"
   ELSE:
-    Report: "发现缺失产物文件"
+    Report: "Missing artifact files found"
     List: missing_artifacts
-    Action: "请补充以上文件后重新执行核验"
+    Action: "Please add the above files and re-run verification"
     Stop workflow (wait for user)
 
 Step 5: Archive (only if user confirmed)
   Command: task archive {plan} {taskId}
   
   Verify:
-    Output contains "已归档" OR "archived"
+    Output contains "archived"
 
 Step 6: Final report
   Summarize:
@@ -292,18 +292,18 @@ Trigger: User wants to add new task
 
 Step 1: Collect required parameters
   Required:
-    - title: "任务标题是什么？"
+    - title: "What is the task title?"
   
   Optional (with defaults):
-    - phase: "所属阶段？(默认: Phase 1)"
-    - priority: "优先级 P0/P1/P2？(默认: P1)"
-    - description: "任务描述？"
+    - phase: "Which phase? (default: Phase 1)"
+    - priority: "Priority P0/P1/P2? (default: P1)"
+    - description: "Task description?"
 
 Step 2: Collect optional parameters
   Optional:
-    - depends: "依赖哪些任务？(逗号分隔，可选)"
-    - criteria: "验收标准？(每项一行，可选)"
-    - artifacts: "输出产物？(逗号分隔路径，可选)"
+    - depends: "Depends on which tasks? (comma-separated, optional)"
+    - criteria: "Acceptance criteria? (one per line, optional)"
+    - artifacts: "Output artifacts? (comma-separated paths, optional)"
 
 Step 3: Build and execute command
   Command: task add {plan} -t {title} [other options]
@@ -311,7 +311,7 @@ Step 3: Build and execute command
 Step 4: Confirm creation
   Parse output:
     Extract: new task ID (e.g., "TASK-030")
-  Report: "任务 {taskId} 已创建"
+  Report: "Task {taskId} created"
 ```
 
 ---

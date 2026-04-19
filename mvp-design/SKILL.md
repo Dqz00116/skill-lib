@@ -1,10 +1,14 @@
 ---
 name: mvp-design
-description: Design Minimum Viable Prototype code following "code-as-documentation" principles. Produces architecture-focused documentation without code snippets, emphasizing design decisions over implementation details.
+description: Use when designing new modules from scratch, creating minimal viable prototypes, or establishing architectural decisions before implementation
 version: 1.0
 ---
 
 # MVP Design Skill
+
+## Overview
+
+This skill guides the design of minimal, production-ready code prototypes with clear architecture and self-documenting code, emphasizing design decisions over implementation details.
 
 Design minimal, production-ready code prototypes with clear architecture and self-documenting code.
 

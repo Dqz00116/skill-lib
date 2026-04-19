@@ -1,14 +1,16 @@
 ---
 name: git-workflow
-description: Automate Git commit and push workflows with intelligent prompts and safety checks. Checks workspace status, lists changes, confirms with user, and handles push operations safely. Never commits without explicit user approval.
+description: Use when committing code, pushing changes, or managing Git operations that require safety checks
 version: 1.0
 ---
 
 # Git Workflow Skill
 
-Automate Git operations with safety checks and user confirmation.
+## Overview
 
-## What This Skill Does
+Automate Git operations with safety checks and user confirmation. This skill ensures changes are reviewed and explicitly approved before committing or pushing.
+
+## When to Use
 
 1. **Checks Workspace Status**
    - Shows modified files
@@ -29,6 +31,11 @@ Automate Git operations with safety checks and user confirmation.
    - Detects merge conflicts
    - Suggests resolution steps
    - Prevents force pushes
+
+**When NOT to use:**
+- When you need automated/unattended commits without user interaction
+- When performing complex Git operations beyond standard commit/push workflows
+- When a different skill or tool is explicitly designated for Git operations
 
 ## Quick Start
 

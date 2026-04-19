@@ -1,12 +1,14 @@
 ---
 name: msvc-build
-description: Compile MSVC C++ projects with multi-processor support, automatic MSBuild detection, and intelligent error analysis.
+description: Use when compiling MSVC C++ projects, debugging build errors, or performing clean and incremental builds
 version: 1.0
 ---
 
 # MSVC Build Skill
 
-Compile and build Microsoft Visual C++ projects using MSBuild with intelligent error detection and resolution suggestions.
+## Overview
+
+This skill provides guidance for compiling and building Microsoft Visual C++ projects using MSBuild, with intelligent error detection and resolution suggestions.
 
 ## When to Use
 

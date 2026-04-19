@@ -1,6 +1,6 @@
 ---
 name: layered-first-principles-teaching
-description: Transform complex concepts into progressive, first-principles explanations
+description: Use when explaining complex concepts to others, designing training materials, or preparing technical presentations with progressive disclosure
 version: 1.0
 author: agent
 tags: [teaching, learning, explanation]
@@ -8,7 +8,23 @@ tags: [teaching, learning, explanation]
 
 # Layered First Principles Teaching
 
+## Overview
+
 Transform complex concepts into progressive, first-principles explanations that build understanding layer by layer.
+
+## When to Use
+
+**Use when:**
+- You need to explain a complex concept to someone with less domain knowledge
+- You're designing training materials, tutorials, or educational content
+- You're preparing a technical presentation and need progressive disclosure
+- A topic has multiple abstraction layers that require cognitive scaffolding
+- You need to bridge the gap between intuitive understanding and technical depth
+
+**Don't use when:**
+- The concept is simple and doesn't benefit from layered decomposition
+- You need quick reference documentation or a terse answer
+- The audience already has deep expertise and only needs edge cases or implementation details
 
 ## Quick Start
 

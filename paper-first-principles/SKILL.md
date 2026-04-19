@@ -1,6 +1,6 @@
 ---
 name: paper-first-principles
-description: Convert academic papers into engineer-friendly progressive documentation
+description: Use when converting academic papers into engineer-friendly documentation, extracting design patterns from research, or preparing technical knowledge sharing
 version: 1.0
 author: agent
 tags: [research, learning, engineering]
@@ -8,7 +8,22 @@ tags: [research, learning, engineering]
 
 # Paper First Principles
 
+## Overview
+
 Convert academic papers into progressive, engineer-friendly documentation using first principles thinking.
+
+## When to Use
+
+**Use when:**
+- You need to understand a research paper deeply from an engineering perspective
+- Extracting design patterns, system architectures, or algorithms from academic literature
+- Preparing technical knowledge sharing or documentation for engineering teams
+- Mapping theoretical research to practical software engineering applications
+
+**Don't use for:**
+- Papers without clear technical contributions (survey papers, opinion pieces)
+- One-off reading without need for structured documentation
+- Standard practices already well-documented elsewhere
 
 ## Quick Start
 

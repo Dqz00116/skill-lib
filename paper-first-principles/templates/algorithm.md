@@ -1,6 +1,6 @@
-# {{title}}：{{one_sentence_summary}}
+# {{title}}: {{one_sentence_summary}}
 
-> {{target_audience}}视角的渐进式解读
+> A progressive interpretation from the {{target_audience}} perspective
 
 ## Table of Contents
 
@@ -15,31 +15,31 @@
 
 ---
 
-**是的，{{core_insight}}。**
+**Yes, {{core_insight}}.**
 
 {{contextual_explanation}}
 
 ---
 
-## 机制拆解
+## Mechanism Breakdown
 
-### 1. 问题形式化
+### 1. Problem Formalization
 
-**输入**：{{input_description}}
+**Input**: {{input_description}}
 
-**输出**：{{output_description}}
+**Output**: {{output_description}}
 
-**目标**：{{objective_function}}
+**Objective**: {{objective_function}}
 
 ### 2. {{algorithm_A}} vs {{algorithm_B}}
 
-| 维度 | {{算法A}} | {{算法B}} | 关键差异 |
-|-----|----------|----------|---------|
-| 时间复杂度 | {{A}} | {{B}} | {{差异}} |
-| 空间复杂度 | {{A}} | {{B}} | {{差异}} |
-| 适用场景 | {{A}} | {{B}} | {{差异}} |
+| Dimension | {{algorithm_A}} | {{algorithm_B}} | Key Difference |
+|----------|----------------|----------------|---------------|
+| Time Complexity | {{A}} | {{B}} | {{difference}} |
+| Space Complexity | {{A}} | {{B}} | {{difference}} |
+| Applicable Scenario | {{A}} | {{B}} | {{difference}} |
 
-### 3. 核心算法
+### 3. Core Algorithm
 
 ```
 {{simplified_algorithm_pseudocode}}
@@ -47,48 +47,48 @@
 
 ---
 
-## 第一性原理：为什么这样设计？
+## First Principles: Why This Design?
 
-### 原因 1：{{problem_essence}}
+### Reason 1: {{problem_essence}}
 
-**传统方法**：{{traditional_approach}}
+**Traditional Approach**: {{traditional_approach}}
 
-**核心局限**：{{limitation}}
+**Core Limitation**: {{limitation}}
 
-**新算法的突破**：{{breakthrough}}
+**Breakthrough of New Algorithm**: {{breakthrough}}
 
-### 原因 2：{{key_insight}}
+### Reason 2: {{key_insight}}
 
-**直觉解释**：
+**Intuitive Explanation**:
 {{intuitive_explanation}}
 
-**形式化描述**：
+**Formal Description**:
 {{formal_description}}
 
-**类比**：
+**Analogy**:
 {{analogy}}
 
-### 原因 3：{{theoretical_guarantee}}
+### Reason 3: {{theoretical_guarantee}}
 
-**正确性/收敛性**：{{guarantee}}
+**Correctness/Convergence**: {{guarantee}}
 
-**复杂度下界**：{{lower_bound}}
+**Complexity Lower Bound**: {{lower_bound}}
 
-**最优性**：{{optimality}}
+**Optimality**: {{optimality}}
 
 ---
 
-## 渐进深入：从{{intuition}}到{{full_algorithm}}
+## Progressive Deep Dive: From {{intuition}} to {{full_algorithm}}
 
-### 阶段 1：直觉理解
+### Stage 1: Intuitive Understanding
 
-**简单示例**：
+**Simple Example**:
 {{concrete_example}}
 
-**传统方法的问题**：
+**Problem with Traditional Approach**:
 {{problem_with_traditional}}
 
-**新算法的核心思想（大白话）**：
+**Core Idea of New Algorithm (In Plain English)**:
 {{core_idea_in_plain_english}}
 
 ```
@@ -97,12 +97,12 @@
 
 ---
 
-### 阶段 2：核心机制
+### Stage 2: Core Mechanism
 
-**正式描述**：
+**Formal Description**:
 {{formal_description}}
 
-**关键步骤**：
+**Key Steps**:
 1. {{step_1}}
 2. {{step_2}}
 3. {{step_3}}
@@ -111,24 +111,24 @@
 {{implementation_code}}
 ```
 
-**正确性直观**：
+**Intuitive Correctness**:
 {{why_it_works}}
 
 ---
 
-### 阶段 3：优化与扩展
+### Stage 3: Optimization and Extension
 
-**基础版本的局限**：
+**Limitations of Basic Version**:
 {{limitation}}
 
-**优化策略**：
+**Optimization Strategy**:
 {{optimization}}
 
-**复杂度分析**：
-| 版本 | 时间复杂度 | 空间复杂度 |
-|-----|----------|----------|
-| 基础版 | {{O_1}} | {{O_1}} |
-| 优化版 | {{O_2}} | {{O_2}} |
+**Complexity Analysis**:
+| Version | Time Complexity | Space Complexity |
+|---------|----------------|-----------------|
+| Basic | {{O_1}} | {{O_1}} |
+| Optimized | {{O_2}} | {{O_2}} |
 
 ```{{language}}
 {{optimized_code}}
@@ -136,52 +136,52 @@
 
 ---
 
-### 阶段 4：理论保证（可选）
+### Stage 4: Theoretical Guarantees (Optional)
 
-**定理 {{number}}**：{{theorem_statement}}
+**Theorem {{number}}**: {{theorem_statement}}
 
-**证明思路**：
+**Proof Sketch**:
 {{proof_sketch}}
 
-**关键引理**：
+**Key Lemmas**:
 {{key_lemmas}}
 
-**实际意义**：
+**Practical Implication**:
 {{practical_implication}}
 
 ---
 
-## 边界情况与陷阱
+## Edge Cases & Pitfalls
 
-### 陷阱 1：{{edge_case_1}}
+### Pitfall 1: {{edge_case_1}}
 
-**场景**：{{scenario}}
+**Scenario**: {{scenario}}
 
-**表现**：{{behavior}}
+**Behavior**: {{behavior}}
 
-**解决方案**：{{solution}}
+**Solution**: {{solution}}
 
-### 陷阱 2：参数选择
+### Pitfall 2: Parameter Selection
 
-**关键参数**：{{parameter}}
+**Key Parameter**: {{parameter}}
 
-**推荐值**：{{recommended_value}}
+**Recommended Value**: {{recommended_value}}
 
-**选择依据**：{{rationale}}
+**Selection Rationale**: {{rationale}}
 
-### 陷阱 3：与{{similar_algorithm}}的混淆
+### Pitfall 3: Confusion with {{similar_algorithm}}
 
-| 特征 | {{本算法}} | {{相似算法}} |
-|-----|-----------|------------|
-| {{特征1}} | {{值}} | {{值}} |
-| {{特征2}} | {{值}} | {{值}} |
+| Feature | {{this_algorithm}} | {{similar_algorithm}} |
+|---------|-------------------|----------------------|
+| {{feature_1}} | {{value}} | {{value}} |
+| {{feature_2}} | {{value}} | {{value}} |
 
-**选择建议**：
+**Selection Advice**:
 {{when_to_use_which}}
 
 ---
 
-## 决策树：何时使用？
+## Decision Tree: When to Use?
 
 ```
 {{decision_tree}}
@@ -189,35 +189,35 @@
 
 ---
 
-## 工程 Checklist
+## Engineering Checklist
 
-### 实现检查
+### Implementation Check
 - [ ] {{check_1}}
 - [ ] {{check_2}}
 - [ ] {{check_3}}
 
-### 性能检查
+### Performance Check
 - [ ] {{check_1}}
 - [ ] {{check_2}}
 - [ ] {{check_3}}
 
-### 边界情况检查
+### Edge Case Check
 - [ ] {{check_1}}
 - [ ] {{check_2}}
 - [ ] {{check_3}}
 
 ---
 
-## 总结：{{N}}个可复用的{{patterns_or_techniques}}
+## Summary: {{N}} Reusable {{patterns_or_techniques}}
 
-| 技术/模式 | 论文中的实现 | {{target_domain}}中的迁移 | 适用场景 |
-|----------|------------|-------------------------|---------|
-| {{技术1}} | {{实现}} | {{迁移}} | {{场景}} |
-| {{技术2}} | {{实现}} | {{迁移}} | {{场景}} |
-| {{技术3}} | {{实现}} | {{迁移}} | {{场景}} |
+| Technique/Pattern | Implementation in Paper | Migration in {{target_domain}} | Applicable Scenario |
+|------------------|------------------------|-------------------------------|---------------------|
+| {{technique_1}} | {{implementation}} | {{migration}} | {{scenario}} |
+| {{technique_2}} | {{implementation}} | {{migration}} | {{scenario}} |
+| {{technique_3}} | {{implementation}} | {{migration}} | {{scenario}} |
 
-**记忆口诀**：
+**Mnemonic**:
 {{mnemonic}}
 
-**最后一句话**：
+**Final Word**:
 {{final_takeaway}}

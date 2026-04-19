@@ -1,12 +1,14 @@
 ---
 name: code-analysis
-description: Standardized code reading and analysis workflow with attention-driven focus. Provides clear objectives, deliverables, content outline, and token cost estimation.
+description: Use when analyzing unfamiliar code modules, understanding system architecture, or preparing for refactoring
 version: 1.2
 ---
 
 # Code Analysis Skill
 
-Standardized workflow for reading, analyzing, and documenting codebases.
+## Overview
+
+Standardized workflow for reading, analyzing, and documenting codebases with attention-driven focus.
 
 ## When to Use
 
@@ -22,12 +24,12 @@ Use this skill when you need to:
 
 ## Attention-Driven Code Analysis (NEW in v1.2)
 
-基于启发式规则识别代码中的核心组件，优化分析重点。
+Identify core components in code using heuristic rules, optimizing analysis focus.
 
 ### Attention Scoring System
 
 ```python
-# 使用 attention_focus.py 模块
+# Use the attention_focus.py module
 from attention_focus import CodeAttentionScorer
 
 scorer = CodeAttentionScorer()
@@ -39,19 +41,19 @@ focus = scorer.get_analysis_focus(components)
 
 | Factor | Weight | Description |
 |--------|--------|-------------|
-| **核心关键词** | +3 | Manager, Controller, Handler, System, Core |
-| **重要关键词** | +2 | Helper, Util, Factory, Provider |
-| **代码行数** | +2 (>100行) / +1 (50-100行) | 规模指标 |
-| **被引用次数** | +2 (>5处) / +1 (2-5处) | 依赖度指标 |
-| **复杂度** | +1 | 方法数>10 或 条件语句>5 |
+| **Core Keywords** | +3 | Manager, Controller, Handler, System, Core |
+| **Important Keywords** | +2 | Helper, Util, Factory, Provider |
+| **Lines of Code** | +2 (>100 lines) / +1 (50-100 lines) | Scale metric |
+| **Reference Count** | +2 (>5 refs) / +1 (2-5 refs) | Dependency metric |
+| **Complexity** | +1 | Methods>10 or Conditional statements>5 |
 
 ### Attention Levels
 
 | Level | Score | Analysis Depth |
 |-------|-------|----------------|
-| **High** | 8-10 | 详细分析 + 完整代码 + 设计原理 |
-| **Medium** | 5-7 | 重点分析 + 关键代码段 |
-| **Low** | 0-4 | 简要提及 + 功能描述 |
+| **High** | 8-10 | Detailed analysis + Full code + Design principles |
+| **Medium** | 5-7 | Focused analysis + Key code snippets |
+| **Low** | 0-4 | Brief mention + Function description |
 
 ### Workflow with Attention Focus
 
@@ -80,34 +82,34 @@ focus = scorer.get_analysis_focus(components)
 
 Every code analysis task MUST follow this 4-step structure:
 
-### 1. Objective (目标)
+### 1. Objective
 
 **Definition**: Clear statement of what needs to be understood
 
 **Format**:
 ```
-目标: [具体要理解的内容]
-范围: [分析的范围边界]
-深度: [概览/核心逻辑/详细实现]
+Objective: [What specifically needs to be understood]
+Scope: [Boundaries of the analysis]
+Depth: [Overview/Core logic/Detailed implementation]
 ```
 
 **Examples**:
-- 理解 Tinker 序列化库的工作原理
-- 分析 PlayerSubsystem 的架构设计
-- 掌握 SharedTable 数据表加载机制
+- Understand how the Tinker serialization library works
+- Analyze the architecture design of PlayerSubsystem
+- Master the SharedTable data table loading mechanism
 
-### 2. Deliverables (产出物)
+### 2. Deliverables
 
 **Definition**: Concrete outputs that will be produced
 
 **Format**:
 ```
-产出文档:
-- [文档名1] - [路径] - [内容描述]
-- [文档名2] - [路径] - [内容描述]
+Documentation:
+- [Doc name 1] - [Path] - [Content description]
+- [Doc name 2] - [Path] - [Content description]
 
-附加产出:
-- [代码示例/流程图/架构图]
+Additional outputs:
+- [Code examples/Flowcharts/Architecture diagrams]
 ```
 
 **Documentation Standards**:
@@ -115,44 +117,44 @@ Every code analysis task MUST follow this 4-step structure:
 - Use descriptive filenames: `[Topic]-[Type].md`
 - Include code snippets and diagrams
 
-### 3. Content (内容)
+### 3. Content
 
 **Definition**: What will be covered in the analysis
 
 **Format**:
 ```
-分析内容:
-1. [模块A] - [要点1, 要点2, 要点3]
-2. [模块B] - [要点1, 要点2, 要点3]
-3. [模块间关系] - [交互流程]
+Analysis content:
+1. [Module A] - [Point 1, Point 2, Point 3]
+2. [Module B] - [Point 1, Point 2, Point 3]
+3. [Inter-module relationships] - [Interaction flow]
 
-包含要素:
-□ 核心类/接口设计
-□ 数据流/控制流
-□ 关键算法/逻辑
-□ 设计模式
-□ 依赖关系
+Include elements:
+□ Core class/interface design
+□ Data flow/Control flow
+□ Key algorithms/Logic
+□ Design patterns
+□ Dependencies
 ```
 
-### 4. Token Estimation (Token 评估)
+### 4. Token Estimation
 
 **Definition**: Estimated token consumption for the analysis
 
 **Format**:
 ```
-Token 评估:
-- 代码阅读: ~[X,000] tokens
-- 文档编写: ~[X,000] tokens
-- 总计: ~[X,000]-[Y,000] tokens
-- 预计时间: [X]-[Y] 分钟
+Token estimation:
+- Code reading: ~[X,000] tokens
+- Documentation: ~[X,000] tokens
+- Total: ~[X,000]-[Y,000] tokens
+- Estimated time: [X]-[Y] minutes
 ```
 
 **Estimation Guidelines**:
-| 复杂度 | 代码阅读 | 文档编写 | 总计 | 时间 |
+| Complexity | Code reading | Documentation | Total | Time |
 |--------|----------|----------|------|------|
-| 简单 (1-2文件) | 3K-5K | 2K-3K | 5K-8K | 15-20min |
-| 中等 (模块级) | 10K-20K | 5K-10K | 15K-30K | 30-50min |
-| 复杂 (系统级) | 30K-50K | 15K-25K | 45K-75K | 60-90min |
+| Simple (1-2 files) | 3K-5K | 2K-3K | 5K-8K | 15-20min |
+| Medium (module-level) | 10K-20K | 5K-10K | 15K-30K | 30-50min |
+| Complex (system-level) | 30K-50K | 15K-25K | 45K-75K | 60-90min |
 
 ## Execution Flow
 
@@ -162,9 +164,9 @@ Token 评估:
        ▼
 2. Clarify Requirements (if needed)
        │
-       ├── 确认分析范围边界
-       ├── 确认关键类的定义位置 (文件路径)
-       └── ⚠️ 如果定义位置不明，必须要求发起人显式指出
+       ├── Confirm analysis scope boundaries
+       ├── Confirm key class definition locations (file paths)
+       └── ⚠️ If definition locations are unclear, must ask the requester to explicitly specify
        │
        ▼
 3. Output Analysis Plan (4-step structure)
@@ -175,7 +177,7 @@ Token 评估:
        └── 4. Token Estimation
        │
        ▼
-4. Wait for "批准计划" Confirmation
+4. Wait for "Plan Approval" Confirmation
        │
        ▼
 5. Execute Analysis
@@ -200,99 +202,99 @@ Token 评估:
 
 ### Example 1: Simple Module Analysis
 
-**User**: "分析 PlayerQuest 的进度更新机制"
+**User**: "Analyze PlayerQuest's progress update mechanism"
 
 **Plan Output**:
 ```
-## 代码分析计划
+## Code Analysis Plan
 
-### 1. 目标
-理解 PlayerQuest 的进度更新机制，包括：
-- 进度如何存储和更新
-- 任务完成判定逻辑
-- 与勋章系统的交互
+### 1. Objective
+Understand PlayerQuest's progress update mechanism, including:
+- How progress is stored and updated
+- Task completion determination logic
+- Interaction with the medal system
 
-### 2. 产出物
+### 2. Deliverables
 - `PlayerQuest-Progress-Analysis.md` 
-  - 路径: `repository/projects/BattleCore/docs/`
-  - 包含：流程图 + 核心代码 + 数据流
+  - Path: `repository/projects/BattleCore/docs/`
+  - Contains: Flowchart + Core code + Data flow
 
-### 3. 内容
-1. PlayerQuest 类结构
-2. updateProgress() / accumulateProgress() 实现
-3. 任务完成判定逻辑
-4. 与 PlayerMedal 的耦合关系
+### 3. Content
+1. PlayerQuest class structure
+2. updateProgress() / accumulateProgress() implementation
+3. Task completion determination logic
+4. Coupling relationship with PlayerMedal
 
-### 4. Token 评估
-- 代码阅读: ~5,000 tokens
-- 文档编写: ~3,000 tokens
-- 总计: ~8,000 tokens
-- 预计时间: 15-20 分钟
+### 4. Token Estimation
+- Code reading: ~5,000 tokens
+- Documentation: ~3,000 tokens
+- Total: ~8,000 tokens
+- Estimated time: 15-20 minutes
 ```
 
 ### Example 2: Complex System Analysis
 
-**User**: "理解整个技能系统的架构"
+**User**: "Understand the overall skill system architecture"
 
 **Plan Output**:
 ```
-## 代码分析计划
+## Code Analysis Plan
 
-### 1. 目标
-全面理解 FAbility 技能系统架构：
-- 核心类层次结构
-- 状态机实现
-- 技能生命周期
-- 与战斗核心的集成
+### 1. Objective
+Fully understand the FAbility skill system architecture:
+- Core class hierarchy
+- State machine implementation
+- Skill lifecycle
+- Integration with the battle core
 
-### 2. 产出物
+### 2. Deliverables
 - `FAbility-Architecture.md`
-  - 路径: `repository/projects/BattleCore/docs/`
-  - 包含：架构图 + 类图 + 实际案例
+  - Path: `repository/projects/BattleCore/docs/`
+  - Contains: Architecture diagram + Class diagram + Real-world examples
 - `Skill-Lifecycle-Flow.md`
-  - 技能完整生命周期流程
+  - Complete skill lifecycle flow
 
-### 3. 内容
-1. FAbility 基类设计
-2. 状态机 (EAbilityState)
-3. 具体技能实现案例
-4. CD/消耗系统
-5. 事件系统
+### 3. Content
+1. FAbility base class design
+2. State machine (EAbilityState)
+3. Concrete skill implementation examples
+4. CD/Cost system
+5. Event system
 
-### 4. Token 评估
-- 代码阅读: ~30,000 tokens
-- 文档编写: ~15,000 tokens
-- 总计: ~45,000 tokens
-- 预计时间: 60-80 分钟
+### 4. Token Estimation
+- Code reading: ~30,000 tokens
+- Documentation: ~15,000 tokens
+- Total: ~45,000 tokens
+- Estimated time: 60-80 minutes
 ```
 
 ## Important Rules
 
-### 定义位置确认规则 (Critical)
+### Definition Location Confirmation Rule (Critical)
 
-**规则**: 代码分析时遇到定义位置不明，必须提前要求发起人显式指出位置
+**Rule**: When definition locations are unclear during code analysis, must ask the requester to explicitly specify the location in advance
 
-**执行步骤**:
-1. 收到分析请求后，首先尝试定位关键类/函数的定义文件
-2. 如果通过文件名、类名搜索无法确定位置，**立即停止分析**
-3. 向发起人询问：**"请提供 [ClassName] 的定义文件路径"**
-4. 收到明确路径后，再继续分析
+**Execution Steps**:
+1. After receiving an analysis request, first attempt to locate the definition files of key classes/functions
+2. If the location cannot be determined through file name or class name search, **immediately stop analysis**
+3. Ask the requester: **"Please provide the definition file path for [ClassName]"**
+4. After receiving a clear path, continue analysis
 
-**示例**:
+**Example**:
 ```
-❌ 错误做法:
-用户: "分析 NetMessage 的实现"
-AI: (盲目搜索，找不到正确位置，基于假设分析)
+❌ Incorrect approach:
+User: "Analyze NetMessage implementation"
+AI: (Blindly search, can't find correct location, analyze based on assumptions)
 
-✅ 正确做法:
-用户: "分析 NetMessage 的实现"
-AI: "请提供 NetMessage 的定义文件路径，
-       搜索发现可能的位置：
+✅ Correct approach:
+User: "Analyze NetMessage implementation"
+AI: "Please provide the definition file path for NetMessage,
+       Search found possible locations:
        - Server/Network/NetMessage.h
        - Server/Common/NetMessage.h
-       请确认具体是哪个文件？"
-用户: "在 Server/Network/NetMessage.h"
-AI: (基于明确路径开始分析)
+       Please confirm which file?"
+User: "In Server/Network/NetMessage.h"
+AI: (Start analysis based on explicit path)
 ```
 
 ---
@@ -300,18 +302,18 @@ AI: (基于明确路径开始分析)
 ## Best Practices
 
 ### Do's
-✅ 明确范围边界，避免过度分析
-✅ 提供具体的文件路径和代码行号
-✅ 包含实际的代码片段
-✅ 使用图表辅助理解（文字描述）
-✅ 评估要保守，留有余量
+✅ Define clear scope boundaries, avoid over-analysis
+✅ Provide specific file paths and line numbers
+✅ Include actual code snippets
+✅ Use diagrams to aid understanding (text descriptions)
+✅ Estimates should be conservative, leave buffer
 
 ### Don'ts
-❌ 不要模糊的范围（"分析整个项目"）
-❌ 不要遗漏关键的产出物信息
-❌ 不要低估复杂系统的 token 消耗
-❌ 不要混合多个不相关的目标
-❌ 不要在定义位置不明时盲目猜测（**必须要求发起人显式指出文件路径**）
+❌ Don't use vague scopes ("analyze the entire project")
+❌ Don't omit key deliverable information
+❌ Don't underestimate token consumption for complex systems
+❌ Don't mix multiple unrelated objectives
+❌ Don't blindly guess when definition locations are unclear (**must ask the requester to explicitly specify file paths**)
 
 ## Integration with Other Skills
 
@@ -322,42 +324,42 @@ AI: (基于明确路径开始分析)
 ## Template Quick Reference
 
 ```markdown
-## 代码分析计划
+## Code Analysis Plan
 
-### 1. 目标
-[具体目标描述]
-范围: [范围边界]
-深度: [概览/核心/详细]
+### 1. Objective
+[Specific objective description]
+Scope: [Scope boundaries]
+Depth: [Overview/Core/Detailed]
 
-### 2. 产出物
-- [文档名] - [路径] - [描述]
+### 2. Deliverables
+- [Doc name] - [Path] - [Description]
 
-### 3. 内容
-1. [模块A] - [要点]
-2. [模块B] - [要点]
-3. [关系] - [流程]
+### 3. Content
+1. [Module A] - [Key points]
+2. [Module B] - [Key points]
+3. [Relationships] - [Flow]
 
-### 4. Token 评估
-- 代码阅读: ~[X,000] tokens
-- 文档编写: ~[X,000] tokens
-- 总计: ~[X,000]-[Y,000] tokens
-- 预计时间: [X]-[Y] 分钟
+### 4. Token Estimation
+- Code reading: ~[X,000] tokens
+- Documentation: ~[X,000] tokens
+- Total: ~[X,000]-[Y,000] tokens
+- Estimated time: [X]-[Y] minutes
 ```
 
 ## Version History
 
 - **v1.2** (2026-02-12) - Added Attention-Driven Analysis
-  - 新增：attention_focus.py 模块
-  - 新增：启发式代码注意力评分
-  - 新增：三级分析深度（High/Medium/Low）
-  - 优化：减少20-30% token消耗
-  - 优化：分析速度提升30%
+  - Added: attention_focus.py module
+  - Added: Heuristic code attention scoring
+  - Added: Three-level analysis depth (High/Medium/Low)
+  - Optimized: 20-30% token reduction
+  - Optimized: 30% faster analysis speed
 
 - v1.1 (2026-02-10) - Added critical rule
-  - 新增：定义位置确认规则
-  - 新增：Important Rules 章节
-  - 更新：Execution Flow 添加路径确认步骤
-  - 更新：Best Practices 添加 Don'ts 规则
+  - Added: Definition location confirmation rule
+  - Added: Important Rules section
+  - Updated: Execution Flow added path confirmation step
+  - Updated: Best Practices added Don'ts rules
 
 - v1.0 (2026-02-10) - Initial release
   - 4-step workflow structure

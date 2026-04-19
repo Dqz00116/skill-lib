@@ -1,10 +1,28 @@
 ---
 name: knowledge-base-cache
-description: Create and manage a layered knowledge base with hot/cold/warm cache tiers. Provides component-based architecture with Working Memory layer, automatic caching, semantic retrieval, and intelligent context assembly. Reduces API costs and supports unlimited knowledge scale.
+description: Use when managing large knowledge bases, reducing API costs, or implementing multi-tier caching for frequent queries
 version: 1.0
 ---
 
 # Knowledge Base Cache Skill
+
+## Overview
+
+A layered knowledge base system with hot/cold/warm cache tiers and intelligent Working Memory for context management. Reduces API costs through multi-tier caching while supporting unlimited knowledge scale.
+
+## When to Use
+
+**Use this skill when:**
+- Managing large knowledge bases that exceed context window limits
+- Reducing API costs for frequent knowledge queries
+- Implementing multi-tier caching (hot/cold/warm) for knowledge retrieval
+- Needing intelligent context assembly with token budget management
+- Requiring automatic caching with semantic retrieval capabilities
+
+**Do NOT use when:**
+- Simple, small knowledge bases that fit in a single context window
+- One-off queries where caching overhead exceeds savings
+- Only basic file storage without caching tiers is needed
 
 Create a structured knowledge repository with **layered architecture** (hot/cold/warm) and intelligent context management.
 
@@ -12,18 +30,18 @@ Create a structured knowledge repository with **layered architecture** (hot/cold
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     应用层 (Application)                     │
-│                    Agent 核心                               │
+│                  Application Layer                  │
+│                    Agent Core                               │
 └──────────────────────────┬──────────────────────────────────┘
                            │
 ┌──────────────────────────▼──────────────────────────────────┐
-│              工作记忆层 (Working Memory)                     │
-│  • 上下文组装              • Token预算管理                   │
-│  • 多源协调                • LRU缓存                         │
+│              Working Memory Layer                      │
+│  • Context Assembly        • Token Budget Management        │
+│  • Multi-Source Coordination • LRU Cache                    │
 └─────────────┬───────────────────────────────────────────────┘
-              │ 标准接口 KnowledgeSource
+              │ Standard Interface KnowledgeSource
     ┌─────────┼─────────┐
-    ▼         ▼         ▼ (预留)
+    ▼         ▼         ▼ (Reserved)
 ┌───────┐ ┌───────┐ ┌───────┐
 │  Hot  │ │  Cold │ │ Warm  │
 │ Cache │ │Storage│ │Vector │

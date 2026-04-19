@@ -1,11 +1,13 @@
 ---
 name: research-to-practice
-description: Transform academic research insights into practical workflow optimizations
+description: Use when applying academic research to practical workflows, optimizing existing processes based on papers, or extracting actionable insights from research
 version: 1.0
 author: agent
 ---
 
 # Research to Practice
+
+## Overview
 
 Bridge the gap between academic research and practical workflow improvements.
 

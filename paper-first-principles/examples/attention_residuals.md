@@ -1,384 +1,384 @@
-# 注意力残差的工程启发：从论文到代码
+# Engineering Insights from Attention Residuals: From Paper to Code
 
-> 软件工程师如何借鉴深度学习架构优化思想
-
----
-
-**是的，核心思想可以提炼为一个工程模式：当「全量依赖」成本太高时，用「本地缓存 + 分层索引」来优化。**
-
-论文中：
-- **标准残差**：第 100 层要累加前面 99 层的原始输出（O(n) 成本）
-- **块注意力残差**：层内本地累加，块间只查索引（O(1) 成本）
-
-这跟你优化分布式系统的思路一模一样。
+> How Software Engineers Can Borrow Deep Learning Architecture Optimization Ideas
 
 ---
 
-## 机制拆解
+**Yes, the core idea can be distilled into an engineering pattern: when "full dependency" is too expensive, optimize with "local cache + hierarchical indexing".**
 
-### 1. 核心模式对比
+In the paper:
+- **Standard Residual**: Layer 100 needs to accumulate raw outputs from the previous 99 layers (O(n) cost)
+- **Block Attention Residual**: Local accumulation within layers, index lookup only between blocks (O(1) cost)
 
-| 模式 | 依赖方式 | 通信/计算成本 | 适用场景 |
-|------|---------|--------------|----------|
-| **标准残差** | 每层依赖前面所有层的原始输出 | O(n) 随深度增长 | 浅层网络（<20层） |
-| **全注意力残差** | 每层用 attention 选择所有前面层 | O(n²) 计算，O(n) 通信 | 研究环境，资源充足 |
-| **块注意力残差** | 层内本地累加，块间 attention 选择 | O(k) k=块数(常数，~8) | 生产环境，大规模部署 |
-
-**关键逻辑**：
-把 L 层分成 N 个块，块内用标准残差（本地聚合），块间用 attention（选择性查询）。
+This is exactly the same thought process you use when optimizing distributed systems.
 
 ---
 
-## 第一性原理：为什么这样设计？
+## Mechanism Breakdown
 
-### 原因 1：信息聚合的本质问题
+### 1. Core Pattern Comparison
 
-**传统认知**：残差连接 = 梯度高速公路（让梯度绕过变换层）
+| Pattern | Dependency Style | Communication/Computation Cost | Applicable Scenario |
+|---------|-----------------|--------------------------------|---------------------|
+| **Standard Residual** | Each layer depends on raw outputs of all previous layers | O(n) grows with depth | Shallow networks (<20 layers) |
+| **Full Attention Residual** | Each layer uses attention to select all previous layers | O(n²) computation, O(n) communication | Research environment, ample resources |
+| **Block Attention Residual** | Local accumulation within layers, attention selection between blocks | O(k) where k=number of blocks (constant, ~8) | Production environment, large-scale deployment |
 
-**被忽视的事实**：残差还定义了「信息如何在深度维度上流动」。
+**Key Logic**:
+Divide L layers into N blocks. Use standard residuals within blocks (local aggregation) and attention between blocks (selective querying).
+
+---
+
+## First Principles: Why This Design?
+
+### Reason 1: The Essence of Information Aggregation
+
+**Traditional View**: Residual connections = gradient highway (letting gradients bypass transformation layers)
+
+**Overlooked Fact**: Residuals also define "how information flows across the depth dimension".
 
 ```
-展开残差公式：
+Expanding the residual formula:
 layer_3_input = embedding + layer_1_output + layer_2_output
 layer_4_input = embedding + layer_1_output + layer_2_output + layer_3_output
 ...
 
-关键发现：每层输入都是前面所有层输出的「均匀混合」，权重全为 1。
+Key finding: Every layer's input is an "even blend" of all previous layers' outputs, with uniform weights of 1.
 ```
 
-这就像你的微服务架构：
-- **标准残差**：每个服务都直接调用前面所有服务的原始接口
-- **注意力残差**：服务通过「服务发现」选择性调用需要的服务
+This is like your microservices architecture:
+- **Standard Residual**: Every service directly calls the raw interfaces of all previous services
+- **Attention Residual**: Services selectively call needed services via "service discovery"
 
-### 原因 2：分层聚合的普适性
+### Reason 2: Universality of Hierarchical Aggregation
 
-**工程常识**：当查询成本随数据量增长时，引入分层索引：
-- 数据库：B+ 树索引减少磁盘扫描
-- 搜索引擎：倒排索引加速检索
-- 日志系统：按时间分片 + 预聚合
+**Engineering Common Sense**: When query cost grows with data volume, introduce hierarchical indexing:
+- Database: B+ tree index reduces disk scans
+- Search engine: Inverted index accelerates retrieval
+- Log system: Time-based sharding + pre-aggregation
 
-**论文中的对应**：
-- 层内：本地累加（类似写入时的预聚合）
-- 块间：attention 查询（类似读取时的索引查找）
+**Correspondence in the Paper**:
+- Intra-layer: local accumulation (similar to pre-aggregation on write)
+- Inter-block: attention query (similar to index lookup on read)
 
-### 原因 3：工程约束驱动设计
+### Reason 3: Constraint-Driven Design
 
-**理想 vs 现实**：
-- 理想：每层都能精确选择关注前面任意层（Full AttnRes）
-- 约束：GPU 内存有限，网络带宽有限，延迟要求严格
-- 方案：块化近似（Block AttnRes，N≈8）
+**Ideal vs. Reality**:
+- Ideal: Every layer can precisely choose to attend to any previous layer (Full AttnRes)
+- Constraints: Limited GPU memory, limited network bandwidth, strict latency requirements
+- Solution: Block approximation (Block AttnRes, N≈8)
 
-**关键洞察**：N=8 的块注意力就能恢复 95% 的理想性能——这说明「粗粒度选择」已经足够好。
+**Key Insight**: Block attention with N=8 recovers 95% of ideal performance—this shows "coarse-grained selection" is already good enough.
 
 ---
 
-## 渐进深入：从单节点到分布式
+## Progressive Deep Dive: From Single Node to Distributed
 
-### 阶段 1：单节点优化（本地缓存）
+### Stage 1: Single-Node Optimization (Local Cache)
 
-**问题场景**：
-模型有 100 层，第 100 层需要看到前面 99 层的输出。
+**Problem Scenario**:
+The model has 100 layers, and layer 100 needs to see the outputs of the previous 99 layers.
 
-**标准残差的做法**：
+**Standard Residual Approach**:
 ```python
-# 每层都重新累加前面所有层
+# Each layer re-accumulates all previous layers
 layer_100_input = layer_1_output + layer_2_output + ... + layer_99_output
-# 计算量：1+2+3+...+99 = O(n²)
+# Computation: 1+2+3+...+99 = O(n²)
 ```
 
-**优化方案（块化）**：
+**Optimized Solution (Blocking)**:
 ```python
-# 把 100 层分成 10 个块，每块 10 层
-block_1 = sum(layer_1_to_10)    # 预计算，复用
-block_2 = sum(layer_11_to_20)   # 预计算，复用
+# Divide 100 layers into 10 blocks, 10 layers per block
+block_1 = sum(layer_1_to_10)    # Precompute and reuse
+block_2 = sum(layer_11_to_20)   # Precompute and reuse
 ...
 
-# 第 55 层（属于 block_6）的输入：
+# Input for layer 55 (belongs to block_6):
 layer_55_input = attention([
-    block_1, block_2, ..., block_5,  # 查缓存（5 个块）
-    partial_block_6                  # 本地累加（当前块内）
+    block_1, block_2, ..., block_5,  # Query cache (5 blocks)
+    partial_block_6                  # Local accumulation (within current block)
 ])
-# 计算量：O(n/k × k) = O(n)，k=块大小
+# Computation: O(n/k × k) = O(n), k=block size
 ```
 
-**工程映射**：
+**Engineering Mapping**:
 ```
-深度学习          软件工程
+Deep Learning          Software Engineering
 ─────────────────────────────────
-层输出            原始日志条目
-块表示            按小时聚合的日志统计
-本地累加          写入时的预计算
-attention 查询    读取时的索引查找
+Layer output            Raw log entries
+Block representation    Hourly aggregated log statistics
+Local accumulation      Pre-computation on write
+Attention query         Index lookup on read
 ```
 
-### 阶段 2：分布式优化（增量同步）
+### Stage 2: Distributed Optimization (Incremental Sync)
 
-**问题场景**：
-模型分布在多个 GPU 上（Pipeline Parallelism）：
-- GPU 1：层 1-10
-- GPU 2：层 11-20
+**Problem Scenario**:
+Model distributed across multiple GPUs (Pipeline Parallelism):
+- GPU 1: Layers 1-10
+- GPU 2: Layers 11-20
 - ...
 
-**朴素方案的问题**：
-GPU 2 的第 11 层需要 GPU 1 的 10 个输出 → 传 10 个张量
-GPU 2 的第 12 层需要 GPU 1 的 10 个 + 第 11 层 → 传 11 个张量
+**Problem with Naive Approach**:
+Layer 11 on GPU 2 needs 10 outputs from GPU 1 → transfer 10 tensors
+Layer 12 on GPU 2 needs 10 from GPU 1 + layer 11 → transfer 11 tensors
 ...
-总通信量：O(n²)
+Total communication: O(n²)
 
-**优化方案（增量同步）**：
+**Optimized Solution (Incremental Sync)**:
 ```python
-# 块化后，GPU 1 只发送聚合后的 block_1
-GPU_1 → GPU_2: block_1 (1 个张量)
+# After blocking, GPU 1 only sends aggregated block_1
+GPU_1 → GPU_2: block_1 (1 tensor)
 
-# GPU 2 本地缓存 block_1
-# 处理 layer_11-20 时，本地累加，只查缓存
-layer_11_input = attention([block_1])                    # 查缓存
-layer_12_input = attention([block_1, partial_block_2])   # 查缓存 + 本地
+# GPU 2 locally caches block_1
+# When processing layer_11-20, accumulate locally and only query cache
+layer_11_input = attention([block_1])                    # Query cache
+layer_12_input = attention([block_1, partial_block_2])   # Query cache + local
 ...
 
-# 当 GPU 2 完成 block_2，发送 block_2 给 GPU 3
-GPU_2 → GPU_3: block_2 (1 个张量)
+# When GPU 2 finishes block_2, send block_2 to GPU 3
+GPU_2 → GPU_3: block_2 (1 tensor)
 ```
 
-**通信量对比**：
-| 策略 | 总通信量 | 说明 |
-|------|---------|------|
-| 朴素全量 | O(n²) | 每层都传前面所有层 |
-| 增量同步 | O(n) | 只传聚合后的块 |
+**Communication Comparison**:
+| Strategy | Total Communication | Notes |
+|----------|---------------------|-------|
+| Naive Full | O(n²) | Every layer transfers all previous layers |
+| Incremental Sync | O(n) | Only transfer aggregated blocks |
 
-**工程映射**：
+**Engineering Mapping**:
 ```
-深度学习          软件工程
+Deep Learning          Software Engineering
 ─────────────────────────────────
-GPU 间通信        微服务间 RPC
-层输出            原始数据记录
-块表示            聚合后的数据快照
-增量同步          只传变更（delta sync）
-本地缓存          服务本地缓存 + 失效策略
+Inter-GPU Communication Inter-service RPC
+Layer output            Raw data records
+Block representation    Aggregated data snapshots
+Incremental sync        Only transfer changes (delta sync)
+Local cache             Service local cache + invalidation strategy
 ```
 
-### 阶段 3：推理优化（两阶段计算）
+### Stage 3: Inference Optimization (Two-Stage Computation)
 
-**问题场景**：
-生成 token 时，模型需要逐层计算，每层的 attention 都要查询前面的块表示。
+**Problem Scenario**:
+When generating tokens, the model needs to compute layer by layer, and each layer's attention must query previous block representations.
 
-**朴素实现的问题**：
-第 50 层：查 block_1, block_2, ..., block_5（5 次内存读取）
-第 51 层：再查 block_1, block_2, ..., block_5（又 5 次读取）
+**Problem with Naive Implementation**:
+Layer 50: query block_1, block_2, ..., block_5 (5 memory reads)
+Layer 51: query block_1, block_2, ..., block_5 again (another 5 reads)
 ...
-每个块被重复读取 100 次！
+Each block is read 100 times repeatedly!
 
-**优化方案（批处理 + 在线合并）**：
+**Optimized Solution (Batching + Online Merge)**:
 ```python
-# Phase 1: 批处理（一次读取，批量计算）
-# 一个 block 内的 10 层一起计算
-queries = [w_1, w_2, ..., w_10]  # 10 个 query
-keys_values = [block_1, ..., block_5]  # 缓存的块
+# Phase 1: Batching (read once, compute in batch)
+# Compute 10 layers within a block together
+queries = [w_1, w_2, ..., w_10]  # 10 queries
+keys_values = [block_1, ..., block_5]  # Cached blocks
 
-# 一次矩阵乘法，计算所有 10 层对所有 5 个块的 attention
+# One matrix multiplication computes attention for all 10 layers over all 5 blocks
 inter_results = batch_attention(queries, keys_values)
-# 内存读取：1 次（批量）
+# Memory reads: 1 time (batched)
 
-# Phase 2: 顺序处理（本地计算，快速合并）
+# Phase 2: Sequential processing (local computation, fast merge)
 for layer in block:
-    # 本地累加当前块内的依赖
+    # Locally accumulate dependencies within the current block
     intra_result = local_accumulate(layer)
     
-    # 合并预计算结果和本地结果
+    # Merge precomputed results with local results
     final_output = merge(inter_results[layer], intra_result)
 ```
 
-**工程映射**：
+**Engineering Mapping**:
 ```
-深度学习          软件工程
+Deep Learning          Software Engineering
 ─────────────────────────────────
-Phase 1 批处理    离线预计算/批量任务
-Phase 2 在线合并  实时查询时的轻量计算
-query 向量        预计算的 lookup key
-缓存的块表示      预计算的索引/聚合结果
-online softmax    实时分数合并逻辑
+Phase 1 Batching        Offline precomputation / batch jobs
+Phase 2 Online Merge    Lightweight computation during real-time queries
+Query vector            Precomputed lookup key
+Cached block repr       Precomputed index / aggregated results
+Online softmax          Real-time score merging logic
 ```
 
 ---
 
-## 边界情况与陷阱
+## Edge Cases & Pitfalls
 
-### 陷阱 1：块大小选择
+### Pitfall 1: Block Size Selection
 
-**过小（N=100，每块1层）**：
-- 退化为 Full AttnRes
-- 成本：O(n) 通信，O(n²) 计算
-- 不适用生产环境
+**Too Small (N=100, 1 layer per block)**:
+- Degrades to Full AttnRes
+- Cost: O(n) communication, O(n²) computation
+- Not suitable for production
 
-**过大（N=1，整块模型）**：
-- 退化为标准残差
-- 失去选择性聚合能力
+**Too Large (N=1, entire model as one block)**:
+- Degrades to standard residual
+- Loses selective aggregation capability
 
-**经验值（N≈8）**：
-- 100 层模型分 8-10 个块
-- 每块 10-12 层
-- 恢复 95% 理想性能
+**Empirical Value (N≈8)**:
+- 100-layer model divided into 8-10 blocks
+- 10-12 layers per block
+- Recovers 95% of ideal performance
 
-**决策要点**：
+**Decision Points**:
 ```
-选择块大小 N 时：
-├─ 层数 < 20？
-│  └─ 不需要块化，标准残差足够
-├─ 层数 20-50？
+When choosing block size N:
+├─ Layers < 20?
+│  └─ No need for blocking, standard residual is sufficient
+├─ Layers 20-50?
 │  └─ N = 4-6
-├─ 层数 50-100？
-│  └─ N = 8-10  ← 论文推荐
-└─ 层数 > 100？
-   └─ N = 10-12，或考虑 Full AttnRes（如果资源允许）
+├─ Layers 50-100?
+│  └─ N = 8-10  ← paper recommendation
+└─ Layers > 100?
+   └─ N = 10-12, or consider Full AttnRes (if resources allow)
 ```
 
-### 陷阱 2：初始化问题
+### Pitfall 2: Initialization Issues
 
-论文中所有伪 query 向量必须初始化为零：
+In the paper, all pseudo-query vectors must be initialized to zero:
 
 ```python
-# ✅ 正确：初始时均匀分布
-w_l = zeros(d)  →  softmax 后权重相等 → 退化为标准残差
+# ✅ Correct: uniform distribution at initialization
+w_l = zeros(d)  →  Equal weights after softmax → degrades to standard residual
 
-# ❌ 错误：随机初始化
-w_l = randn(d)  →  初始权重随机 → 训练不稳定
+# ❌ Incorrect: random initialization
+w_l = randn(d)  →  Random initial weights → unstable training
 ```
 
-**工程启示**：
-新架构上线时，应该能从旧架构平滑迁移。初始化为零确保训练开始时行为与旧系统一致，逐渐学习优化。
+**Engineering Insight**:
+When rolling out a new architecture, it should allow smooth migration from the old one. Initializing to zero ensures behavior matches the old system at the start of training, gradually learning to optimize.
 
-### 陷阱 3：与类似模式的混淆
+### Pitfall 3: Confusion with Similar Patterns
 
-**Highway Networks**（门控残差）：
+**Highway Networks** (gated residuals):
 ```
 h_l = (1 - g_l) ⊙ h_{l-1} + g_l ⊙ f(h_{l-1})
 ```
-- 改进了权重（g_l 是学习的）
-- 但每层**只能访问** h_{l-1}（单层）
-- 没有解决「无法选择特定层」的问题
+- Improves weights (g_l is learned)
+- But each layer **can only access** h_{l-1} (single layer)
+- Does not solve the "cannot select specific layers" problem
 
-**DenseFormer**（密集连接）：
+**DenseFormer** (dense connections):
 ```
-h_l = Σ α_i · v_i  （α_i 是固定的标量）
+h_l = Σ α_i · v_i  (α_i is fixed scalar)
 ```
-- 可以访问所有前面层
-- 但权重是固定的，与输入无关
-- 没有选择性
+- Can access all previous layers
+- But weights are fixed, input-independent
+- No selectivity
 
-**AttnRes**（注意力残差）：
+**AttnRes** (attention residuals):
 ```
-h_l = Σ α_i→l · v_i  （α 由 attention 计算，与输入相关）
+h_l = Σ α_i→l · v_i  (α computed by attention, input-dependent)
 ```
-- 可以访问所有前面层（或块）
-- 权重与输入相关
-- 有选择性
+- Can access all previous layers (or blocks)
+- Weights are input-dependent
+- Has selectivity
 
-**决策要点**：
+**Decision Points**:
 ```
-选择深度聚合模式时：
-├─ 只需要改进梯度流动？
+When choosing a deep aggregation pattern:
+├─ Only need to improve gradient flow?
 │  └─ Highway Networks
-├─ 需要跨层访问，但权重固定即可？
+├─ Need cross-layer access, but fixed weights are sufficient?
 │  └─ DenseFormer
-└─ 需要跨层访问 + 输入相关选择？
-   └─ AttnRes（或 Block AttnRes）
+└─ Need cross-layer access + input-dependent selection?
+   └─ AttnRes (or Block AttnRes)
 ```
 
 ---
 
-## 决策树：何时应用这些优化？
+## Decision Tree: When to Apply These Optimizations?
 
 ```
-你的系统是否存在「全量依赖」的性能瓶颈？
+Does your system have a "full dependency" performance bottleneck?
 │
-├─ 否 → 保持简单，标准方案足够
+├─ No → Keep it simple, standard solution is sufficient
 │
-└─ 是 → 瓶颈类型？
+└─ Yes → What type of bottleneck?
    │
-   ├─ 计算瓶颈（每次查询都重复计算）？
-   │  └─ 考虑「两阶段计算」
-   │     ├─ Phase 1：预计算/批量计算
-   │     └─ Phase 2：在线轻量合并
+   ├─ Computation bottleneck (recomputing on every query)?
+   │  └─ Consider "two-stage computation"
+   │     ├─ Phase 1: Precomputation / batch computation
+   │     └─ Phase 2: Online lightweight merge
    │
-   ├─ 通信瓶颈（每次请求都传输大量数据）？
-   │  └─ 考虑「增量同步 + 本地缓存」
-   │     ├─ 一次传输，本地缓存
-   │     └─ 后续查询只查本地缓存
+   ├─ Communication bottleneck (transferring large amounts of data on every request)?
+   │  └─ Consider "incremental sync + local cache"
+   │     ├─ Transfer once, cache locally
+   │     └─ Subsequent queries only hit local cache
    │
-   ├─ 存储瓶颈（需要保存全量历史数据）？
-   │  └─ 考虑「分层聚合」
-   │     ├─ 原始数据 → 预聚合 → 索引
-   │     └─ 查询时先查索引，再按需查原始
+   ├─ Storage bottleneck (need to save full historical data)?
+   │  └─ Consider "hierarchical aggregation"
+   │     ├─ Raw data → pre-aggregation → index
+   │     └─ Query index first, then raw data on demand
    │
-   └─ 资源有限，但需要接近理想方案的性能？
-      └─ 考虑「可降级设计」
-         ├─ 理想方案：全量精确计算
-         ├─ 生产方案：近似/采样（保留 90%+ 性能）
-         └─ 极限方案：简化逻辑（保底）
+   └─ Limited resources, but need performance close to the ideal solution?
+      └─ Consider "degradable design"
+         ├─ Ideal solution: full exact computation
+         ├─ Production solution: approximation / sampling (retains 90%+ performance)
+         └─ Fallback solution: simplified logic (guaranteed baseline)
 ```
 
 ---
 
-## 工程 Checklist
+## Engineering Checklist
 
-将论文思想应用到你的系统时，检查以下要点：
+When applying paper ideas to your system, check the following:
 
-### 分层聚合检查
-- [ ] 数据是否可以按时间/业务维度分片？
-- [ ] 分片后是否可以本地预聚合？
-- [ ] 查询时是否可以用聚合结果替代原始数据？
-- [ ] 聚合粒度如何权衡精度和成本？（参考 N≈8 的经验）
+### Hierarchical Aggregation Check
+- [ ] Can data be sharded by time / business dimension?
+- [ ] Can local pre-aggregation be done after sharding?
+- [ ] Can aggregated results replace raw data during queries?
+- [ ] How to trade off aggregation granularity between precision and cost? (Refer to N≈8 experience)
 
-### 增量同步检查
-- [ ] 是否存在重复传输的数据？
-- [ ] 数据是否可以本地缓存？
-- [ ] 缓存一致性如何保障？（失效策略/版本控制）
-- [ ] 缓存粒度如何设计？（太细=缓存失效频繁，太粗=内存占用高）
+### Incremental Sync Check
+- [ ] Is there data being transferred repeatedly?
+- [ ] Can data be cached locally?
+- [ ] How is cache consistency ensured? (Invalidation policy / version control)
+- [ ] How is cache granularity designed? (Too fine = frequent invalidation, too coarse = high memory usage)
 
-### 两阶段计算检查
-- [ ] 哪些计算可以预计算/批处理？
-- [ ] 预计算结果的更新频率如何？
-- [ ] 在线阶段只需要做轻量合并？
-- [ ] 合并逻辑是否足够轻量（O(1) 或 O(log n)）？
+### Two-Stage Computation Check
+- [ ] Which computations can be precomputed / batched?
+- [ ] How frequently are precomputed results updated?
+- [ ] Does the online stage only need lightweight merging?
+- [ ] Is the merge logic lightweight enough (O(1) or O(log n))?
 
-### 降级策略检查
-- [ ] 理想方案的成本是多少？（时间/空间/复杂度）
-- [ ] 什么降级策略能保留 90%+ 收益？
-- [ ] 降级路径是否平滑？（能否动态切换）
-- [ ] 极限降级方案是什么？（保底方案）
+### Degradation Strategy Check
+- [ ] What is the cost of the ideal solution? (time / space / complexity)
+- [ ] What degradation strategy retains 90%+ benefit?
+- [ ] Is the degradation path smooth? (Can it switch dynamically?)
+- [ ] What is the fallback degradation solution? (guaranteed baseline)
 
-### 伪解耦检查
-- [ ] 哪些计算依赖输入，哪些是固定的？
-- [ ] 固定部分是否可以预计算/缓存？
-- [ ] 解耦后是否打开了并行优化空间？
-- [ ] 预计算结果的存储成本是否可接受？
+### Pseudo-Decoupling Check
+- [ ] Which computations are input-dependent, and which are fixed?
+- [ ] Can the fixed parts be precomputed / cached?
+- [ ] Does decoupling open up parallel optimization opportunities?
+- [ ] Is the storage cost of precomputed results acceptable?
 
 ---
 
-## 总结：5 个可落地的工程模式
+## Summary: 5 Actionable Engineering Patterns
 
-| 模式 | 论文中的实现 | 软件工程中的迁移 | 适用场景 |
-|------|-------------|-----------------|----------|
-| **分层聚合** | 层内累加 + 块间 attention | 日志分级聚合、推荐多级缓存、指标预聚合 | 查询成本随数据量增长 |
-| **增量同步** | 跨 stage 缓存 + 只传增量块 | 微服务数据同步、分布式缓存更新、数据库复制 | 网络带宽受限，数据重复传输 |
-| **两阶段计算** | 批处理 attention + online 合并 | 报表预计算 + 实时补充、搜索离线索引 + 在线过滤 | 实时性要求 + 计算复杂度高 |
-| **降级策略** | Full → Block (N=8) → 标准残差 | 推荐算法精度降级、图像分辨率降级、查询近似 | 资源有限，需要动态权衡 |
-| **伪解耦** | 学习得到的 query 向量 | 权限规则预计算、配置 lookup、路由表预生成 | 部分逻辑固定，可预计算 |
+| Pattern | Implementation in Paper | Migration to Software Engineering | Applicable Scenario |
+|---------|------------------------|-----------------------------------|---------------------|
+| **Hierarchical Aggregation** | Intra-layer accumulation + inter-block attention | Log tiered aggregation, recommendation multi-level cache, metric pre-aggregation | Query cost grows with data volume |
+| **Incremental Sync** | Cross-stage cache + only transfer incremental blocks | Microservice data sync, distributed cache updates, database replication | Network bandwidth limited, data transferred repeatedly |
+| **Two-Stage Computation** | Batched attention + online merge | Report precomputation + real-time supplement, offline search index + online filtering | Real-time requirements + high computation complexity |
+| **Degradation Strategy** | Full → Block (N=8) → Standard Residual | Recommendation algorithm precision degradation, image resolution degradation, query approximation | Limited resources, need dynamic trade-offs |
+| **Pseudo-Decoupling** | Learned query vectors | Permission rule precomputation, config lookup, routing table pre-generation | Part of logic is fixed, can be precomputed |
 
-**记忆口诀**：
-- **分层**代替全量扫描
-- **缓存**代替重复传输
-- **预计算**代替实时计算
-- **近似**代替精确（必要时）
-- **解耦**打开并行空间
+**Mnemonic**:
+- **Hierarchical** replaces full scan
+- **Cache** replaces repeated transfer
+- **Precomputation** replaces real-time computation
+- **Approximation** replaces exact (when necessary)
+- **Decoupling** opens parallel space
 
-**最后一句话**：
+**Final Word**:
 
-这篇论文的算法细节（softmax、RMSNorm、梯度流动）你不需要记住，但这 5 个工程思想可以应用到任何系统设计中。
+You don't need to remember the algorithmic details of this paper (softmax, RMSNorm, gradient flow), but these 5 engineering ideas can be applied to any system design.
 
-当你的系统面临「全量操作成本太高」的问题时，问自己：
-1. 能不能**分层**？
-2. 能不能**缓存**？
-3. 能不能**预计算**？
-4. 能不能**近似**？
-5. 能不能**解耦**？
+When your system faces the problem of "full operation is too expensive", ask yourself:
+1. Can you make it **hierarchical**?
+2. Can you **cache**?
+3. Can you **precompute**?
+4. Can you **approximate**?
+5. Can you **decouple**?

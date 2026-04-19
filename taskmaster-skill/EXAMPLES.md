@@ -8,20 +8,20 @@
 
 | Scenario | User Intent | Reference |
 |----------|-------------|-----------|
-| [新成员加入](#scenario-1-new-member-onboarding) | "如何开始" | Multi-step guidance |
-| [开发流程](#scenario-2-development-workflow) | "开始任务" → "完成任务" | Standard workflow |
-| [项目经理检查](#scenario-3-project-manager-check) | "进度如何" | Progress + reporting |
-| [查看可开始任务](#scenario-4-view-ready-tasks) | "有哪些任务可以开始" | Ready task query |
-| [添加任务](#scenario-5-adding-new-task) | "添加任务" | Parameter collection |
-| [质量核验](#scenario-6-quality-verification) | "核验任务" | Verify workflow |
-| [问题排查](#scenario-7-troubleshooting) | "无法归档" | Error recovery |
+| [New Member Onboarding](#scenario-1-new-member-onboarding) | "How to get started" | Multi-step guidance |
+| [Development Workflow](#scenario-2-development-workflow) | "Start task" → "Complete task" | Standard workflow |
+| [Project Manager Check](#scenario-3-project-manager-check) | "How is progress" | Progress + reporting |
+| [View Ready Tasks](#scenario-4-view-ready-tasks) | "Which tasks can I start" | Ready task query |
+| [Adding New Task](#scenario-5-adding-new-task) | "Add task" | Parameter collection |
+| [Quality Verification](#scenario-6-quality-verification) | "Verify task" | Verify workflow |
+| [Troubleshooting](#scenario-7-troubleshooting) | "Cannot archive" | Error recovery |
 
 ---
 
 ## Scenario 1: New Member Onboarding
 
 ### User Input
-> "我刚加入项目，想了解情况"
+> "I just joined the project and want to get up to speed"
 
 ### Agent Execution Flow
 
@@ -30,30 +30,30 @@ Step 1: List available plans
   Command: task plans
   Parse: Show all plans with progress
   Output to user:
-    "可用计划:
-     - mvp_v1: AgentFabric MVP v1 (8/29 完成)"
+    "Available plans:
+     - mvp_v1: AgentFabric MVP v1 (8/29 completed)"
 
 Step 2: Show plan overview
   Command: task progress mvp_v1
   Parse: Extract key metrics
   Output to user:
-    "项目概况:
-     - 总体进度: 27.6%
-     - 已完成: 8/29 任务
-     - 待开始: 21 任务
-     - P0 待办: 5 任务"
+    "Project overview:
+     - Overall progress: 27.6%
+     - Completed: 8/29 tasks
+     - Ready to start: 21 tasks
+     - P0 pending: 5 tasks"
 
 Step 3: List pending P0 tasks
   Command: task list mvp_v1 --status pending --priority P0
   Parse: Task IDs and titles
   Output to user:
-    "可开始的 P0 任务:
-     - TASK-008: API 认证机制
-     - TASK-009: 限流与熔断
-     - TASK-013: Agent Registry 实现"
+    "Ready-to-start P0 tasks:
+     - TASK-008: API Authentication Mechanism
+     - TASK-009: Rate Limiting and Circuit Breaker
+     - TASK-013: Agent Registry Implementation"
 
 Step 4: Provide next steps
-  Suggest: "使用 '查看 TASK-008 详情' 了解具体任务"
+  Suggest: "Use 'view TASK-008 details' to learn about the specific task"
 ```
 
 ---
@@ -63,7 +63,7 @@ Step 4: Provide next steps
 ### Phase A: Starting Task
 
 #### User Input
-> "我要开始开发 TASK-011"
+> "I want to start developing TASK-011"
 
 #### Agent Execution
 
@@ -72,22 +72,22 @@ Step 1: Check dependencies
   Command: task deps mvp_v1 TASK-011
   
   Parse output:
-    IF "所有依赖已完成":
+    IF "All dependencies completed":
       Proceed to Step 2
-    IF "依赖未就绪":
-      Extract: TASK-008 (待开始)
-      Ask: "依赖 TASK-008 未完成，是否强制开始？(需要 --force)"
+    IF "Dependencies not ready":
+      Extract: TASK-008 (pending)
+      Ask: "Dependency TASK-008 is not completed. Force start? (requires --force)"
       
 Step 2: Start task
   Command: task start mvp_v1 TASK-011
-  Verify: Output contains "状态已更新"
-  Confirm: "TASK-011 已开始"
+  Verify: Output contains "Status updated"
+  Confirm: "TASK-011 started"
 ```
 
 ### Phase B: Completing Task
 
 #### User Input
-> "TASK-011 完成了"
+> "TASK-011 is completed"
 
 #### Agent Execution
 
@@ -98,27 +98,27 @@ Step 1: Verify current status
 
 Step 2: Mark complete
   Command: task done mvp_v1 TASK-011
-  Verify: Output contains "状态已更新"
+  Verify: Output contains "Status updated"
 
 Step 3: Execute verification (REQUIRED)
   Command: task verify mvp_v1 TASK-011
   
   Parse:
-    IF "产物文件: X/Y (100%)":
+    IF "Artifact files: X/Y (100%)":
       can_archive = true
-    IF "缺失的产物文件":
+    IF "Missing artifact files":
       can_archive = false
       Extract: missing files list
 
 Step 4: Handle result
   IF can_archive:
-    Ask: "核验通过，是否归档？"
+    Ask: "Verification passed. Archive?"
     IF yes:
       Command: task archive mvp_v1 TASK-011
-      Confirm: "已归档"
+      Confirm: "Archived"
   ELSE:
-    Report: "发现缺失文件: [list]
-             请补充后重新核验"
+    Report: "Missing files found: [list]
+             Please add them and re-verify"
 ```
 
 ---
@@ -126,7 +126,7 @@ Step 4: Handle result
 ## Scenario 3: Project Manager Check
 
 ### User Input
-> "这周项目进展如何"
+> "How is the project progressing this week"
 
 ### Agent Execution
 
@@ -151,13 +151,13 @@ Step 3: Generate report
 
 Step 4: Compile summary
   Output to user:
-    "本周项目进展:
-     - 总体进度: 27.6% (+5%)
-     - 本周完成: 3 任务
-     - 进行中: 2 任务
-     - 待开始 P0: 5 任务
+    "This week's project progress:
+     - Overall progress: 27.6% (+5%)
+     - Completed this week: 3 tasks
+     - In progress: 2 tasks
+     - P0 ready to start: 5 tasks
      
-     详细报告已保存至: ./reports/week_xxx.json"
+     Detailed report saved to: ./reports/week_xxx.json"
 ```
 
 ---
@@ -165,7 +165,7 @@ Step 4: Compile summary
 ## Scenario 4: View Ready Tasks
 
 ### User Input
-> "有哪些任务可以开始？"
+> "Which tasks can I start?"
 
 ### Agent Execution
 
@@ -174,28 +174,28 @@ Step 1: Query ready tasks (default 10)
   Command: task ready mvp_v1
   
   Output example:
-    "🚀 AgentFabric MVP v1 - 可开始的任务
+    "🚀 AgentFabric MVP v1 - Ready-to-start Tasks
     
-     ID        | 阶段     | 任务                    | 优先级 | 工时
-     ----------|----------|------------------------|--------|------
-     TASK-010  | Phase 2  | 健康检查接口            | P1     | 4h
-     TASK-018  | Phase 4  | 中间件链框架            | P0     | 6h
-     TASK-022  | Phase 5  | 上下文管理              | P1     | 6h
+     ID        | Phase    | Task                       | Priority | Hours
+     ----------|----------|----------------------------|----------|-------
+     TASK-010  | Phase 2  | Health Check Interface     | P1       | 4h
+     TASK-018  | Phase 4  | Middleware Chain Framework | P0       | 6h
+     TASK-022  | Phase 5  | Context Management         | P1       | 6h
      
-     显示 3/8 个可开始任务 (mvp_v1)
+     Showing 3/8 ready-to-start tasks (mvp_v1)
      
-     💡 开始任务: task start mvp_v1 <task-id>"
+     💡 Start task: task start mvp_v1 <task-id>"
 
 Step 2: If user wants to see more
   Command: task ready mvp_v1 --limit 20
 
 Step 3: User selects task to start
   Command: task start mvp_v1 TASK-018
-  Confirm: "TASK-018 已开始"
+  Confirm: "TASK-018 started"
 ```
 
 ### Alternative User Input
-> "列出前5个可以开始的任务"
+> "List the top 5 ready-to-start tasks"
 
 ### Agent Execution
 ```
@@ -208,48 +208,48 @@ Output: Top 5 ready tasks with details
 ## Scenario 5: Adding New Task
 
 ### User Input
-> "需要添加一个缓存预热功能"
+> "Need to add a cache warming feature"
 
 ### Agent Execution
 
 ```
 Step 1: Collect required parameters
-  Ask: "任务标题是什么？"
-  Receive: "实现缓存预热功能"
+  Ask: "What is the task title?"
+  Receive: "Implement cache warming feature"
 
 Step 2: Collect optional parameters
-  Ask: "所属阶段？(默认: Phase 4)"
+  Ask: "Which phase? (default: Phase 4)"
   Receive: "Phase 4"
   
-  Ask: "优先级？(默认: P1)"
+  Ask: "Priority? (default: P1)"
   Receive: "P1"
   
-  Ask: "任务描述？"
-  Receive: "在应用启动时预加载热点数据到 Redis"
+  Ask: "Task description?"
+  Receive: "Preload hot data to Redis on application startup"
   
-  Ask: "依赖哪些任务？(逗号分隔)"
+  Ask: "Depends on which tasks? (comma-separated)"
   Receive: "TASK-004"
   
-  Ask: "验收标准？(每项一行)"
-  Receive: "启动时自动预热\n支持配置预热策略\n预热失败不影响启动"
+  Ask: "Acceptance criteria? (one per line)"
+  Receive: "Auto-warm on startup\nSupport configurable warming strategy\nWarming failure does not affect startup"
   
-  Ask: "输出产物？(逗号分隔路径)"
+  Ask: "Output artifacts? (comma-separated paths)"
   Receive: "src/services/cache-warmer.ts"
 
 Step 3: Build command
   Command: |
     task add mvp_v1 \
-      -t "实现缓存预热功能" \
+      -t "Implement cache warming feature" \
       -p "Phase 4" \
       -P "P1" \
-      -d "在应用启动时预加载热点数据到 Redis" \
+      -d "Preload hot data to Redis on application startup" \
       --depends "TASK-004" \
-      --criteria "启动时自动预热\n支持配置预热策略\n预热失败不影响启动" \
+      --criteria "Auto-warm on startup\nSupport configurable warming strategy\nWarming failure does not affect startup" \
       --artifacts "src/services/cache-warmer.ts"
 
 Step 4: Execute and confirm
   Parse output: Extract new task ID (e.g., "TASK-030")
-  Confirm: "任务 TASK-030 已创建"
+  Confirm: "Task TASK-030 created"
 ```
 
 ---
@@ -257,7 +257,7 @@ Step 4: Execute and confirm
 ## Scenario 6: Quality Verification
 
 ### User Input
-> "帮我检查 TASK-001 是否满足归档条件"
+> "Help me check if TASK-001 meets the archive conditions"
 
 ### Agent Execution
 
@@ -268,7 +268,7 @@ Step 1: Check current status
 
 Step 2: If not completed, report
   IF status != "completed":
-    Output: "任务状态为 {status}，需先标记完成 (task done)"
+    Output: "Task status is {status}, needs to be marked done first (task done)"
     Stop
 
 Step 3: Run verification
@@ -282,16 +282,16 @@ Step 3: Run verification
 Step 4: Analyze result
   IF artifacts == 100%:
     Output: |
-      "核验通过！
-       - 所有产物文件存在
-       - 验收标准已定义
-       - 可执行归档: task archive mvp_v1 TASK-001"
+      "Verification passed!
+       - All artifact files exist
+       - Acceptance criteria defined
+       - Can archive: task archive mvp_v1 TASK-001"
   ELSE:
     Output: |
-      "核验未通过！
-       - 产物完整度: Z%
-       - 缺失文件: [list]
-       - 请补充文件后重新核验"
+      "Verification failed!
+       - Artifact completeness: Z%
+       - Missing files: [list]
+       - Please add files and re-verify"
 ```
 
 ---
@@ -299,14 +299,14 @@ Step 4: Analyze result
 ## Scenario 7: Troubleshooting
 
 ### User Input
-> "为什么 TASK-003 无法归档"
+> "Why can't TASK-003 be archived"
 
 ### Agent Execution
 
 ```
 Step 1: Attempt archive to see error
   Command: task archive mvp_v1 TASK-003
-  Capture error: "尚未通过核验"
+  Capture error: "Not yet verified"
 
 Step 2: Identify root cause
   Analysis: Missing verification step
@@ -317,17 +317,17 @@ Step 3: Execute resolution
   Parse:
     IF verification passes:
       Command: task archive mvp_v1 TASK-003
-      Confirm: "已归档"
+      Confirm: "Archived"
     IF verification fails:
       Extract: missing artifacts
-      Output: "核验失败，缺失文件: [list]
-               请补充后重新尝试"
+      Output: "Verification failed, missing files: [list]
+               Please add them and retry"
 
 Step 4: Document resolution
   Output: |
-    "问题原因: 未执行核验
-     解决方案: 已执行核验并归档
-     建议流程: done → verify → archive"
+    "Problem cause: Verification not executed
+     Solution: Verification executed and archived
+     Recommended workflow: done → verify → archive"
 ```
 
 ---
@@ -391,41 +391,41 @@ task logs -p mvp_v1 -o TASK_ARCHIVED | grep TASK-XXX
 
 ### Error: Task Not Found
 ```
-User: "开始 TASK-999"
+User: "Start TASK-999"
 Agent:
   Command: task start mvp_v1 TASK-999
-  Error: "任务不存在"
+  Error: "Task does not exist"
   Recovery:
     Command: task list mvp_v1 --status pending
-    Output to user: "可用任务: TASK-001, TASK-002, ..."
-    Ask: "请选择正确的任务ID"
+    Output to user: "Available tasks: TASK-001, TASK-002, ..."
+    Ask: "Please select the correct task ID"
 ```
 
 ### Error: Dependencies Not Ready
 ```
-User: "开始 TASK-011"
+User: "Start TASK-011"
 Agent:
   Command: task deps mvp_v1 TASK-011
-  Output: "依赖未就绪: TASK-008 (待开始)"
-  Ask: "依赖未完成，是否强制开始？(需要 --force)"
+  Output: "Dependencies not ready: TASK-008 (pending)"
+  Ask: "Dependencies not completed. Force start? (requires --force)"
   
   IF user confirms:
     Command: task start mvp_v1 TASK-011 --force
   ELSE:
-    Output: "请先完成依赖任务 TASK-008"
+    Output: "Please complete dependency task TASK-008 first"
 ```
 
 ### Error: Archive Without Verify
 ```
-User: "归档 TASK-001"
+User: "Archive TASK-001"
 Agent:
   Command: task archive mvp_v1 TASK-001
-  Error: "尚未通过核验"
+  Error: "Not yet verified"
   Recovery:
     Command: task verify mvp_v1 TASK-001
     IF passes:
       Command: task archive mvp_v1 TASK-001
-      Confirm: "已归档"
+      Confirm: "Archived"
     ELSE:
-      Output: "核验失败，请补充缺失文件"
+      Output: "Verification failed, please add missing files"
 ```

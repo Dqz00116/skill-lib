@@ -281,14 +281,14 @@ task add {plan} \
 
 # Example
 task add mvp_v1 \
-  -t "实现 JWT 认证" \
+  -t "Implement JWT authentication" \
   -p "Phase 2" \
   -P "P0" \
-  -d "实现基于 JWT 的 API 认证" \
+  -d "Implement JWT-based API authentication" \
   --depends "TASK-002,TASK-007" \
-  --criteria "支持 Bearer Token
-支持 Token 刷新
-错误返回 401" \
+  --criteria "Support Bearer Token
+Support Token refresh
+Return 401 on error" \
   --artifacts "src/middleware/auth.ts,src/services/jwt.ts"
 ```
 
@@ -304,7 +304,7 @@ task edit {plan} {taskId} --criteria "{new_criterion}"
 task edit {plan} {taskId} --artifacts "{new_file}"
 
 # Example
-task edit mvp_v1 TASK-001 -P P0 --criteria "新增标准"
+task edit mvp_v1 TASK-001 -P P0 --criteria "Add new criterion"
 ```
 
 ### Delete Task
@@ -333,7 +333,7 @@ task config list
 task config add {name} {path} --description "{description}"
 
 # Example
-task config add mvp_v2 E:\projects\mvp_v2 --description "MVP v2 计划"
+task config add mvp_v2 E:\projects\mvp_v2 --description "MVP v2 Plan"
 ```
 
 ### Remove Plan
@@ -432,10 +432,10 @@ done
 ## Parameter Quick Reference
 
 ### Status Values
-- `pending` - 待开始
-- `in_progress` - 进行中
-- `completed` - 已完成
-- `blocked` - 已阻塞
+- `pending` - Not started
+- `in_progress` - In progress
+- `completed` - Completed
+- `blocked` - Blocked
 
 ### Priority Values
 - `P0` - Must complete

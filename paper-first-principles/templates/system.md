@@ -1,6 +1,6 @@
-# {{title}}：{{one_sentence_summary}}
+# {{title}}: {{one_sentence_summary}}
 
-> {{target_audience}}视角的渐进式解读
+> A progressive interpretation from the {{target_audience}} perspective
 
 ## Table of Contents
 
@@ -15,26 +15,26 @@
 
 ---
 
-**是的，{{core_insight}}。**
+**Yes, {{core_insight}}.**
 
 {{contextual_explanation}}
 
 ---
 
-## 机制拆解
+## Mechanism Breakdown
 
 ### 1. {{core_mechanism_A}} vs {{core_mechanism_B}}
 
-| 维度 | {{方案A}} | {{方案B}} | 关键差异 |
-|-----|----------|----------|---------|
-| {{维度1}} | {{A的值}} | {{B的值}} | {{差异说明}} |
-| {{维度2}} | {{A的值}} | {{B的值}} | {{差异说明}} |
-| {{维度3}} | {{A的值}} | {{B的值}} | {{差异说明}} |
+| Dimension | {{plan_A}} | {{plan_B}} | Key Difference |
+|----------|-----------|-----------|---------------|
+| {{dimension_1}} | {{A_value}} | {{B_value}} | {{difference_description}} |
+| {{dimension_2}} | {{A_value}} | {{B_value}} | {{difference_description}} |
+| {{dimension_3}} | {{A_value}} | {{B_value}} | {{difference_description}} |
 
-**关键逻辑**：
+**Key Logic**:
 {{key_logic_explanation}}
 
-### 2. 核心流程
+### 2. Core Workflow
 
 ```
 {{simplified_workflow_diagram}}
@@ -42,125 +42,125 @@
 
 ---
 
-## 第一性原理：为什么这样设计？
+## First Principles: Why This Design?
 
-### 原因 1：{{problem_essence}}
+### Reason 1: {{problem_essence}}
 
-**传统认知**：{{traditional_understanding}}
+**Traditional Understanding**: {{traditional_understanding}}
 
-**被忽视的事实**：{{overlooked_fact}}
+**Overlooked Fact**: {{overlooked_fact}}
 
 {{detailed_explanation}}
 
-### 原因 2：{{historical_pattern}}
+### Reason 2: {{historical_pattern}}
 
 {{analogy_with_history}}
 
-| 维度 | 旧方案 | 新方案 | 突破点 |
-|-----|-------|-------|-------|
-| {{维度1}} | {{旧}} | {{新}} | {{突破}} |
-| {{维度2}} | {{旧}} | {{新}} | {{突破}} |
+| Dimension | Old Plan | New Plan | Breakthrough |
+|----------|---------|---------|-------------|
+| {{dimension_1}} | {{old}} | {{new}} | {{breakthrough}} |
+| {{dimension_2}} | {{old}} | {{new}} | {{breakthrough}} |
 
-### 原因 3：{{constraint_driven_design}}
+### Reason 3: {{constraint_driven_design}}
 
-**理想**：{{ideal_solution}}
+**Ideal**: {{ideal_solution}}
 
-**约束**：{{real_world_constraints}}
+**Constraints**: {{real_world_constraints}}
 
-**方案**：{{practical_solution}}
+**Solution**: {{practical_solution}}
 
-**关键洞察**：{{key_insight}}
+**Key Insight**: {{key_insight}}
 
 ---
 
-## 渐进深入：从{{simplest_stage}}到{{most_complex_stage}}
+## Progressive Deep Dive: From {{simplest_stage}} to {{most_complex_stage}}
 
-### 阶段 1：{{stage_1_title}}
+### Stage 1: {{stage_1_title}}
 
-**问题场景**：
+**Problem Scenario**:
 {{problem_description}}
 
-**方案**：
+**Solution**:
 {{solution_description}}
 
 ```{{language}}
 {{code_or_pseudocode}}
 ```
 
-**关键洞察**：
+**Key Insight**:
 {{key_takeaway}}
 
 ---
 
-### 阶段 2：{{stage_2_title}}
+### Stage 2: {{stage_2_title}}
 
-**新增复杂性**：
+**Added Complexity**:
 {{new_complexity}}
 
-**方案**：
+**Solution**:
 {{solution_description}}
 
 ```{{language}}
 {{code_or_pseudocode}}
 ```
 
-**与阶段 1 的差异**：
+**Difference from Stage 1**:
 {{difference_from_stage_1}}
 
-**关键洞察**：
+**Key Insight**:
 {{key_takeaway}}
 
 ---
 
-### 阶段 3：{{stage_3_title}}
+### Stage 3: {{stage_3_title}}
 
-**新增复杂性**：
+**Added Complexity**:
 {{new_complexity}}
 
-**方案**：
+**Solution**:
 {{solution_description}}
 
 ```{{language}}
 {{code_or_pseudocode}}
 ```
 
-**与阶段 2 的差异**：
+**Difference from Stage 2**:
 {{difference_from_stage_2}}
 
-**关键洞察**：
+**Key Insight**:
 {{key_takeaway}}
 
 ---
 
-## 边界情况与陷阱
+## Edge Cases & Pitfalls
 
-### 陷阱 1：{{pitfall_1_name}}
+### Pitfall 1: {{pitfall_1_name}}
 
-**错误理解**：
+**Misconception**:
 {{misconception}}
 
-**正确理解**：
+**Correct Understanding**:
 {{correct_understanding}}
 
-**检验方法**：
+**Verification Method**:
 {{how_to_verify}}
 
-### 陷阱 2：{{pitfall_2_name}}
+### Pitfall 2: {{pitfall_2_name}}
 
 {{detailed_explanation}}
 
-**决策要点**：
+**Decision Points**:
 ```
 {{decision_tree_or_guideline}}
 ```
 
-### 陷阱 3：{{pitfall_3_name}}
+### Pitfall 3: {{pitfall_3_name}}
 
 {{comparison_table}}
 
 ---
 
-## 决策树：何时使用？
+## Decision Tree: When to Use?
 
 ```
 {{decision_tree}}
@@ -168,35 +168,35 @@
 
 ---
 
-## 工程 Checklist
+## Engineering Checklist
 
-### {{dimension_1}}检查
+### {{dimension_1}} Check
 - [ ] {{check_item_1}}
 - [ ] {{check_item_2}}
 - [ ] {{check_item_3}}
 
-### {{dimension_2}}检查
+### {{dimension_2}} Check
 - [ ] {{check_item_1}}
 - [ ] {{check_item_2}}
 - [ ] {{check_item_3}}
 
-### {{dimension_3}}检查
+### {{dimension_3}} Check
 - [ ] {{check_item_1}}
 - [ ] {{check_item_2}}
 - [ ] {{check_item_3}}
 
 ---
 
-## 总结：{{N}}个可落地的{{patterns_or_insights}}
+## Summary: {{N}} Actionable {{patterns_or_insights}}
 
-| 模式 | 论文中的实现 | {{target_domain}}中的迁移 | 适用场景 |
-|-----|------------|-------------------------|---------|
-| {{模式1}} | {{论文实现}} | {{工程迁移}} | {{适用场景}} |
-| {{模式2}} | {{论文实现}} | {{工程迁移}} | {{适用场景}} |
-| {{模式3}} | {{论文实现}} | {{工程迁移}} | {{适用场景}} |
+| Pattern | Implementation in Paper | Migration in {{target_domain}} | Applicable Scenario |
+|---------|------------------------|-------------------------------|---------------------|
+| {{pattern_1}} | {{paper_implementation}} | {{engineering_migration}} | {{applicable_scenario}} |
+| {{pattern_2}} | {{paper_implementation}} | {{engineering_migration}} | {{applicable_scenario}} |
+| {{pattern_3}} | {{paper_implementation}} | {{engineering_migration}} | {{applicable_scenario}} |
 
-**记忆口诀**：
+**Mnemonic**:
 {{mnemonic}}
 
-**最后一句话**：
+**Final Word**:
 {{final_takeaway}}

@@ -1,58 +1,75 @@
 ---
 name: unity-mcp
-description: Unity MCP Server 部署指南与 API 使用技巧，包含常见问题排查与解决方案
+description: Use when controlling Unity editor via AI, automating scene operations, or programmatically generating Unity assets and scripts
 ---
 
 # SKILL: unity-mcp
 
-Unity MCP (Model Context Protocol) Server 的完整部署指南、API 使用技巧和故障排查手册。
+## Overview
+
+A reference guide for deploying and using the Unity MCP Server, covering API operations, data type formats, and common issue resolution.
+
+Complete deployment guide, API usage tips, and troubleshooting manual for the Unity MCP (Model Context Protocol) Server.
 
 ## Description
 
-本技能涵盖：
-- Unity MCP Server 的启动与连接
-- 常用 API 操作（GameObject、Component、Scene、Asset）
-- 参数格式规范（Color、Vector3 等特殊类型）
-- 常见问题排查与解决思路
+This skill covers:
+- Starting and connecting the Unity MCP Server
+- Common API operations (GameObject, Component, Scene, Asset)
+- Parameter format specifications (Color, Vector3, and other special types)
+- Common problem troubleshooting and resolution approaches
+
+## When to Use
+
+- You need to control the Unity editor via AI automation
+- You are batch-creating or modifying GameObjects, components, or scenes
+- You are programmatically generating Unity assets or scripts
+- You encounter connection issues, session errors, or data type format problems with Unity MCP
+- You need to remotely debug or inspect a Unity scene
+
+**Do not use when:**
+- The task is purely about Unity game logic coding without MCP integration
+- You only need general Unity scripting help without editor automation
+- You are working with a different MCP server or game engine
 
 ## When to Invoke
 
-使用场景：
-- 需要通过 AI 控制 Unity 编辑器执行自动化操作
-- 批量创建/修改场景物体、组件
-- 程序化生成资源或脚本
-- 远程调试和场景检查
-- 自动化测试工作流
+Usage scenarios:
+- Need to control the Unity editor via AI to perform automated operations
+- Batch create/modify scene objects, components
+- Procedurally generate assets or scripts
+- Remote debugging and scene inspection
+- Automated testing workflows
 
 ## Prerequisites
 
-**环境要求：**
-- Unity 6000+ (或其他支持版本)
-- Unity MCP 插件/包已安装
-- Python uvx 工具
+**Environment requirements:**
+- Unity 6000+ (or other supported versions)
+- Unity MCP plugin/package installed
+- Python uvx tool
 
-### 1. 检查 MCP 插件是否安装
+### 1. Check if MCP Plugin is Installed
 
-在 Unity 编辑器中检查：
-- 菜单栏是否有 **MCP** 或 **Window → MCP**
-- Project 窗口是否有 `MCP` 或 `McpForUnity` 相关文件夹
+Check in the Unity editor:
+- Whether the menu bar has **MCP** or **Window → MCP**
+- Whether the Project window has `MCP` or `McpForUnity` related folders
 
-**如果未安装 MCP 插件：**
+**If the MCP plugin is not installed:**
 
-1. **通过 Unity Asset Store 安装:**
-   - 打开 **Window → Package Manager**
-   - 选择 **Unity Registry** 或 **My Assets**
-   - 搜索 **"MCP"** 或 **"MCP for Unity"**
-   - 点击 **Install** 安装
+1. **Install via Unity Asset Store:**
+   - Open **Window → Package Manager**
+   - Select **Unity Registry** or **My Assets**
+   - Search for **"MCP"** or **"MCP for Unity"**
+   - Click **Install**
 
-2. **或通过 Git URL 安装:**
+2. **Or install via Git URL:**
    - Package Manager → **+** → **Add package from git URL**
-   - 输入: `https://github.com/anthropics/unity-mcp.git`
-   - 点击 **Add**
+   - Enter: `https://github.com/anthropics/unity-mcp.git`
+   - Click **Add**
 
-3. **安装后重启 Unity**
+3. **Restart Unity after installation**
 
-### 2. 检查 uvx 是否安装
+### 2. Check if uvx is Installed
 
 ```powershell
 # Windows
@@ -62,61 +79,61 @@ Test-Path "$env:USERPROFILE\.local\bin\uvx.exe"
 which uvx
 ```
 
-**如果未安装:**
-1. 在 Unity 编辑器中打开 **Window → MCP → Local Setup**
-2. 点击 **"Install"** 或 **"Setup Environment"**
-3. 等待自动下载安装 uvx 和相关依赖
-4. 重启终端/IDE 以加载新的环境变量
+**If not installed:**
+1. In the Unity editor, open **Window → MCP → Local Setup**
+2. Click **"Install"** or **"Setup Environment"**
+3. Wait for automatic download and installation of uvx and related dependencies
+4. Restart the terminal/IDE to load the new environment variables
 
-**插件来源：**
+**Plugin source:**
 - Unity MCP Server: `mcpforunityserver>=0.0.0a0`
 
 ## Deployment
 
-### 1. 启动 MCP Server
+### 1. Start the MCP Server
 
-#### 检查 uvx 安装位置
+#### Check uvx Installation Location
 
-uvx 通常安装在以下位置：
+uvx is usually installed in the following locations:
 
 **Windows:**
 ```powershell
-# 标准安装路径
+# Standard installation path
 $env:USERPROFILE\.local\bin\uvx.exe
-# 或
-C:\Users\<用户名>\.local\bin\uvx.exe
+# Or
+C:\Users\<Username>\.local\bin\uvx.exe
 
-# 检查是否存在
+# Check if it exists
 Test-Path "$env:USERPROFILE\.local\bin\uvx.exe"
 ```
 
 **macOS/Linux:**
 ```bash
 ~/.local/bin/uvx
-# 或
+# Or
 /usr/local/bin/uvx
 ```
 
-#### 如果 uvx 不存在
+#### If uvx Does Not Exist
 
-**⚠️ 提示用户:**
+**⚠️ Prompt the user:**
 ```
-未找到 uvx 工具。请在 Unity 编辑器中：
-1. 打开 Window → MCP → Local Setup
-2. 点击 "Install Dependencies" 或 "Setup Local Environment"
-3. 等待安装完成
-4. 重新尝试启动 MCP Server
+uvx tool not found. Please do the following in the Unity editor:
+1. Open Window → MCP → Local Setup
+2. Click "Install Dependencies" or "Setup Local Environment"
+3. Wait for the installation to complete
+4. Try starting the MCP Server again
 ```
 
-#### 启动命令
+#### Start Command
 
-**Windows (动态路径):**
+**Windows (dynamic path):**
 ```powershell
 $uvxPath = "$env:USERPROFILE\.local\bin\uvx.exe"
 if (Test-Path $uvxPath) {
     & $uvxPath --prerelease explicit --from "mcpforunityserver>=0.0.0a0" mcp-for-unity --transport http --http-url http://localhost:8080 --project-scoped-tools
 } else {
-    Write-Host "错误: 未找到 uvx。请在 Unity 中点击 MCP → Local Setup 安装依赖。"
+    Write-Host "Error: uvx not found. Please install dependencies by clicking MCP → Local Setup in Unity."
 }
 ```
 
@@ -125,27 +142,27 @@ if (Test-Path $uvxPath) {
 ~/.local/bin/uvx --prerelease explicit --from "mcpforunityserver>=0.0.0a0" mcp-for-unity --transport http --http-url http://localhost:8080 --project-scoped-tools
 ```
 
-**注意：**
-- 首次启动会下载 Python 依赖（约 30MB，需要 1-2 分钟）
-- 保持运行，不要关闭终端
-- 使用 `--project-scoped-tools` 启用项目级工具
+**Note:**
+- First launch will download Python dependencies (approx. 30MB, takes 1-2 minutes)
+- Keep it running, do not close the terminal
+- Use `--project-scoped-tools` to enable project-level tools
 
-### 2. 连接流程
+### 2. Connection Flow
 
 ```
-1. 初始化会话
+1. Initialize session
    POST http://localhost:8080/mcp
    Headers: Accept: application/json, text/event-stream
    Body: {"jsonrpc":"2.0","id":1,"method":"initialize",...}
    ↓
-2. 提取 Session ID (从响应头 mcp-session-id)
+2. Extract Session ID (from response header mcp-session-id)
    ↓
-3. 设置活动 Unity 实例
+3. Set active Unity instance
    ↓
-4. 执行工具调用
+4. Execute tool calls
 ```
 
-**PowerShell 示例：**
+**PowerShell Example:**
 ```powershell
 $headers = @{
     "Content-Type" = "application/json"
@@ -153,21 +170,21 @@ $headers = @{
     "mcp-session-id" = "your-session-id"
 }
 
-# 初始化
+# Initialize
 $init = '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"openclaw","version":"1.0"}}}'
 $response = Invoke-WebRequest -Uri "http://localhost:8080/mcp" -Method Post -Headers $headers -Body $init
 $sessionId = $response.Headers["mcp-session-id"]
 
-# 设置活动实例
+# Set active instance
 $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"set_active_instance","arguments":{"instance":"ProjectName@hash"}}}'
 ```
 
 ## Common Operations
 
-### GameObject 管理
+### GameObject Management
 
 ```json
-// 创建空物体
+// Create empty object
 {
   "name": "manage_gameobject",
   "arguments": {
@@ -177,25 +194,25 @@ $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"
   }
 }
 
-// 创建 Sprite 物体（2D）
+// Create Sprite object (2D)
 {
   "action": "create",
   "name": "Tree2D",
   "position": [1, 2, 0]
 }
-// 然后添加 SpriteRenderer 组件
+// Then add SpriteRenderer component
 
-// 删除物体
+// Delete object
 {
   "action": "delete",
   "name": "MyObject"
 }
 ```
 
-### Component 管理
+### Component Management
 
 ```json
-// 添加组件
+// Add component
 {
   "name": "manage_components",
   "arguments": {
@@ -205,21 +222,21 @@ $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"
   }
 }
 
-// 设置属性 ⚠️ 注意类型格式
+// Set property ⚠️ Pay attention to type format
 {
   "action": "set_property",
   "target": "Tree2D",
   "component_type": "SpriteRenderer",
   "property": "color",
-  "value": {"r": 0.1, "g": 0.5, "b": 0.2, "a": 1.0}  // ✅ 对象格式
-  // ❌ 错误: [0.1, 0.5, 0.2, 1]
+  "value": {"r": 0.1, "g": 0.5, "b": 0.2, "a": 1.0}  // ✅ Object format
+  // ❌ Incorrect: [0.1, 0.5, 0.2, 1]
 }
 ```
 
-### Scene 管理
+### Scene Management
 
 ```json
-// 创建场景
+// Create scene
 {
   "name": "manage_scene",
   "arguments": {
@@ -229,22 +246,22 @@ $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"
   }
 }
 
-// 保存场景
+// Save scene
 {
   "action": "save"
 }
 
-// 获取层级
+// Get hierarchy
 {
   "action": "get_hierarchy",
   "page_size": 50
 }
 ```
 
-### Asset 管理
+### Asset Management
 
 ```json
-// 创建文件夹
+// Create folder
 {
   "name": "manage_asset",
   "arguments": {
@@ -253,7 +270,7 @@ $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"
   }
 }
 
-// 创建纹理
+// Create texture
 {
   "action": "create",
   "width": 64,
@@ -261,7 +278,7 @@ $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"
   "path": "MyFolder/Texture.png"
 }
 
-// 搜索资源
+// Search assets
 {
   "action": "search",
   "path": "MyFolder",
@@ -271,25 +288,25 @@ $setInstance = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"
 
 ## Critical Data Types
 
-### ⚠️ Color 格式
+### ⚠️ Color Format
 
-**错误格式（数组）：**
+**Incorrect format (array):**
 ```json
 "value": [0.1, 0.5, 0.2, 1.0]
 ```
 
-**正确格式（对象）：**
+**Correct format (object):**
 ```json
 "value": {"r": 0.1, "g": 0.5, "b": 0.2, "a": 1.0}
 ```
 
-**PowerShell 构造：**
+**PowerShell construction:**
 ```powershell
 $color = @{r=0.1; g=0.5; b=0.2; a=1.0} | ConvertTo-Json -Compress
-# 结果: {"r":0.1,"g":0.5,"b":0.2,"a":1}
+# Result: {"r":0.1,"g":0.5,"b":0.2,"a":1}
 ```
 
-### Vector3 格式
+### Vector3 Format
 
 ```json
 "position": [1, 2, 3]
@@ -299,66 +316,66 @@ $color = @{r=0.1; g=0.5; b=0.2; a=1.0} | ConvertTo-Json -Compress
 
 ## Common Issues & Solutions
 
-### Issue -1: MCP 插件未安装
+### Issue -1: MCP Plugin Not Installed
 
-**症状：**
-- Unity 菜单中没有 **MCP** 或 **Window → MCP**
-- Project 中没有 MCP 相关文件夹
-- 无法找到 MCP 设置界面
+**Symptoms:**
+- No **MCP** or **Window → MCP** in the Unity menu
+- No MCP-related folders in the Project
+- Unable to find the MCP settings interface
 
-**解决步骤：**
-1. **打开 Unity Asset Store:**
+**Resolution steps:**
+1. **Open Unity Asset Store:**
    - `Window → Package Manager`
-   - 切换到 **Unity Registry** 标签
-   - 搜索 **"MCP"** 或 **"MCP for Unity"**
+   - Switch to the **Unity Registry** tab
+   - Search for **"MCP"** or **"MCP for Unity"**
 
-2. **安装插件:**
-   - 找到 `MCP for Unity` 包
-   - 点击 **Install**
-   - 等待安装完成
+2. **Install the plugin:**
+   - Find the `MCP for Unity` package
+   - Click **Install**
+   - Wait for the installation to complete
 
-3. **重启 Unity 编辑器**
+3. **Restart the Unity editor**
 
-4. **验证安装:**
-   - 检查菜单栏是否有 `MCP` 或 `Window → MCP`
-   - 检查 Project 窗口是否有 `MCP` 文件夹
+4. **Verify installation:**
+   - Check if the menu bar has `MCP` or `Window → MCP`
+   - Check if the Project window has the `MCP` folder
 
-### Issue 0: uvx 未找到 / 命令不存在
+### Issue 0: uvx Not Found / Command Does Not Exist
 
-**症状：**
+**Symptoms:**
 ```powershell
 The term 'uvx' is not recognized as a cmdlet, function, operable program, or script file.
-# 或
-无法找到路径 "C:\Users\xxx\.local\bin\uvx.exe" 的一部分
+# Or
+Cannot find part of the path "C:\Users\xxx\.local\bin\uvx.exe"
 ```
 
-**原因：**
-- uvx 是 Unity MCP 的依赖工具，尚未安装
-- 安装路径因系统/用户而异
+**Cause:**
+- uvx is a dependency tool for Unity MCP and has not been installed yet
+- The installation path varies depending on the system/user
 
-**解决步骤：**
-1. **在 Unity 中安装:**
-   - 菜单: `Window → MCP → Local Setup`
-   - 点击: `Install Dependencies` 或 `Setup Local Environment`
-   - 等待安装完成（可能需要几分钟）
+**Resolution steps:**
+1. **Install in Unity:**
+   - Menu: `Window → MCP → Local Setup`
+   - Click: `Install Dependencies` or `Setup Local Environment`
+   - Wait for the installation to complete (may take a few minutes)
 
-2. **验证安装:**
+2. **Verify installation:**
    ```powershell
    # Windows
    Get-Command uvx
-   # 或
+   # Or
    Test-Path "$env:USERPROFILE\.local\bin\uvx.exe"
    
    # macOS/Linux
    which uvx
    ```
 
-3. **重启终端** 以加载新的 PATH 环境变量
+3. **Restart the terminal** to load the new PATH environment variable
 
-**动态路径检测脚本:**
+**Dynamic path detection script:**
 ```powershell
 function Get-UvxPath {
-    # 尝试常见路径
+    # Try common paths
     $paths = @(
         "$env:USERPROFILE\.local\bin\uvx.exe",
         "$env:LOCALAPPDATA\uv\uvx.exe",
@@ -369,7 +386,7 @@ function Get-UvxPath {
         if (Test-Path $path) { return $path }
     }
     
-    # 尝试从 PATH 查找
+    # Try to find from PATH
     $uvx = Get-Command uvx -ErrorAction SilentlyContinue
     if ($uvx) { return $uvx.Source }
     
@@ -378,82 +395,82 @@ function Get-UvxPath {
 
 $uvxPath = Get-UvxPath
 if (-not $uvxPath) {
-    Write-Host "❌ 未找到 uvx。请在 Unity 中点击 Window → MCP → Local Setup 安装。"
+    Write-Host "❌ uvx not found. Please install it by clicking Window → MCP → Local Setup in Unity."
     exit 1
 }
-Write-Host "✅ 找到 uvx: $uvxPath"
+Write-Host "✅ Found uvx: $uvxPath"
 ```
 
-### Issue 1: 无法设置 SpriteRenderer.sprite
+### Issue 1: Unable to Set SpriteRenderer.sprite
 
-**症状：**
+**Symptoms:**
 ```
 Failed to convert value for property 'sprite' to type 'Sprite'
 ```
 
-**原因：**
-- `manage_texture` 创建的是 `Texture2D`，但 `SpriteRenderer` 需要 `Sprite` 类型
-- API 不支持直接将路径字符串转为 Sprite 引用
+**Cause:**
+- `manage_texture` creates a `Texture2D`, but `SpriteRenderer` requires a `Sprite` type
+- The API does not support directly converting a path string to a Sprite reference
 
-**解决方案：**
-1. **手动方式**（推荐）：在 Unity 中将纹理拖到 SpriteRenderer 的 Sprite 字段，Unity 会自动转换
-2. **编辑器脚本**：编写 `Editor` 文件夹下的工具脚本批量赋值
-3. **预创建 Sprite**：使用 Unity 的 Sprite Editor 将纹理转为 Sprite 资源
+**Solutions:**
+1. **Manual method** (recommended): Drag the texture onto the SpriteRenderer's Sprite field in Unity, and Unity will automatically convert it
+2. **Editor script**: Write a tool script under the `Editor` folder to batch assign values
+3. **Pre-create Sprite**: Use Unity's Sprite Editor to convert the texture into a Sprite asset
 
-### Issue 2: Color 格式错误
+### Issue 2: Color Format Error
 
-**症状：**
+**Symptoms:**
 ```
 Error converting token to UnityEngine.Color: Error reading JObject from JsonReader
 ```
 
-**解决：** 使用对象格式 `{"r":x,"g":y,"b":z,"a":w}` 而非数组 `[x,y,z,w]`
+**Solution:** Use the object format `{"r":x,"g":y,"b":z,"a":w}` instead of the array `[x,y,z,w]`
 
-### Issue 3: Session 过期
+### Issue 3: Session Expired
 
-**症状：**
+**Symptoms:**
 ```
 Missing session ID
 Bad Request: Missing session ID
 ```
 
-**解决：** 
-- 重新初始化获取新 Session ID
-- 确保每个请求都包含 `mcp-session-id` Header
+**Solution:**
+- Re-initialize to get a new Session ID
+- Ensure every request includes the `mcp-session-id` Header
 
-### Issue 4: Unity 实例未找到 / 找不到活跃实例
+### Issue 4: Unity Instance Not Found / Cannot Find Active Instance
 
-**症状：**
+**Symptoms:**
 ```json
 {
   "instance_count": 0,
   "instances": []
 }
 ```
-或
+Or
 ```
 Active instance set to ... : false
 ```
 
-**原因：**
-- MCP Server 已启动，但 Unity 编辑器尚未与 Server 建立连接
-- Unity 中的 MCP Session 未启动
+**Cause:**
+- The MCP Server has started, but the Unity editor has not yet established a connection with the Server
+- The MCP Session in Unity has not been started
 
-**解决步骤：**
+**Resolution steps:**
 
-1. **确保 Unity 编辑器已打开**（且项目已加载）
+1. **Ensure the Unity editor is open** (and the project is loaded)
 
-2. **在 Unity 中启动 MCP Session:**
-   - 菜单: `Window → MCP` 或 `MCP → Session`
-   - 在 MCP 窗口中找到 **Session** 或 **Connection** 部分
-   - 点击 **"Start Session"** 或 **"Connect"** 按钮
-   - 等待状态变为 **"Connected"** 或 **"Running"**
+2. **Start the MCP Session in Unity:**
+   - Menu: `Window → MCP` or `MCP → Session`
+   - In the MCP window, find the **Session** or **Connection** section
+   - Click the **"Start Session"** or **"Connect"** button
+   - Wait for the status to change to **"Connected"** or **"Running"**
 
-3. **检查连接状态:**
-   - MCP 窗口应显示: `Status: Connected` 或 `Transport: HTTP`
-   - 或显示当前连接的 Server 地址: `http://localhost:8080`
+3. **Check connection status:**
+   - The MCP window should display: `Status: Connected` or `Transport: HTTP`
+   - Or display the currently connected Server address: `http://localhost:8080`
 
-4. **重新获取实例列表:**
+4. **Re-fetch the instance list:**
    ```json
    {
      "name": "resources/read",
@@ -463,61 +480,61 @@ Active instance set to ... : false
    }
    ```
 
-**完整启动流程图:**
+**Full startup flow chart:**
 ```
-用户机器
-├─ [1] 启动 MCP Server (uvx 命令)
-│     └─ 等待连接...
+User Machine
+├─ [1] Start MCP Server (uvx command)
+│     └─ Waiting for connection...
 │
-└─ [2] 打开 Unity 编辑器
+└─ [2] Open Unity Editor
        └─ [3] Window → MCP → Start Session
-              └─ 建立连接
+              └─ Establish connection
                      ↓
-              MCP Server 检测到实例
+              MCP Server detects instance
                      ↓
               instance_count: 1
 ```
 
-**常见问题：**
-- **Q: 点击 Start Session 后没有反应？**
-  - 检查 MCP Server 是否正在运行（终端窗口是否还在）
-  - 检查端口 8080 是否被占用
-  - 尝试重启 Unity 和 MCP Server
+**Common Questions:**
+- **Q: Nothing happens after clicking Start Session?**
+  - Check if the MCP Server is running (is the terminal window still open)
+  - Check if port 8080 is occupied
+  - Try restarting Unity and the MCP Server
 
-- **Q: 显示 "Connection Failed"？**
-  - 确认 MCP Server 地址配置正确（默认: `http://localhost:8080`）
-  - 检查防火墙是否阻止了连接
+- **Q: Shows "Connection Failed"?**
+  - Confirm the MCP Server address is configured correctly (default: `http://localhost:8080`)
+  - Check if the firewall is blocking the connection
 
-### Issue 5: 属性参数错误
+### Issue 5: Property Parameter Error
 
-**症状：**
+**Symptoms:**
 ```
 Unexpected keyword argument 'xxx'
 ```
 
-**解决：** 检查 API 文档，使用正确的参数名：
+**Solution:** Check the API documentation and use the correct parameter names:
 - ❌ `"component": "SpriteRenderer"` → ✅ `"component_type": "SpriteRenderer"`
-- ❌ `"filter": "All"` → ✅ 不支持，省略或使用正确参数
+- ❌ `"filter": "All"` → ✅ Not supported, omit or use the correct parameter
 
 ## Workflow Patterns
 
-### Pattern 1: 创建2D物体完整流程
+### Pattern 1: Complete Workflow for Creating a 2D Object
 
 ```
-1. 创建 GameObject (空物体)
+1. Create GameObject (empty object)
    manage_gameobject: create
    
-2. 添加 SpriteRenderer 组件
+2. Add SpriteRenderer component
    manage_components: add, component_type=SpriteRenderer
    
-3. 设置颜色
+3. Set color
    manage_components: set_property, property=color, value={r,g,b,a}
    
-4. 手动赋值 Sprite（API限制）
-   或在 Unity 中拖拽纹理到 Sprite 字段
+4. Manually assign Sprite (API limitation)
+   Or drag and drop the texture onto the Sprite field in Unity
 ```
 
-### Pattern 2: 批量创建物体
+### Pattern 2: Batch Create Objects
 
 ```powershell
 $objects = @(
@@ -526,44 +543,44 @@ $objects = @(
 )
 
 foreach ($obj in $objects) {
-    # 创建物体
-    # 添加组件
-    # 设置属性
+    # Create object
+    # Add component
+    # Set property
 }
 ```
 
-### Pattern 3: 错误检查流程
+### Pattern 3: Error Checking Workflow
 
 ```
-1. 执行操作
-2. 检查控制台日志
+1. Execute operation
+2. Check console logs
    read_console: get
-3. 验证结果
+3. Verify result
    manage_scene: get_hierarchy
-4. 如有错误，读取具体组件信息
+4. If there is an error, read specific component information
    resources/read: mcpforunity://scene/gameobject/{id}/components
 ```
 
 ## API Limitations
 
-| 限制 | 说明 | 变通方案 |
-|------|------|----------|
-| Sprite 赋值 | 无法通过 API 直接设置 Sprite | 手动拖拽或编辑器脚本 |
-| 纹理导入设置 | 无法修改 Texture Import Settings | 预配置或在 Unity 中手动设置 |
-| 复杂组件 | 部分组件属性不支持 | 使用 Unity 编辑器手动配置 |
-| 脚本创建 | 内容需转义 | 使用简单脚本或模板 |
+| Limitation | Description | Workaround |
+|------------|-------------|------------|
+| Sprite assignment | Cannot set Sprite directly via API | Manual drag-and-drop or editor script |
+| Texture import settings | Cannot modify Texture Import Settings | Pre-configure or set manually in Unity |
+| Complex components | Some component properties are not supported | Configure manually using the Unity editor |
+| Script creation | Content needs escaping | Use simple scripts or templates |
 
 ## Best Practices
 
-1. **始终保存场景** 在批量操作后执行 `manage_scene: save`
-2. **检查控制台** 定期使用 `read_console` 查看错误
-3. **使用 Instance ID** 操作具体物体时使用而非名称
-4. **批量操作** 使用循环批量创建，减少 API 调用次数
-5. **错误处理** 每个操作后检查 `success` 字段
+1. **Always save the scene** Execute `manage_scene: save` after batch operations
+2. **Check the console** Regularly use `read_console` to view errors
+3. **Use Instance ID** Use the Instance ID instead of the name when operating on specific objects
+4. **Batch operations** Use loops for batch creation to reduce the number of API calls
+5. **Error handling** Check the `success` field after each operation
 
 ## Quick Reference
 
-### 常用工具列表
+### Common Tool List
 
 | Tool | Purpose |
 |------|---------|

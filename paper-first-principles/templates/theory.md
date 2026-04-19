@@ -1,6 +1,6 @@
-# {{title}}：{{one_sentence_summary}}
+# {{title}}: {{one_sentence_summary}}
 
-> {{target_audience}}视角的渐进式解读
+> A progressive interpretation from the {{target_audience}} perspective
 
 ## Table of Contents
 
@@ -15,118 +15,118 @@
 
 ---
 
-**是的，{{core_insight}}。**
+**Yes, {{core_insight}}.**
 
 {{contextual_explanation}}
 
 ---
 
-## 机制拆解
+## Mechanism Breakdown
 
-### 1. 问题定义
+### 1. Problem Definition
 
-**形式化描述**：
+**Formal Description**:
 {{formal_problem_definition}}
 
-**关键概念**：
-- {{concept_1}}：{{definition}}
-- {{concept_2}}：{{definition}}
-- {{concept_3}}：{{definition}}
+**Key Concepts**:
+- {{concept_1}}: {{definition}}
+- {{concept_2}}: {{definition}}
+- {{concept_3}}: {{definition}}
 
-**问题的难度**：
+**Problem Difficulty**:
 {{problem_difficulty}}
 
-### 2. 主要结果
+### 2. Main Results
 
-**定理 {{number}}（{{theorem_name}}）**：
+**Theorem {{number}} ({{theorem_name}})**:
 {{theorem_statement}}
 
-**直观解释**：
+**Intuitive Explanation**:
 {{intuitive_interpretation}}
 
-**与先前工作的对比**：
+**Comparison with Prior Work**:
 
-| 结果 | 先前最佳 | 本文结果 | 改进 |
-|-----|---------|---------|-----|
+| Result | Previous Best | This Paper | Improvement |
+|--------|--------------|------------|------------|
 | {{metric_1}} | {{previous}} | {{this_paper}} | {{improvement}} |
 | {{metric_2}} | {{previous}} | {{this_paper}} | {{improvement}} |
 
 ---
 
-## 第一性原理：为什么关注这个问题？
+## First Principles: Why Care About This Problem?
 
-### 原因 1：{{problem_significance}}
+### Reason 1: {{problem_significance}}
 
-**理论意义**：
+**Theoretical Significance**:
 {{theoretical_importance}}
 
-**实际应用**：
+**Practical Applications**:
 {{practical_applications}}
 
-### 原因 2：{{technical_challenge}}
+### Reason 2: {{technical_challenge}}
 
-**为什么困难**：
+**Why Difficult**:
 {{why_difficult}}
 
-**先前方法的局限**：
+**Limitations of Prior Methods**:
 {{limitations}}
 
-### 原因 3：{{novel_technique}}
+### Reason 3: {{novel_technique}}
 
-**核心技术**：
+**Core Technique**:
 {{core_technique}}
 
-**技术亮点**：
+**Technical Highlights**:
 {{technical_highlights}}
 
 ---
 
-## 渐进深入：从{{problem}}到{{proof}}
+## Progressive Deep Dive: From {{problem}} to {{proof}}
 
-### 阶段 1：问题理解
+### Stage 1: Problem Understanding
 
-**具体例子**：
+**Concrete Example**:
 {{concrete_example}}
 
-**为什么现有工具不够**：
+**Why Existing Tools Are Insufficient**:
 {{why_existing_tools_fail}}
 
-**需要的新工具/视角**：
+**New Tools/Perspectives Needed**:
 {{new_tools_needed}}
 
 ---
 
-### 阶段 2：核心定理
+### Stage 2: Core Theorem
 
-**定理陈述**：
+**Theorem Statement**:
 {{theorem_statement}}
 
-**条件的直观意义**：
+**Intuitive Meaning of Conditions**:
 {{interpretation_of_conditions}}
 
-**结论的直观意义**：
+**Intuitive Meaning of Conclusion**:
 {{interpretation_of_conclusion}}
 
-**简单示例验证**：
+**Verification with Simple Example**:
 {{verification_with_example}}
 
 ---
 
-### 阶段 3：证明思路
+### Stage 3: Proof Sketch
 
-**证明的主要步骤**：
+**Main Steps of Proof**:
 1. {{step_1}}
 2. {{step_2}}
 3. {{step_3}}
 
-**关键技术引理**：
+**Key Technical Lemmas**:
 
-**引理 {{number}}**：{{lemma_statement}}
+**Lemma {{number}}**: {{lemma_statement}}
 
-**引理的作用**：
+**Role of Lemma**:
 {{role_in_proof}}
 
-**证明的直观理解**：
+**Intuitive Understanding of Proof**:
 {{intuition}}
 
 ```
@@ -135,54 +135,54 @@
 
 ---
 
-### 阶段 4：应用与扩展
+### Stage 4: Applications and Extensions
 
-**直接应用**：
+**Direct Applications**:
 {{direct_applications}}
 
-**扩展方向**：
+**Extension Directions**:
 {{extensions}}
 
-**开放问题**：
+**Open Problems**:
 {{open_problems}}
 
 ---
 
-## 边界情况与陷阱
+## Edge Cases & Pitfalls
 
-### 陷阱 1：条件的必要性
+### Pitfall 1: Necessity of Conditions
 
-**定理条件**：{{conditions}}
+**Theorem Conditions**: {{conditions}}
 
-**如果去掉某条件**：
+**If a Condition Is Removed**:
 {{what_happens}}
 
-**反例**：
+**Counterexample**:
 {{counterexample}}
 
-### 陷阱 2：与{{related_result}}的混淆
+### Pitfall 2: Confusion with {{related_result}}
 
-| 方面 | {{本文结果}} | {{相关结果}} |
-|-----|------------|------------|
+| Aspect | {{this_paper_result}} | {{related_result}} |
+|--------|----------------------|-------------------|
 | {{aspect_1}} | {{value}} | {{value}} |
 | {{aspect_2}} | {{value}} | {{value}} |
 
-**关键区别**：
+**Key Difference**:
 {{key_difference}}
 
-### 陷阱 3： tightness（紧性）
+### Pitfall 3: Tightness
 
-**本文上界**：{{upper_bound}}
+**Upper Bound in This Paper**: {{upper_bound}}
 
-**已知下界**：{{lower_bound}}
+**Known Lower Bound**: {{lower_bound}}
 
-**gap**：{{gap_or_tight}}
+**Gap**: {{gap_or_tight}}
 
-**是否最优**：{{optimality}}
+**Is It Optimal**: {{optimality}}
 
 ---
 
-## 决策树：何时应用这个结果？
+## Decision Tree: When to Apply This Result?
 
 ```
 {{decision_tree}}
@@ -190,35 +190,35 @@
 
 ---
 
-## 工程/研究 Checklist
+## Engineering/Research Checklist
 
-### 理解检查
+### Understanding Check
 - [ ] {{check_1}}
 - [ ] {{check_2}}
 - [ ] {{check_3}}
 
-### 应用检查
+### Application Check
 - [ ] {{check_1}}
 - [ ] {{check_2}}
 - [ ] {{check_3}}
 
-### 扩展检查
+### Extension Check
 - [ ] {{check_1}}
 - [ ] {{check_2}}
 - [ ] {{check_3}}
 
 ---
 
-## 总结：{{N}}个关键{{insights_or_techniques}}
+## Summary: {{N}} Key {{insights_or_techniques}}
 
-| 洞察/技术 | 论文中的体现 | 应用场景 |
-|----------|------------|---------|
+| Insight/Technique | Embodiment in Paper | Application Scenario |
+|------------------|---------------------|---------------------|
 | {{insight_1}} | {{embodiment}} | {{application}} |
 | {{insight_2}} | {{embodiment}} | {{application}} |
 | {{insight_3}} | {{embodiment}} | {{application}} |
 
-**记忆口诀**：
+**Mnemonic**:
 {{mnemonic}}
 
-**最后一句话**：
+**Final Word**:
 {{final_takeaway}}

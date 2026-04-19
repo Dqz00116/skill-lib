@@ -37,10 +37,10 @@ pre_flight_check:
   4: Check data.json exists in plan path
 
 error_if_missing: |
-  如果 config.json 不存在：
+  If config.json does not exist:
   1. cp config.json.template config.json
-  2. 编辑配置
-  3. 重新验证
+  2. Edit configuration
+  3. Re-verify
 ```
 
 ---
@@ -56,13 +56,13 @@ command_to_add_subtask: task add {plan} -t "{subtask_title}" --depends "{parent_
 
 ### Rule 2: Task Decomposition Example
 ```yaml
-bad_example: "实现用户系统"  # Too large, 1-2 weeks
+bad_example: "Implement user system"  # Too large, 1-2 weeks
 
 good_examples:
-  - "用户数据库设计"
-  - "用户注册API实现"
-  - "用户登录API实现"
-  - "用户信息修改API实现"
+  - "User database design"
+  - "User registration API implementation"
+  - "User login API implementation"
+  - "User profile update API implementation"
 ```
 
 ---
@@ -142,13 +142,13 @@ force_override:
 ### Verification Output Parsing
 ```yaml
 verification_success_indicators:
-  - "产物文件: X/Y (100%)"
-  - "✅ 核验通过"
+  - "Artifact files: X/Y (100%)"
+  - "✅ Verification passed"
   - No "Missing artifacts" section
 
 verification_failure_indicators:
-  - "产物文件: X/Y (<100%)"
-  - "❌ 缺失的产物文件"
+  - "Artifact files: X/Y (<100%)"
+  - "❌ Missing artifact files"
   - List of missing files
 
 required_parsing:
@@ -168,13 +168,13 @@ required_action: Check dependencies
 command: task deps {plan} {taskId}
 
 response_handling:
-  if "所有依赖已完成":
+  if "All dependencies completed":
     action: proceed with task start
-  if "依赖未就绪":
+  if "Dependencies not ready":
     action:
       - List blocking dependencies
       - Present to user
-      - Ask: "是否强制开始？(需要 --force)"
+      - Ask: "Force start? (requires --force)"
     if_user_confirms:
       action: task start --force
       log: records force flag
@@ -245,17 +245,17 @@ specific: true    # No vague terms like "good performance"
 complete: true    # Covers function, test, docs
 
 examples_good:
-  - "单元测试覆盖率 >= 80%"
-  - "API响应时间 < 200ms (p95)"
-  - "Swagger文档已更新"
-  - "代码通过ESLint检查"
-  - "npm run build无错误"
+  - "Unit test coverage >= 80%"
+  - "API response time < 200ms (p95)"
+  - "Swagger documentation updated"
+  - "Code passes ESLint check"
+  - "npm run build with no errors"
 
 examples_bad:
-  - "功能正常"        # Too vague
-  - "性能没问题"      # Not measurable
-  - "文档齐全"        # Not specific
-  - "测试通过"        # No coverage metric
+  - "Functionality normal"        # Too vague
+  - "Performance is fine"      # Not measurable
+  - "Documentation complete"        # Not specific
+  - "Tests pass"        # No coverage metric
 ```
 
 ### Artifact Declaration Rules
@@ -326,9 +326,9 @@ operations:
     risk: "Start with incomplete dependencies"
 
 confirmation_template: |
-  操作: {operation}
-  风险: {risk}
-  请确认是否继续？(yes/no)
+  Operation: {operation}
+  Risk: {risk}
+  Please confirm whether to continue? (yes/no)
 ```
 
 ---
@@ -338,7 +338,7 @@ confirmation_template: |
 ### Common Error Patterns
 ```yaml
 error_task_not_found:
-  error: "任务不存在"
+  error: "Task does not exist"
   cause: Invalid taskId
   recovery:
     - Run: task list {plan}
@@ -346,7 +346,7 @@ error_task_not_found:
     - Present: to user for selection
 
 error_not_verified:
-  error: "尚未通过核验"
+  error: "Not yet verified"
   cause: Missing verification step
   recovery:
     - Run: task verify {plan} {taskId}
@@ -355,7 +355,7 @@ error_not_verified:
     - If fail: report missing artifacts
 
 error_not_completed:
-  error: "只有已完成的任务才能归档"
+  error: "Only completed tasks can be archived"
   cause: Wrong task status
   recovery:
     - Run: task done {plan} {taskId}
@@ -363,7 +363,7 @@ error_not_completed:
     - Then: task archive
 
 error_dependencies_not_ready:
-  error: "依赖未就绪"
+  error: "Dependencies not ready"
   cause: Incomplete dependencies
   recovery:
     - Run: task deps {plan} {taskId}

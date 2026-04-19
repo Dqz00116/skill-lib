@@ -1,10 +1,12 @@
 ---
 name: code-generator
-description: Generate code implementation from design documents following structured phase-based workflow with token cost estimation and modification previews.
+description: Use when implementing new modules from design documents, adding features to existing code, or generating structured implementations
 version: 1.0
 ---
 
 # Code Generator Skill
+
+## Overview
 
 Structured workflow for implementing code from design documents with clear phase separation, cost estimation, and modification tracking.
 
@@ -104,12 +106,12 @@ Phase 1 ──► Phase 2 ──► Phase 3
 
 1. [Specific question 1]
 2. [Specific question 2]
-3. Start confirmation: Reply "批准计划" to begin
+3. Start confirmation: Reply "Approve plan" to begin
 ```
 
 ### Step 3: Execute Phase by Phase
 
-After user approval with "批准计划":
+After user approval with "Approve plan":
 
 1. **Announce current phase**
 2. **Execute operations** in order
@@ -225,7 +227,7 @@ private:
 ### User Confirmation
 
 1. Database table: I provide SQL / You create manually
-2. Start: Reply "批准计划"
+2. Start: Reply "Approve plan"
 ```
 
 ## Anti-Patterns
@@ -238,7 +240,7 @@ private:
 - Combine multiple phases without checkpoint
 
 ### ✅ Do
-- Wait for "批准计划" before execution
+- Wait for "Approve plan" before execution
 - Show before/after for all modifications
 - Estimate costs conservatively
 - Stay within code generation scope only

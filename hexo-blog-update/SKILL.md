@@ -1,10 +1,12 @@
 ---
 name: hexo-blog-update
-description: Standardized workflow for creating and publishing Hexo blog posts with local preview and deployment.
+description: Use when creating, editing, or publishing Hexo blog posts
 version: 1.0
 ---
 
-# Hexo 博客更新 Skill
+# Hexo Blog Update Skill
+
+## Overview
 
 Standardized workflow for creating, editing, and publishing Hexo blog posts.
 
@@ -32,13 +34,13 @@ Use this skill when you need to:
 cd /path/to/blog
 
 # Create new post
-hexo new post "文章标题"
+hexo new post "post-title"
 
 # Or use npm script
-npm run new "文章标题"
+npm run new "post-title"
 ```
 
-Post will be created at: `source/_posts/文章标题.md`
+Post will be created at: `source/_posts/post-title.md`
 
 ### Step 2: Edit Post Content
 
@@ -46,27 +48,27 @@ Edit the generated markdown file with the following structure:
 
 ```markdown
 ---
-title: 文章标题
+title: Post Title
 date: YYYY-MM-DD HH:MM:SS
 categories:
-- 分类1
-- 分类2
+- Category 1
+- Category 2
 tags:
-- 标签1
-- 标签2
+- Tag 1
+- Tag 2
 ---
 
-文章摘要内容，会显示在首页列表中...
+Post excerpt content, will be displayed in the homepage list...
 
 <!--more-->
 
-## 正文标题
+## Body Heading
 
-正文内容...
+Body content...
 
-## 另一个标题
+## Another Heading
 
-更多内容...
+More content...
 ```
 
 **Important Rules**:
@@ -115,52 +117,52 @@ To github.com:username/username.github.io.git
 
 ```markdown
 ---
-title: 文章标题
+title: Post Title
 date: 2026-02-11 17:20:00
 categories:
-- 分类1
-- 分类2
+- Category 1
+- Category 2
 tags:
-- 标签1
-- 标签2
-- 标签3
+- Tag 1
+- Tag 2
+- Tag 3
 ---
 
-文章摘要，显示在首页列表中。简要介绍文章内容和价值。
+Post excerpt, displayed in the homepage list. Briefly introduce the article content and value.
 
 <!--more-->
 
-## 前言
+## Preface
 
-详细介绍背景...
+Detailed background introduction...
 
-## 主要内容
+## Main Content
 
-### 小节1
+### Section 1
 
-内容...
+Content...
 
-### 小节2
+### Section 2
 
-内容...
+Content...
 
-## 总结
+## Summary
 
-总结要点...
+Summary of key points...
 
 ---
 
-*相关链接*:
-- [链接描述](url)
+*Related Links*:
+- [Link Description](url)
 ```
 
 ## Common Commands Reference
 
 | Command | Description |
 |---------|-------------|
-| `hexo new post "标题"` | Create new post |
-| `hexo new draft "标题"` | Create draft post |
-| `hexo publish draft "标题"` | Publish draft |
+| `hexo new post "title"` | Create new post |
+| `hexo new draft "title"` | Create draft post |
+| `hexo publish draft "title"` | Publish draft |
 | `hexo server` | Start local server |
 | `hexo clean` | Clean cache and generated files |
 | `hexo generate` | Generate static files |
@@ -173,7 +175,7 @@ tags:
 blog/
 ├── source/
 │   └── _posts/
-│       └── 文章标题.md      # Post files
+│       └── post-title.md      # Post files
 ├── themes/                    # Theme directory
 ├── _config.yml               # Site config
 ├── package.json              # Scripts & dependencies
@@ -219,8 +221,8 @@ blog/
 **Agent**:
 ```
 Step 1: Create post
-$ hexo new post "推荐的 AI 开发工具"
-INFO  Created: source/_posts/推荐的-AI-开发工具.md
+$ hexo new post "Recommended AI Development Tools"
+INFO  Created: source/_posts/Recommended-AI-Development-Tools.md
 
 Step 2: Edit content
 [Edit file with proper structure and <!--more-->]
