@@ -43,7 +43,7 @@ skill_content = read_file("skills/code-analysis/SKILL.md")
 execute_workflow(skill_content)
 ```
 
-See [INSTALL.md](./INSTALL.md) for detailed installation options.
+See [contributing/SKILL.md](./contributing/SKILL.md) for installation and contribution guidelines.
 
 ---
 
@@ -56,14 +56,13 @@ See [INSTALL.md](./INSTALL.md) for detailed installation options.
 ## 📖 Documentation
 
 - **[SUMMARY.md](./SUMMARY.md)** - Complete skill comparison and selection guide
-- **[INSTALL.md](./INSTALL.md)** - Installation guide for local workspaces
-- **[RULES.md](./RULES.md)** - Contribution guidelines and standards
+- **[contributing/SKILL.md](./contributing/SKILL.md)** - Installation and contribution guidelines
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see [RULES.md](./RULES.md) for:
+We welcome contributions! Please see [contributing/SKILL.md](./contributing/SKILL.md) for:
 - Naming conventions
 - Content guidelines
 - Submission process

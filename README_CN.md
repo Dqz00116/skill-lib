@@ -42,14 +42,13 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 ## 详细文档
 
 - [SUMMARY.md](./SUMMARY.md) - 完整技能对比表
-- [INSTALL.md](./INSTALL.md) - 安装 Skill 到本地工作空间
-- [RULES.md](./RULES.md) - 贡献 Skill 的规则
+- [contributing/SKILL.md](./contributing/SKILL.md) - 安装与贡献指南
 
 ---
 
 ## 使用规则
 
-详细规则请阅读 [RULES.md](./RULES.md)
+详细规则请阅读 [contributing/SKILL.md](./contributing/SKILL.md)
 
 ### 核心原则
 
@@ -66,7 +65,7 @@ Agent 读取 Skill 文件后，按照文档中的工作流程执行任务。
 
 ### 提交流程
 
-1. 按 [RULES.md](./RULES.md) 创建 SKILL.md
+1. 按 [contributing/SKILL.md](./contributing/SKILL.md) 创建 SKILL.md
 2. 脱敏处理所有内容
 3. 提交到 `skill-name/SKILL.md`
 4. 创建 Pull Request
