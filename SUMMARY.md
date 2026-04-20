@@ -22,9 +22,10 @@
 | [requirement-clarification](./requirement-clarification) | Use when receiving ambiguous instructions, preparing for state-changin... | 1.1 |
 | [research-to-practice](./research-to-practice) | Use when applying academic research to practical workflows, optimizing... | 1.0 |
 | [taskmaster-skill](./taskmaster-skill) | Use when managing complex project plans, tracking multi-phase task pro... |  |
+| [ue5-umg](./ue5-umg) | Use when building HUDs, menus, inventory screens, settings panels, or ... | 1.3.0 |
 | [unity-mcp](./unity-mcp) | Use when controlling Unity editor via AI, automating scene operations,... |  |
 
-**Total: 15 skills**
+**Total: 16 skills**
 
 ---
 
