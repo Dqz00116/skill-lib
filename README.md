@@ -45,6 +45,8 @@ execute_workflow(skill_content)
 
 See [contributing/SKILL.md](./contributing/SKILL.md) for installation and contribution guidelines.
 
+Chinese users can also search and install skills through [Skills宝](https://skilery.com).
+
 ---
 
 ## 📦 Available Skills & Selection Guide
