@@ -14,6 +14,7 @@
 | [devflow](./devflow) | Use when working in a DevFlow project with .devflow/ directory and gat... | 2.0 |
 | [git-workflow](./git-workflow) | Use when committing code, pushing changes, or managing Git operations ... | 1.0 |
 | [hexo-blog-update](./hexo-blog-update) | Use when creating, editing, or publishing Hexo blog posts | 1.0 |
+| [kimicode-vision-bridge](./kimicode-vision-bridge) | Use when the current Agent LLM cannot process images directly and visu... |  |
 | [knowledge-base-cache](./knowledge-base-cache) | Use when managing large knowledge bases, reducing API costs, or implem... | 1.0 |
 | [layered-first-principles-teaching](./layered-first-principles-teaching) | Use when explaining complex concepts to others, designing training mat... | 1.0 |
 | [msvc-build](./msvc-build) | Use when compiling MSVC C++ projects, debugging build errors, or perfo... | 1.0 |
@@ -22,10 +23,11 @@
 | [requirement-clarification](./requirement-clarification) | Use when receiving ambiguous instructions, preparing for state-changin... | 1.1 |
 | [research-to-practice](./research-to-practice) | Use when applying academic research to practical workflows, optimizing... | 1.0 |
 | [taskmaster-skill](./taskmaster-skill) | Use when managing complex project plans, tracking multi-phase task pro... |  |
-| [ue5-umg](./ue5-umg) | Use when building HUDs, menus, inventory screens, settings panels, or ... | 1.3.0 |
+| [ue5-umg](./ue5-umg) | Use when building HUDs, menus, inventory screens, settings panels, or ... | 1.4.1 |
+| [ue5-umg-layout](./ue5-umg-layout) | Use when designing or improving the visual layout of UMG Widget Bluepr... | 1.0.0 |
 | [unity-mcp](./unity-mcp) | Use when controlling Unity editor via AI, automating scene operations,... |  |
 
-**Total: 16 skills**
+**Total: 18 skills**
 
 ---
 
